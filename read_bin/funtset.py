@@ -1,5 +1,6 @@
 import numpy
 
+
 def crop_by_mode(raw, mode):
     # 更新宽高
     width = raw.shape[1]
@@ -20,8 +21,8 @@ def crop_by_mode(raw, mode):
 
     return raw
 
+
 def white_balance(raw):
-    # 更新宽高
     width = raw.shape[1]
     height = raw.shape[0]
 
@@ -64,3 +65,13 @@ def white_balance(raw):
     print(post_wb[0][0], post_wb[0][1], post_wb[1][0], post_wb[1][1])
 
     return post_wb
+
+
+def lens_shading_correction(raw, FOV):
+    width = raw.shape[1]
+    height = raw.shape[0]
+
+    # 找出中心区并计算距离。加0.5的原因：一般来说，真实的像素是方形的，而真正的图像中心是四个像素中间的间隙，而不是某个像素
+    centerX = width / 2 + 0.5 - 1
+    centerY = height / 2 + 0.5 - 1
+    circumradius = centerX ** 0.5 + centerY ** 0.5
