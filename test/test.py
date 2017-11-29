@@ -1,3 +1,3 @@
-import pyximport; pyximport.install()
-import fibonacci
-fibonacci.fib(2000)
+import pyximport
+pyximport.install()
+import ar
