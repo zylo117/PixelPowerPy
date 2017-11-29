@@ -74,16 +74,7 @@ def lens_shading_correction(raw, FOV):
     # 找出中心并计算外接圆半径。加0.5的原因：一般来说，真实的像素是方形的，而真正的图像中心是四个像素中间的间隙，而不是某个像素
     centerX = width / 2 + 0.5 - 1
     centerY = height / 2 + 0.5 - 1
-    circumradius = (centerX ** 2 + centerY ** 2) ** 0.5
+    circumradius = centerX ** 0.5 + centerY ** 0.5
 
     # 求出所有点所在的视野（半）角对应程度
-    # Cython辅助加速
-    for j in range(height):
-        for i in range(width):
-            FOV_scale = (FOV / 2) * ((centerX - i) ** 2 + (centerY - j) ** 2) ** 0.5 / circumradius
-
-            # 采用4次余弦因子增益，次方越大，纠正效果越强
-            lsc_factor = 1 / (numpy.cos(numpy.pi / 180 * FOV_scale)) ** 4
-            raw[j, i] = raw[j, i] * lsc_factor
-
-    return raw
+    for i

@@ -32,11 +32,13 @@ raw = crop_by_mode(raw, args["mode"])
 raw = raw + [args["pedestal"]]
 print(raw[0][0], raw[0][1], raw[1][0], raw[1][1])
 
-#白平衡
+# 白平衡
 raw = white_balance(raw)
 
-time2 = datetime.datetime.now()
+# 去镜头阴影
+raw = lens_shading_correction(raw, 75)
 
+time2 = datetime.datetime.now()
 print(time2 - time1)
 
 
