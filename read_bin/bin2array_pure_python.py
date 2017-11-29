@@ -2,7 +2,7 @@ import argparse
 import datetime
 import array
 import numpy
-from funtset import *
+from functionset import *
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", required=True, help="path to the raw image")
