@@ -91,5 +91,19 @@ def lens_shading_correction(raw, FOV):
 
     return raw
 
+
 # 线性插值
-def
+def bilinear_interpolation(raw, bayerformat):
+    w = raw.shape[1]
+    h = raw.shape[0]
+    if bayerformat is "rggb":
+        red_mask = numpy.tile(([1, 0], [0, 0]), [int(h / 2), int(w / 2)])
+        green_mask = numpy.tile(([0, 1], [1, 0]), [int(h / 2), int(w / 2)])
+        blue_mask = numpy.tile(([0, 0], [0, 1]), [int(h / 2), int(w / 2)])
+    # elif str.lower(bayerformat) is "bggr":
+    #
+    # elif str.lower(bayerformat) is "gbrg":
+    #
+    # elif str.lower(bayerformat) is "grbg":
+
+    return red_mask

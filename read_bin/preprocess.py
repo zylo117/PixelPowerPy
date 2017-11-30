@@ -38,11 +38,11 @@ def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitde
     print(raw[0][0], raw[0][1], raw[1][0], raw[1][1])
 
     # 图像格式转换
-    if str.lower(outputformat) is "raw":
+    if outputformat is "raw":
         # 源格式输出
         return raw
 
-    elif str.lower(outputformat) is "bayer":
+    elif outputformat is "bayer":
         # 分4层输出，强制转换到RGrGbB
         plane = numpy.zeros((int(raw.shape[0] / 2), int(raw.shape[1] / 2), 4))
         R = numpy.zeros((int(raw.shape[0] / 2), int(raw.shape[1] / 2)))
@@ -55,22 +55,22 @@ def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitde
         plane[:, :, 2] = raw[1::2, ::2]
         plane[:, :, 3] = raw[1::2, 1::2]
 
-        if str.lower(bayerformat) is "rggb":
+        if bayerformat is "rggb":
             R = plane[:, :, 0]
             Gr = plane[:, :, 1]
             Gb = plane[:, :, 2]
             B = plane[:, :, 3]
-        elif str.lower(bayerformat) is "bggr":
+        elif bayerformat is "bggr":
             B = plane[:, :, 0]
             Gb = plane[:, :, 1]
             Gr = plane[:, :, 2]
             R = plane[:, :, 3]
-        elif str.lower(bayerformat) is "gbrg":
+        elif bayerformat is "gbrg":
             Gb = plane[:, :, 0]
             B = plane[:, :, 1]
             R = plane[:, :, 2]
             Gr = plane[:, :, 3]
-        elif str.lower(bayerformat) is "grbg":
+        elif bayerformat is "grbg":
             Gr = plane[:, :, 0]
             R = plane[:, :, 1]
             B = plane[:, :, 2]
@@ -84,7 +84,7 @@ def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitde
 
         return raw_bayer
 
-    elif str.lower(outputformat) is "rgb":
-
+    elif outputformat is "rgb":
+        bilinear_interpolation(raw, bayerformat)
 
     return

@@ -17,6 +17,6 @@ ap.add_argument("-s", "--signed", type=bool, default=True, help="Whether all pix
 args = vars(ap.parse_args())
 
 time1 = datetime.datetime.now()
-preprocess(imageinput=args["imageinput"], outputformat="bayer", mode=2, FOV=75, whitebalance=True)
+preprocess(imageinput=args["imageinput"], outputformat="rgb", mode=2, FOV=75, whitebalance=True)
 time2 = datetime.datetime.now()
 print(time2 - time1)
