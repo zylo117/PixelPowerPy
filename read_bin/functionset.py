@@ -1,9 +1,9 @@
 import numpy
 import numba
+from conv2d_matlab import *
 
 
 def crop_by_mode(raw, mode):
-    # 更新宽高
     width = raw.shape[1]
     height = raw.shape[0]
 
@@ -100,10 +100,42 @@ def bilinear_interpolation(raw, bayerformat):
         red_mask = numpy.tile(([1, 0], [0, 0]), [int(h / 2), int(w / 2)])
         green_mask = numpy.tile(([0, 1], [1, 0]), [int(h / 2), int(w / 2)])
         blue_mask = numpy.tile(([0, 0], [0, 1]), [int(h / 2), int(w / 2)])
-    # elif str.lower(bayerformat) is "bggr":
-    #
-    # elif str.lower(bayerformat) is "gbrg":
-    #
-    # elif str.lower(bayerformat) is "grbg":
+    elif str.lower(bayerformat) is "bggr":
+        blue_mask = numpy.tile(([1, 0], [0, 0]), [int(h / 2), int(w / 2)])
+        green_mask = numpy.tile(([0, 1], [1, 0]), [int(h / 2), int(w / 2)])
+        red_mask = numpy.tile(([0, 0], [0, 1]), [int(h / 2), int(w / 2)])
+    elif str.lower(bayerformat) is "gbrg":
+        green_mask = numpy.tile(([1, 0], [0, 0]), [int(h / 2), int(w / 2)])
+        blue_mask = numpy.tile(([0, 1], [1, 0]), [int(h / 2), int(w / 2)])
+        red_mask = numpy.tile(([0, 0], [0, 1]), [int(h / 2), int(w / 2)])
+    elif str.lower(bayerformat) is "grbg":
+        green_mask = numpy.tile(([1, 0], [0, 0]), [int(h / 2), int(w / 2)])
+        red_mask = numpy.tile(([0, 1], [1, 0]), [int(h / 2), int(w / 2)])
+        blue_mask = numpy.tile(([0, 0], [0, 1]), [int(h / 2), int(w / 2)])
 
-    return red_mask
+    # 分离RG（Gr + Gb）B
+    R = raw * red_mask
+    G = raw * green_mask
+    B = raw * blue_mask
+
+    # 给缺失区插值
+    R = R + conv2(R, np.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]]), mode="same")
+    G = G + conv2(G, np.array([[0, 1, 0], [1, 0, 1], [0, 1, 0]]), mode="same")
+    B = B + conv2(B, np.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]]), mode="same")
+
+    # 计算每个像素由多少个像素合成
+    Rpix = conv2(red_mask, np.ones((3, 3)), "same")
+    Gpix = conv2(green_mask, np.ones((3, 3)), "same")
+    Gpix = Gpix - green_mask * Gpix + green_mask
+    Bpix = conv2(blue_mask, np.ones((3, 3)), "same")
+
+    R = R / Rpix
+    G = G / Gpix
+    B = B / Bpix
+
+    rgb = numpy.zeros((h, w, 3))
+    rgb[:, :, 0] = R
+    rgb[:, :, 1] = G
+    rgb[:, :, 2] = B
+
+    return rgb
