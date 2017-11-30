@@ -1,4 +1,5 @@
 import numpy
+import numba
 
 
 def crop_by_mode(raw, mode):
@@ -67,6 +68,9 @@ def white_balance(raw):
     return post_wb
 
 
+# 镜头阴影纠正
+# 涉及遍历全像素，使用Numba辅助加速
+@numba.jit()
 def lens_shading_correction(raw, FOV):
     width = raw.shape[1]
     height = raw.shape[0]
@@ -77,13 +81,15 @@ def lens_shading_correction(raw, FOV):
     circumradius = (centerX ** 2 + centerY ** 2) ** 0.5
 
     # 求出所有点所在的视野（半）角对应程度
-    # Cython辅助加速
     for j in range(height):
         for i in range(width):
             FOV_scale = (FOV / 2) * ((centerX - i) ** 2 + (centerY - j) ** 2) ** 0.5 / circumradius
 
-            # 采用4次余弦因子增益，次方越大，纠正效果越强
+            # 采用4次余弦因子增益，次方越大，纠正效果越强(具体函数，是根据图像对角线分布函数拟合的)
             lsc_factor = 1 / (numpy.cos(numpy.pi / 180 * FOV_scale)) ** 4
             raw[j, i] = raw[j, i] * lsc_factor
 
     return raw
+
+# 线性插值
+def
