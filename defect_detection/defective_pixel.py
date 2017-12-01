@@ -148,6 +148,12 @@ def dp(raw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.19,
         bayer_neighbour3_x = np.arange(temp_x[i] - 2, temp_x[i] + 3, 2)
         # 创建坐标对
         bayer_neighbour = np.transpose(np.vstack((np.tile(bayer_neighbour3_y, 3), np.repeat(bayer_neighbour3_x, 3))))
-
+        bayer_neighbour = np.delete(bayer_neighbour, 4, axis=0)
+        bayer_neighbour = bayer_neighbour[bayer_neighbour[:, 0] >= 0, :]
+        bayer_neighbour = bayer_neighbour[bayer_neighbour[:, 0] < h, :]
+        bayer_neighbour = bayer_neighbour[bayer_neighbour[:, 1] >= 0, :]
+        bayer_neighbour = bayer_neighbour[bayer_neighbour[:, 1] < w, :]
+        # 获取对应像素值
+        temp_ROI = np.sort(ID[bayer_neighbour[:,0],bayer_neighbour[:,1]])
 
     print()
