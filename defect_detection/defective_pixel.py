@@ -99,8 +99,55 @@ def dp(raw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.19,
     # 1.簇（cluster）检测
     # 检测cluster defects，并标记cluster里面的所有像素
     map_temp_cluster = conv2(map_defect, cluster_pattern)  # 应用卷积
-    map_temp_cluster = (np.abs(map_temp_cluster) >= 100 + cluster_size - 1).astype(np.double)
-    map_temp_cluster = conv2(map_defect, cluster_pattern)  # 再次应用卷积，找出影响区
-    map_temp_cluster = map_temp_cluster * map_defect  # 标出影响区里面的所有像素
+    map_temp_cluster = (np.abs(map_temp_cluster) >= (100 + cluster_size - 1)).astype(np.double)
+    map_temp_cluster = conv2(map_temp_cluster, cluster_pattern)  # 再次应用卷积，找出影响区
+    map_temp_cluster = map_temp_cluster * map_defect  # 标出影响区里面的所有像素（看看defective pixels是否与cluster有交集）
     map_temp_cluster = (map_temp_cluster > 0).astype(np.double)
+
+    # 筛选出无cluster的区域（排除cluster的影响进行下一步检测）
+    map_no_cluster = map_defect - map_temp_cluster
+
+    # 2.边界2行2列的defects检测
+    map_temp_border = np.ones(ID.shape)
+    map_temp_border[2:h - 2, 2:w - 2] = 0
+    map_temp_border = map_no_cluster * map_temp_border
+
+    """
+    怕不是DP Tagging修补dp的源码，但是缺乏defectivePixel_featureScore_Apple，暂时无法使用
+     remove all NVM locations featureScoreスキップのため無効化
+     the code below will iterate through all NVM locations and set those as non-defects
+    for i=1:size(nvm,1)
+        nvm_x =  nvm(i,1);
+        nvm_y =  nvm(i,2);
+		if (nvm_y >= 3) && (nvm_y <= (h-2)) && (nvm_x >=3) && (nvm_x <= (w-2))
+			kernel =  mapTemp_cluster((nvm_y-2):(nvm_y+2),(nvm_x-2):(nvm_x+2));
+		else
+			kernel = zeros(5,5);
+		end
+		 Check for valid image coordinates
+		if ((nvm_y >=1) && (nvm_y <= h) && (nvm_x >= 1) && (nvm_x <=w))
+			 Check for tagged cluster
+	       if (defectivePixel_featureScore_Apple(kernel, 2) <= nvm_clusterSize)
+    	        mapTemp_cluster(nvm_y, nvm_x) = 0;
+        	end
+	        map_noCluster(nvm_y,nvm_x) = 0;
+    	else 
+    		 Do nothing
+    	end    
+    end
+    """
+
+    # 把非cluster的DP标记出来，从而标记DP/DPP/NDP/NDPP
+    # Detectable Pixel/Detectable Pixel Pair/Detectable Pixel Pair/Non-Detectable Pixel Pair
+    (temp_y, temp_x) = np.where(map_no_cluster > 0)
+
+    map_temp_detection = np.zeros(ID.shape)
+    for i in range(0, len(temp_y)):
+        # 提取周围的3x3同色区域，注意，同色
+        bayer_neighbour3_y = np.arange(temp_y[i] - 2, temp_y[i] + 3, 2)
+        bayer_neighbour3_x = np.arange(temp_x[i] - 2, temp_x[i] + 3, 2)
+        # 创建坐标对
+        bayer_neighbour = np.transpose(np.vstack((np.tile(bayer_neighbour3_y, 3), np.repeat(bayer_neighbour3_x, 3))))
+
+
     print()
