@@ -11,7 +11,7 @@ def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitde
     width = ID[0]
     height = ID[1]
 
-    ID = numpy.array(ID)
+    ID = numpy.array(ID).astype(numpy.double)
     ID = ID[2:]
 
     ID = ID.reshape((height, width))
