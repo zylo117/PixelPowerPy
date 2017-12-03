@@ -46,5 +46,6 @@ def oc(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10):
     # 半径
     oc_mag_shift = np.sqrt(oc_x_shift**2 + oc_y_shift**2)
 
-    output = [oc_threshold, oc_x, oc_x_shift, oc_y, oc_y_shift, oc_mag_shift]
-    print()
+    output = [oc_threshold, oc_x, oc_y, oc_x_shift, oc_y_shift, oc_mag_shift]
+
+    return output
