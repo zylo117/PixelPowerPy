@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="562761e6-2b31-41f0-8aa3-674acc33cc8c" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/optical/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/optical/optical_center.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/optical/test_oc.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/defect_detection/defective_pixel.py" afterPath="$PROJECT_DIR$/defect_detection/defective_pixel.py" />
+      <change beforePath="$PROJECT_DIR$/read_bin/functionset.py" afterPath="$PROJECT_DIR$/read_bin/functionset.py" />
+      <change beforePath="$PROJECT_DIR$/read_bin/preprocess.py" afterPath="$PROJECT_DIR$/read_bin/preprocess.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,7 +25,7 @@
       <file leaf-file-name="conv2d_matlab.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/read_bin/conv2d_matlab.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
+            <state relative-caret-position="0">
               <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -29,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="defective_pixel.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="defective_pixel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/defect_detection/defective_pixel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="185" column="0" lean-forward="true" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="42" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -84,10 +89,34 @@
       <file leaf-file-name="preprocess.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/read_bin/preprocess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1602">
-              <caret line="91" column="25" lean-forward="false" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
+            <state relative-caret-position="65">
+              <caret line="91" column="29" lean-forward="true" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_oc.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/optical/test_oc.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="124">
+              <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="optical_center.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/optical/optical_center.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="21" column="10" lean-forward="false" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,21 +125,11 @@
       <file leaf-file-name="functionset.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/read_bin/functionset.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2484">
-              <caret line="140" column="14" lean-forward="false" selection-start-line="140" selection-start-column="11" selection-end-line="140" selection-end-column="14" />
+            <state relative-caret-position="160">
+              <caret line="140" column="0" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="multiarray.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.PyCharmCE2017.2/system/python_stubs/-1120166012/numpy/core/multiarray.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3384">
-              <caret line="188" column="22" lean-forward="false" selection-start-line="188" selection-start-column="21" selection-end-line="188" selection-end-column="22" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -145,6 +164,8 @@
       <find>%</find>
       <find>h_mirror</find>
       <find>w_mirror</find>
+      <find>print</find>
+      <find />
     </findStrings>
     <replaceStrings>
       <replace>mode</replace>
@@ -152,8 +173,8 @@
       <replace>bitdepth</replace>
       <replace>h_mirror</replace>
       <replace>w_mirror</replace>
-      <replace>,</replace>
       <replace>1</replace>
+      <replace>,</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -202,12 +223,14 @@
         <option value="$PROJECT_DIR$/read_bin/main.py" />
         <option value="$PROJECT_DIR$/read_bin/conv_matlab.py" />
         <option value="$PROJECT_DIR$/read_bin/conv2d_matlab.py" />
-        <option value="$PROJECT_DIR$/read_bin/functionset.py" />
         <option value="$PROJECT_DIR$/defective_pixel/dp_standard.py" />
         <option value="$PROJECT_DIR$/read_bin/read_bin.py" />
-        <option value="$PROJECT_DIR$/read_bin/preprocess.py" />
         <option value="$PROJECT_DIR$/defect_detection/test_dp.py" />
         <option value="$PROJECT_DIR$/defect_detection/defective_pixel.py" />
+        <option value="$PROJECT_DIR$/optical/test_oc.py" />
+        <option value="$PROJECT_DIR$/read_bin/preprocess.py" />
+        <option value="$PROJECT_DIR$/read_bin/functionset.py" />
+        <option value="$PROJECT_DIR$/optical/optical_center.py" />
       </list>
     </option>
   </component>
@@ -251,6 +274,11 @@
             <path>
               <item name="PixelPicker" type="b2602c69:ProjectViewProjectNode" />
               <item name="PixelPicker" type="462c0819:PsiDirectoryNode" />
+              <item name="optical" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PixelPicker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PixelPicker" type="462c0819:PsiDirectoryNode" />
               <item name="read_bin" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -266,16 +294,16 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\workspace\PixelPicker\pic2arrray" />
-      <recent name="D:\workspace\PixelPicker" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\PixelPicker\optical" />
       <recent name="D:\workspace\PixelPicker\defect_detection" />
       <recent name="D:\workspace\PixelPicker\read_bin" />
       <recent name="D:\workspace\PixelPicker\read_bin_cpython" />
       <recent name="D:\workspace\PixelPicker\prime" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\workspace\PixelPicker\pic2arrray" />
+      <recent name="D:\workspace\PixelPicker" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -290,7 +318,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test_dp">
+  <component name="RunManager" selected="Python.test_oc">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -323,24 +351,6 @@
       <module name="PixelPicker" />
       <option name="SCRIPT_NAME" value="D:\workspace\PixelPicker\read_bin\preprocess.py" />
       <option name="PARAMETERS" value="-i ..\b.bin -f 75" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="bin2array_pure_python2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/read_bin_cpython" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="PixelPicker" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/read_bin_cpython/bin2array_pure_python.py" />
-      <option name="PARAMETERS" value="-i ..\b.bin" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -394,6 +404,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="PixelPicker" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/defect_detection/test_dp.py" />
+      <option name="PARAMETERS" value="-i ..\b.bin" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="test_oc" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/optical" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PixelPicker" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/optical/test_oc.py" />
       <option name="PARAMETERS" value="-i ..\b.bin" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -485,19 +513,19 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.bin2array_pure_python2" />
-      <item index="1" class="java.lang.String" itemvalue="Python.bin2array_pure_python" />
-      <item index="2" class="java.lang.String" itemvalue="Python.main" />
-      <item index="3" class="java.lang.String" itemvalue="Python.read_bin" />
-      <item index="4" class="java.lang.String" itemvalue="Python.test_dp" />
+      <item index="0" class="java.lang.String" itemvalue="Python.bin2array_pure_python" />
+      <item index="1" class="java.lang.String" itemvalue="Python.main" />
+      <item index="2" class="java.lang.String" itemvalue="Python.read_bin" />
+      <item index="3" class="java.lang.String" itemvalue="Python.test_dp" />
+      <item index="4" class="java.lang.String" itemvalue="Python.test_oc" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.test_dp" />
-        <item index="1" class="java.lang.String" itemvalue="Python.read_bin" />
-        <item index="2" class="java.lang.String" itemvalue="Python.main" />
-        <item index="3" class="java.lang.String" itemvalue="Python.bin2array_pure_python" />
-        <item index="4" class="java.lang.String" itemvalue="Python.bin2array_pure_python2" />
+        <item index="0" class="java.lang.String" itemvalue="Python.test_oc" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test_dp" />
+        <item index="2" class="java.lang.String" itemvalue="Python.read_bin" />
+        <item index="3" class="java.lang.String" itemvalue="Python.main" />
+        <item index="4" class="java.lang.String" itemvalue="Python.bin2array_pure_python" />
       </list>
     </recent_temporary>
   </component>
@@ -530,7 +558,7 @@
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.168042" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22205551" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30971992" sideWeight="0.5033365" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -613,11 +641,6 @@
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/read_bin/functionset.py</url>
-          <line>140</line>
-          <option name="timeStamp" value="91" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/defect_detection/defective_pixel.py</url>
           <line>32</line>
           <option name="timeStamp" value="96" />
@@ -629,17 +652,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/defect_detection/defective_pixel.py</url>
-          <line>187</line>
+          <line>206</line>
           <option name="timeStamp" value="105" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/optical/optical_center.py</url>
+          <option name="timeStamp" value="126" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="126" />
+      <option name="time" value="127" />
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="raw" />
-      </configuration>
-    </watches-manager>
+    <watches-manager />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -651,8 +674,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/read_bin_cpython/bin2array_c.pyx" />
-    <entry file="file://$PROJECT_DIR$/prime/prime.c" />
     <entry file="file://$PROJECT_DIR$/read_bin_cpython/py2c.bat" />
     <entry file="file://$PROJECT_DIR$/read_bin_cpython/bin2array_c.pyx" />
     <entry file="file://$PROJECT_DIR$/read_bin_cpython/list2array.py" />
@@ -846,30 +867,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/read_bin/conv2d_matlab.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
+        <state relative-caret-position="0">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/read_bin/preprocess.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1602">
-          <caret line="91" column="25" lean-forward="false" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/read_bin/functionset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2484">
-          <caret line="140" column="14" lean-forward="false" selection-start-line="140" selection-start-column="11" selection-end-line="140" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -915,8 +916,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/defect_detection/defective_pixel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="185" column="0" lean-forward="true" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/read_bin/preprocess.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="91" column="29" lean-forward="true" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/read_bin/functionset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="140" column="0" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optical/test_oc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optical/optical_center.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="21" column="10" lean-forward="false" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>

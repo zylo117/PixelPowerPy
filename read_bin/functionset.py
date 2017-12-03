@@ -34,10 +34,10 @@ def white_balance(raw):
     plane[:, :, 2] = raw[1::2, ::2]
     plane[:, :, 3] = raw[1::2, 1::2]
 
-    print(plane[0][0][0], plane[0][1][0], plane[1][0][0], plane[1][1][0])
-    print(plane[0][0][1], plane[0][1][1], plane[1][0][1], plane[1][1][1])
-    print(plane[0][0][2], plane[0][1][2], plane[1][0][2], plane[1][1][2])
-    print(plane[0][0][3], plane[0][1][3], plane[1][0][3], plane[1][1][3])
+    # print(plane[0][0][0], plane[0][1][0], plane[1][0][0], plane[1][1][0])
+    # print(plane[0][0][1], plane[0][1][1], plane[1][0][1], plane[1][1][1])
+    # print(plane[0][0][2], plane[0][1][2], plane[1][0][2], plane[1][1][2])
+    # print(plane[0][0][3], plane[0][1][3], plane[1][0][3], plane[1][1][3])
 
     block_size_R = 100
     block_size_C = 100
@@ -52,10 +52,10 @@ def white_balance(raw):
     for i in range(4):
         plane[:, :, i] = plane[:, :, i] * balance[i]
 
-    print(plane[0][0][0], plane[0][1][0], plane[1][0][0], plane[1][1][0])
-    print(plane[0][0][1], plane[0][1][1], plane[1][0][1], plane[1][1][1])
-    print(plane[0][0][2], plane[0][1][2], plane[1][0][2], plane[1][1][2])
-    print(plane[0][0][3], plane[0][1][3], plane[1][0][3], plane[1][1][3])
+    # print(plane[0][0][0], plane[0][1][0], plane[1][0][0], plane[1][1][0])
+    # print(plane[0][0][1], plane[0][1][1], plane[1][0][1], plane[1][1][1])
+    # print(plane[0][0][2], plane[0][1][2], plane[1][0][2], plane[1][1][2])
+    # print(plane[0][0][3], plane[0][1][3], plane[1][0][3], plane[1][1][3])
 
     # 4合1
     post_wb = numpy.zeros(raw.shape)
@@ -63,7 +63,7 @@ def white_balance(raw):
     post_wb[::2, 1::2] = plane[:, :, 1]
     post_wb[1::2, ::2] = plane[:, :, 2]
     post_wb[1::2, 1::2] = plane[:, :, 3]
-    print(post_wb[0][0], post_wb[0][1], post_wb[1][0], post_wb[1][1])
+    # print(post_wb[0][0], post_wb[0][1], post_wb[1][0], post_wb[1][1])
 
     return post_wb
 

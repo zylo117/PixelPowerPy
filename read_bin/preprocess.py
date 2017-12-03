@@ -15,7 +15,7 @@ def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitde
     ID = ID[2:]
 
     ID = ID.reshape((height, width))
-    print(ID[0][0], ID[0][1], ID[1][0], ID[1][1])
+    # print(ID[0][0], ID[0][1], ID[1][0], ID[1][1])
 
     # 按mode切片
     ID = crop_by_mode(ID, mode)
@@ -24,7 +24,7 @@ def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitde
     ID = ID + pedestal
     if not signed:
         ID[ID < 0] = 0
-    print(ID[0][0], ID[0][1], ID[1][0], ID[1][1])
+    # print(ID[0][0], ID[0][1], ID[1][0], ID[1][1])
 
     # 白平衡
     if whitebalance:
@@ -35,7 +35,7 @@ def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitde
     if FOV is not 0:
         ID = lens_shading_correction(ID, 75)
         ID[ID > 2 ** bitdepth - 1] = 2 ** bitdepth - 1  # 防过饱和
-    print(ID[0][0], ID[0][1], ID[1][0], ID[1][1])
+    # print(ID[0][0], ID[0][1], ID[1][0], ID[1][1])
 
     # 图像格式转换
     if outputformat is "raw":

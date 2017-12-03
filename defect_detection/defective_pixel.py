@@ -5,14 +5,14 @@ from scipy.ndimage.filters import correlate
 import numba
 
 
-def dp(raw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.19, threshold_defectLow=0.12,
+def dp(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.19, threshold_defectLow=0.12,
        threshold_detectable=32,
        cluster_type="bayer", cluster_size=3, neighbour_type="avg", more_precise=False):
     if threshold_defect > 1:
-        ID = preprocess(raw, bayerformat, outputformat="raw", mode=0, bitdepth=10, pedestal=64, FOV=0,
+        ID = preprocess(IDraw, bayerformat, outputformat="raw", mode=0, bitdepth=10, pedestal=64, FOV=0,
                         whitebalance=False, signed=True, more_precise=more_precise)
     else:
-        ID = preprocess(raw, bayerformat, outputformat="raw", mode=0, bitdepth=10, pedestal=64, FOV=0,
+        ID = preprocess(IDraw, bayerformat, outputformat="raw", mode=0, bitdepth=10, pedestal=64, FOV=0,
                         whitebalance=True, signed=True, more_precise=more_precise)
 
     h = ID.shape[0]
@@ -173,7 +173,7 @@ def dp(raw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.19,
 
     # 标记DP/DPP/NDP/NDPP/Border defects
     map_temp_conv = conv2(map_temp_detection, pair_pattern)
-    map_temp_DP = (map_temp_conv == 99).astype(np.double) # 浮点布尔图
+    map_temp_DP = (map_temp_conv == 99).astype(np.double)  # 浮点布尔图
     map_temp_NDP = (map_temp_conv == 33).astype(np.double)  # 浮点布尔图
     map_temp_DPP = ((map_temp_conv != 99) * (map_temp_conv > 35)).astype(np.double)  # 浮点布尔图，DPP中心
     map_temp_NDPP = (map_temp_conv == 34).astype(np.double)  # 浮点布尔图，NDPP中心
@@ -184,5 +184,24 @@ def dp(raw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.19,
     map_temp_DLP = ((map_temp_conv != 99) * (map_temp_conv > 35)).astype(np.double)  # 浮点布尔图
     map_temp_NLP = (map_temp_conv == 34).astype(np.double)  # 浮点布尔图
 
+    # 标记ARPD(Adjacent row pair defects)
+    if cluster_type is "bayer" and threshold_defect >= 1:
+        map_temp_conv = np.zeros(ID.shape)
+    else
+        map_temp_conv = conv2(map_temp_detection, row_pattern)
+
+    map_temp_ARPD = ((map_temp_conv > 33) * (map_temp_conv != 99)).astype(np.double)  # 浮点布尔图，标记ARPD的中心
+
+    # 标记low contrast cluster低对比度簇（仅限光场）
+    map_temp_clusterlow = np.zeros(ID.shape)
+    if threshold_defect <= 1: # 光场条件下
+        map_defect_low = (np.abs(ID_delta)>(threshold_defectLow * 100)).astype(np.double)
+        map_defect_low = map_defect_low - map_defect
+
+        cluster_pattern = np.array([[1, 1, 1, 1, 1],
+                                   [1, 1, 1, 1, 1],
+                                   [1, 1, 100, 1, 1],
+                                   [1, 1, 1, 1, 1],
+                                   [1, 1, 1, 1, 1]])
 
     print()
