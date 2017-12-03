@@ -187,7 +187,7 @@ def dp(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.1
     # 标记ARPD(Adjacent row pair defects)
     if cluster_type is "bayer" and threshold_defect >= 1:
         map_temp_conv = np.zeros(ID.shape)
-    else
+    else:
         map_temp_conv = conv2(map_temp_detection, row_pattern)
 
     map_temp_ARPD = ((map_temp_conv > 33) * (map_temp_conv != 99)).astype(np.double)  # 浮点布尔图，标记ARPD的中心
