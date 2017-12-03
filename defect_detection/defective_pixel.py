@@ -6,6 +6,7 @@ import numba
 
 
 def dp(raw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.19, threshold_defectLow=0.12,
+       threshold_detectable=32,
        cluster_type="bayer", cluster_size=3, neighbour_type="avg", more_precise=False):
     if threshold_defect > 1:
         ID = preprocess(raw, bayerformat, outputformat="raw", mode=0, bitdepth=10, pedestal=64, FOV=0,
@@ -32,10 +33,10 @@ def dp(raw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.19,
 
     # 对奇偶行进行交换
     ID_mirror[[1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12], :] = ID_mirror[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], :]
-    ID_mirror[[h_mirror-13, h_mirror-14, h_mirror-11, h_mirror-12, h_mirror-9, h_mirror-10, h_mirror-7, h_mirror-8, h_mirror-5, h_mirror-6, h_mirror-3, h_mirror-4, h_mirror-1, h_mirror-2], :] = ID_mirror[[h_mirror-14, h_mirror-13, h_mirror-12, h_mirror-11, h_mirror-10, h_mirror-9, h_mirror-8, h_mirror-7, h_mirror-6, h_mirror-5, h_mirror-4, h_mirror-3, h_mirror-2, h_mirror-1], :]
+    ID_mirror[[-13, -14, -11, -12, -9, -10, -7, -8, -5, -6, -3, -4, -1, -2], :] = ID_mirror[[-14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1], :]
     # 对奇偶列进行交换
     ID_mirror[:, [1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12]] = ID_mirror[:, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]
-    ID_mirror[:, [w_mirror-13, w_mirror-14, w_mirror-11, w_mirror-12, w_mirror-9, w_mirror-10, w_mirror-7, w_mirror-8, w_mirror-5, w_mirror-6, w_mirror-3, w_mirror-4, w_mirror-1, w_mirror-2]] = ID_mirror[:, [w_mirror-14, w_mirror-13, w_mirror-12, w_mirror-11, w_mirror-10, w_mirror-9, w_mirror-8, w_mirror-7, w_mirror-6, w_mirror-5, w_mirror-4, w_mirror-3, w_mirror-2, w_mirror-1]]
+    ID_mirror[:, [-13, -14, -11, -12, -9, -10, -7, -8, -5, -6, -3, -4, -1, -2]] = ID_mirror[:, [-14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1]]
 
     # 把图像进行均值归一化
     ID_avg = np.zeros(ID_mirror.shape)
@@ -154,6 +155,34 @@ def dp(raw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.19,
         bayer_neighbour = bayer_neighbour[bayer_neighbour[:, 1] >= 0, :]
         bayer_neighbour = bayer_neighbour[bayer_neighbour[:, 1] < w, :]
         # 获取对应像素值
-        temp_ROI = np.sort(ID[bayer_neighbour[:,0],bayer_neighbour[:,1]])
+        temp_ROI = np.sort(ID[bayer_neighbour[:, 0], bayer_neighbour[:, 1]])
+
+        if neighbour_type is "avg":
+            temp_ROI = temp_ROI[1:-1] # 去除极大极小值
+            temp_avg = np.mean(temp_ROI)
+            temp_neighbour = np.abs(ID[temp_y[i], temp_x[i]] - temp_avg)
+        elif neighbour_type is "delta":
+            temp_diff = np.abs(temp_ROI - ID[temp_y, temp_x])
+            temp_neighbour = np.min(temp_diff)
+
+        # 根据差异来判断
+        if temp_neighbour > threshold_detectable:
+            map_temp_detection[temp_y[i], temp_x[i]] = 3
+        else:
+            map_temp_detection[temp_y[i], temp_x[i]] = 1
+
+    # 标记DP/DPP/NDP/NDPP/Border defects
+    map_temp_conv = conv2(map_temp_detection, pair_pattern)
+    map_temp_DP = (map_temp_conv == 99).astype(np.double) # 浮点布尔图
+    map_temp_NDP = (map_temp_conv == 33).astype(np.double)  # 浮点布尔图
+    map_temp_DPP = ((map_temp_conv != 99) * (map_temp_conv > 35)).astype(np.double)  # 浮点布尔图，DPP中心
+    map_temp_NDPP = (map_temp_conv == 34).astype(np.double)  # 浮点布尔图，NDPP中心
+
+    # 标记DLP/NLP(NDLP)
+    # Detectable Ladder Pixel/ Non-detectable Ladder Pixel
+    map_temp_conv = conv2(map_temp_detection, ladder_pattern)
+    map_temp_DLP = ((map_temp_conv != 99) * (map_temp_conv > 35)).astype(np.double)  # 浮点布尔图
+    map_temp_NLP = (map_temp_conv == 34).astype(np.double)  # 浮点布尔图
+
 
     print()
