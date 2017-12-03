@@ -212,15 +212,37 @@ def dp(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.1
         map_temp_clusterlow = map_temp_clusterlow * map_defect_low
         map_temp_clusterlow = (map_temp_clusterlow > 0).astype(np.double)
 
-    mapFail = np.max(np.array((map_temp_DP,
-                        2 * map_temp_DPP,
-                        3 * map_temp_border,
-                        5 * map_temp_NDP,
-                        6 * map_temp_NDPP,
-                        7 * map_temp_DLP,
-                        8 * map_temp_NLP,
-                        9 * map_temp_ARPD,
-                        10 * map_temp_cluster,
-                        11 * map_temp_clusterlow)), axis=0)
+    """
+    Feature功能尚未加入
+    """
 
-    print()
+    mapFail = np.max(np.array((map_temp_DP,
+                               2 * map_temp_DPP,
+                               3 * map_temp_border,
+                               # 4 * map_temp_feature,
+                               5 * map_temp_NDP,
+                               6 * map_temp_NDPP,
+                               7 * map_temp_DLP,
+                               8 * map_temp_NLP,
+                               9 * map_temp_ARPD,
+                               10 * map_temp_cluster,
+                               11 * map_temp_clusterlow)), axis=0)
+
+    fail_result = []
+
+    DP_data = [np.where(mapFail == 1), len(np.where(mapFail == 1))]
+    DPP_data = [np.where(mapFail == 2), len(np.where(mapFail == 2)) / 2]
+    NDP_data = [np.where(mapFail == 5), len(np.where(mapFail == 5))]
+    NDPP_data = [np.where(mapFail == 6), len(np.where(mapFail == 6)) / 2]
+    DLP_data = [np.where(mapFail == 7), len(np.where(mapFail == 7)) / 2]
+    NLP_data = [np.where(mapFail == 8), len(np.where(mapFail == 8)) / 2]
+    feature_data = [np.where(mapFail == 4), len(np.where(mapFail == 4))]
+    ARPD_data = [np.where(mapFail == 9), len(np.where(mapFail == 9)) / 2]
+    cluster_data = [np.where(mapFail == 10), len(np.where(mapFail == 10))]
+    clusterlow_data = [np.where(mapFail == 11), len(np.where(mapFail == 11))]
+    border_data = [np.where(mapFail == 3), len(np.where(mapFail == 3))]
+    all_dp_data = [np.where(mapFail > 0), len(np.where(mapFail > 0))]
+
+    fail_result = [DP_data, DPP_data, NDP_data, NDPP_data, DLP_data, NLP_data,feature_data, ARPD_data, cluster_data, clusterlow_data, border_data, all_dp_data]
+
+    return fail_result

@@ -16,8 +16,8 @@ ap.add_argument("-b", "--bitdepth", type=int, default=10, help="depth of the col
 ap.add_argument("-s", "--signed", type=bool, default=True, help="Whether all pixels value will be signed")
 
 args = vars(ap.parse_args())
-
 time1 = datetime.datetime.now()
-ID = dp(args["imageinput"])
+dpc = dp(args["imageinput"])
 time2 = datetime.datetime.now()
 print(time2 - time1)
+print(dpc)
