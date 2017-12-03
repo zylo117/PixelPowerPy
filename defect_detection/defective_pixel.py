@@ -194,14 +194,33 @@ def dp(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.1
 
     # 标记low contrast cluster低对比度簇（仅限光场）
     map_temp_clusterlow = np.zeros(ID.shape)
-    if threshold_defect <= 1: # 光场条件下
-        map_defect_low = (np.abs(ID_delta)>(threshold_defectLow * 100)).astype(np.double)
+    if threshold_defect <= 1:  # 光场条件下
+        map_defect_low = (np.abs(ID_delta) > (threshold_defectLow * 100)).astype(np.double)
         map_defect_low = map_defect_low - map_defect
 
+        # 当内核对应点的值，大于100 + cluster_size - 1的时候，该点就被标记为clusterlow的中心。后期增长（grow）cluster的时候，内核会被再次应用
         cluster_pattern = np.array([[1, 1, 1, 1, 1],
-                                   [1, 1, 1, 1, 1],
-                                   [1, 1, 100, 1, 1],
-                                   [1, 1, 1, 1, 1],
-                                   [1, 1, 1, 1, 1]])
+                                    [1, 1, 1, 1, 1],
+                                    [1, 1, 100, 1, 1],
+                                    [1, 1, 1, 1, 1],
+                                    [1, 1, 1, 1, 1]])
+
+        # 找出低对比度簇
+        map_temp_clusterlow = conv2(map_defect_low, cluster_pattern)
+        map_temp_clusterlow = (map_temp_clusterlow >= (100 + cluster_size - 1)).astype(np.double)
+        map_temp_clusterlow = conv2(map_temp_clusterlow, cluster_pattern)
+        map_temp_clusterlow = map_temp_clusterlow * map_defect_low
+        map_temp_clusterlow = (map_temp_clusterlow > 0).astype(np.double)
+
+    mapFail = np.max(np.array((map_temp_DP,
+                        2 * map_temp_DPP,
+                        3 * map_temp_border,
+                        5 * map_temp_NDP,
+                        6 * map_temp_NDPP,
+                        7 * map_temp_DLP,
+                        8 * map_temp_NLP,
+                        9 * map_temp_ARPD,
+                        10 * map_temp_cluster,
+                        11 * map_temp_clusterlow)), axis=0)
 
     print()

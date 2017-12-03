@@ -28,7 +28,7 @@ def oc(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10):
         threshold_data[i] = np.mean(IDy[y1:y2 + 1, x1:x2 + 1])
 
     # 计算并应用二值化（threshold）
-    oc_threshold = np.mean([threshold_data[0], np.mean(threshold_data[1:])])  # 求出二值化的阀值
+    oc_threshold = np.mean([threshold_data[0], np.mean(threshold_data[1:])])  # 通过中心与周围四点，求出二值化的阀值
     ID_threshold_binary = (IDy >= oc_threshold).astype(np.double)  # 浮点布尔图，False为暗，True为亮
 
     # 计算重心
