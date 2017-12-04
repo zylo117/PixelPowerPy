@@ -228,21 +228,48 @@ def dp(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.1
                                10 * map_temp_cluster,
                                11 * map_temp_clusterlow)), axis=0)
 
-    fail_result = []
+    dp_fail_result = []
 
-    DP_data = [np.where(mapFail == 1), len(np.where(mapFail == 1))]
-    DPP_data = [np.where(mapFail == 2), len(np.where(mapFail == 2)) / 2]
-    NDP_data = [np.where(mapFail == 5), len(np.where(mapFail == 5))]
-    NDPP_data = [np.where(mapFail == 6), len(np.where(mapFail == 6)) / 2]
-    DLP_data = [np.where(mapFail == 7), len(np.where(mapFail == 7)) / 2]
-    NLP_data = [np.where(mapFail == 8), len(np.where(mapFail == 8)) / 2]
-    feature_data = [np.where(mapFail == 4), len(np.where(mapFail == 4))]
-    ARPD_data = [np.where(mapFail == 9), len(np.where(mapFail == 9)) / 2]
-    cluster_data = [np.where(mapFail == 10), len(np.where(mapFail == 10))]
-    clusterlow_data = [np.where(mapFail == 11), len(np.where(mapFail == 11))]
-    border_data = [np.where(mapFail == 3), len(np.where(mapFail == 3))]
-    all_dp_data = [np.where(mapFail > 0), len(np.where(mapFail > 0))]
+    DP_data = [np.where(mapFail == 1), len((np.where(mapFail == 1))[0])]
+    DPP_data = [np.where(mapFail == 2), len((np.where(mapFail == 2))[0]) / 2]
+    NDP_data = [np.where(mapFail == 5), len((np.where(mapFail == 5))[0])]
+    NDPP_data = [np.where(mapFail == 6), len((np.where(mapFail == 6))[0]) / 2]
+    DLP_data = [np.where(mapFail == 7), len((np.where(mapFail == 7))[0]) / 2]
+    NLP_data = [np.where(mapFail == 8), len((np.where(mapFail == 8))[0]) / 2]
+    feature_data = [np.where(mapFail == 4), len((np.where(mapFail == 4))[0])]
+    ARPD_data = [np.where(mapFail == 9), len((np.where(mapFail == 9))[0]) / 2]
+    cluster_data = [np.where(mapFail == 10), len((np.where(mapFail == 10))[0])]
+    clusterlow_data = [np.where(mapFail == 11), len((np.where(mapFail == 11))[0])]
+    border_data = [np.where(mapFail == 3), len((np.where(mapFail == 3))[0])]
+    all_dp_data = [np.where(mapFail > 0), len((np.where(mapFail > 0))[0])]
 
-    fail_result = [DP_data, DPP_data, NDP_data, NDPP_data, DLP_data, NLP_data,feature_data, ARPD_data, cluster_data, clusterlow_data, border_data, all_dp_data]
+    dp_fail_result = [DP_data, DPP_data, NDP_data, NDPP_data, DLP_data, NLP_data,feature_data, ARPD_data, cluster_data, clusterlow_data, border_data, all_dp_data]
 
-    return fail_result
+    dp_pointset = []
+    for i in range(len(dp_fail_result[-1][0][0])):
+        dp_pointset.append((dp_fail_result[-1][0][1][i], dp_fail_result[-1][0][0][i]))
+
+    return dp_fail_result, dp_pointset, ID
+
+
+import cv2
+import imutils
+
+
+def draw_defective_pixel(dp_fail_result, draw_on=None):
+    if draw_on is None:
+        background = (np.ones((2340, 3856)) * 255).astype(np.uint8)
+        background = cv2.cvtColor(background, cv2.COLOR_GRAY2BGR)
+    else:
+        background = (draw_on / 4).astype(np.uint8)
+        background = cv2.cvtColor(background, cv2.COLOR_GRAY2BGR)
+
+    # cv2.circle(background, (300, 300), 10, (222, 0, 222))
+
+    pointset = dp_fail_result[-1][0]
+    for i in range(len(pointset[0])):
+        cv2.circle(background, (pointset[1][i], pointset[0][i]), 100, (222, 0, 222), 10)
+
+    background = imutils.resize(background, width=512)
+    cv2.imshow("DP", background)
+    cv2.waitKey()

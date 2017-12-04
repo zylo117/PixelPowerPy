@@ -1,6 +1,5 @@
 import datetime
 import argparse
-from preprocess import *
 from defect_detection.defective_pixel import *
 
 ap = argparse.ArgumentParser()
@@ -17,7 +16,8 @@ ap.add_argument("-s", "--signed", type=bool, default=True, help="Whether all pix
 
 args = vars(ap.parse_args())
 time1 = datetime.datetime.now()
-dpc = dp(args["imageinput"])
+dpc, dp_pointset, ID = dp(args["imageinput"])
 time2 = datetime.datetime.now()
 print(time2 - time1)
-print(dpc)
+print(dp_pointset)
+draw_defective_pixel(dpc, ID)
