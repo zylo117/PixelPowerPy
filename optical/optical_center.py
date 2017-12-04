@@ -55,7 +55,7 @@ import cv2
 import imutils
 
 
-def draw_optical_center(oc_result, draw_on=None):
+def draw_optical_center(oc_result, draw_on=None, magnification=10):
     if draw_on is None:
         _background = (np.ones((2340, 3856)) * 255).astype(np.uint8)
         _background = cv2.cvtColor(_background, cv2.COLOR_GRAY2BGR)
@@ -69,10 +69,13 @@ def draw_optical_center(oc_result, draw_on=None):
     cv2.line(_background, (0, int(_background.shape[0] / 2 - 0.5)),
              (_background.shape[1] - 1, int(_background.shape[0] / 2 - 0.5)), (255, 0, 255))
 
-    cv2.circle(_background, (int(oc_result[1]), int(oc_result[2])), 10, (0, 0, 255), 5)
-    cv2.putText(_background, "OC: x: " + str(round(oc_result[3], 2)) + " y: " + str(round(oc_result[4], 2)), (10, 200),
-                cv2.FONT_HERSHEY_SIMPLEX, 4, (128, 0, 128), 2)
+    cv2.circle(_background, (int(oc_result[1]), int(oc_result[2])), int(15 / magnification), (0, 0, 255), int(5 / magnification))
+
+    h = _background.shape[0]
+    w = _background.shape[1]
+    _background = _background[int((h-h/magnification)/2):int((h-(h-h/magnification)/2)), int((w-w/magnification)/2):int((w-(w-w/magnification)/2))]
 
     _background = imutils.resize(_background, width=800)
+    cv2.putText(_background, "OC: x: " + str(round(oc_result[3], 2)) + " y: " + str(round(oc_result[4], 2)) + "  magShift: " + str(round(oc_result[5], 2)), (0, _background.shape[0] - 30), cv2.FONT_HERSHEY_SIMPLEX, 4 / magnification, (128, 0, 128), 1)
     cv2.imshow("OC", _background)
     cv2.waitKey()
