@@ -46,6 +46,33 @@ def oc(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10):
     # 半径
     oc_mag_shift = np.sqrt(oc_x_shift**2 + oc_y_shift**2)
 
-    output = [oc_threshold, oc_x, oc_y, oc_x_shift, oc_y_shift, oc_mag_shift]
+    oc_result = [oc_threshold, oc_x, oc_y, oc_x_shift, oc_y_shift, oc_mag_shift]
 
-    return output
+    return oc_result, IDyuv
+
+
+import cv2
+import imutils
+
+
+def draw_optical_center(oc_result, draw_on=None):
+    if draw_on is None:
+        _background = (np.ones((2340, 3856)) * 255).astype(np.uint8)
+        _background = cv2.cvtColor(_background, cv2.COLOR_GRAY2BGR)
+    else:
+        _background = (draw_on / 4).astype(np.uint8)
+        _background = cv2.cvtColor(_background, cv2.COLOR_YUV2BGR)
+
+    cv2.line(_background, (int(_background.shape[1] / 2 - 0.5), 0),
+             (int(_background.shape[1] / 2 - 0.5), _background.shape[0] - 1), (255, 0, 255))
+
+    cv2.line(_background, (0, int(_background.shape[0] / 2 - 0.5)),
+             (_background.shape[1] - 1, int(_background.shape[0] / 2 - 0.5)), (255, 0, 255))
+
+    cv2.circle(_background, (int(oc_result[1]), int(oc_result[2])), 10, (0, 0, 255), 5)
+    cv2.putText(_background, "OC: x: " + str(round(oc_result[3], 2)) + " y: " + str(round(oc_result[4], 2)), (10, 200),
+                cv2.FONT_HERSHEY_SIMPLEX, 4, (128, 0, 128), 2)
+
+    _background = imutils.resize(_background, width=800)
+    cv2.imshow("OC", _background)
+    cv2.waitKey()

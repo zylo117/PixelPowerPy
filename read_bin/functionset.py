@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 import numba
 from conv2d_matlab import *
 
@@ -28,7 +28,7 @@ def white_balance(raw):
     height = raw.shape[0]
 
     # 分4层
-    plane = numpy.zeros((int(height / 2), int(width / 2), 4))
+    plane = np.zeros((int(height / 2), int(width / 2), 4))
     plane[:, :, 0] = raw[::2, ::2]
     plane[:, :, 1] = raw[::2, 1::2]
     plane[:, :, 2] = raw[1::2, ::2]
@@ -46,8 +46,8 @@ def white_balance(raw):
     center_block = plane[int(center[0] - block_size_R / 2 + 1):int(center[0] + int(block_size_R / 2 + 1)),
                    int(center[1] - int(block_size_C / 2) + 1): int(center[1] + int(block_size_C / 2) + 1), :]
 
-    center_mean = numpy.mean((numpy.mean(center_block, axis=0)), axis=0)
-    balance = numpy.max(center_mean) / center_mean
+    center_mean = np.mean((np.mean(center_block, axis=0)), axis=0)
+    balance = np.max(center_mean) / center_mean
 
     for i in range(4):
         plane[:, :, i] = plane[:, :, i] * balance[i]
@@ -58,7 +58,7 @@ def white_balance(raw):
     # print(plane[0][0][3], plane[0][1][3], plane[1][0][3], plane[1][1][3])
 
     # 4合1
-    post_wb = numpy.zeros(raw.shape)
+    post_wb = np.zeros(raw.shape)
     post_wb[::2, ::2] = plane[:, :, 0]
     post_wb[::2, 1::2] = plane[:, :, 1]
     post_wb[1::2, ::2] = plane[:, :, 2]
@@ -86,7 +86,7 @@ def lens_shading_correction(raw, FOV):
             FOV_scale = (FOV / 2) * ((centerX - i) ** 2 + (centerY - j) ** 2) ** 0.5 / circumradius
 
             # 采用4次余弦因子增益，次方越大，纠正效果越强(具体函数，是根据图像对角线分布函数拟合的)
-            lsc_factor = 1 / (numpy.cos(numpy.pi / 180 * FOV_scale)) ** 4
+            lsc_factor = 1 / (np.cos(np.pi / 180 * FOV_scale)) ** 4
             raw[j, i] = raw[j, i] * lsc_factor
 
     return raw
@@ -97,21 +97,21 @@ def bilinear_interpolation(raw, bayerformat):
     w = raw.shape[1]
     h = raw.shape[0]
     if bayerformat is "rggb":
-        red_mask = numpy.tile(([1, 0], [0, 0]), [int(h / 2), int(w / 2)])
-        green_mask = numpy.tile(([0, 1], [1, 0]), [int(h / 2), int(w / 2)])
-        blue_mask = numpy.tile(([0, 0], [0, 1]), [int(h / 2), int(w / 2)])
+        red_mask = np.tile(([1, 0], [0, 0]), [int(h / 2), int(w / 2)])
+        green_mask = np.tile(([0, 1], [1, 0]), [int(h / 2), int(w / 2)])
+        blue_mask = np.tile(([0, 0], [0, 1]), [int(h / 2), int(w / 2)])
     elif str.lower(bayerformat) is "bggr":
-        blue_mask = numpy.tile(([1, 0], [0, 0]), [int(h / 2), int(w / 2)])
-        green_mask = numpy.tile(([0, 1], [1, 0]), [int(h / 2), int(w / 2)])
-        red_mask = numpy.tile(([0, 0], [0, 1]), [int(h / 2), int(w / 2)])
+        blue_mask = np.tile(([1, 0], [0, 0]), [int(h / 2), int(w / 2)])
+        green_mask = np.tile(([0, 1], [1, 0]), [int(h / 2), int(w / 2)])
+        red_mask = np.tile(([0, 0], [0, 1]), [int(h / 2), int(w / 2)])
     elif str.lower(bayerformat) is "gbrg":
-        green_mask = numpy.tile(([1, 0], [0, 0]), [int(h / 2), int(w / 2)])
-        blue_mask = numpy.tile(([0, 1], [1, 0]), [int(h / 2), int(w / 2)])
-        red_mask = numpy.tile(([0, 0], [0, 1]), [int(h / 2), int(w / 2)])
+        green_mask = np.tile(([1, 0], [0, 0]), [int(h / 2), int(w / 2)])
+        blue_mask = np.tile(([0, 1], [1, 0]), [int(h / 2), int(w / 2)])
+        red_mask = np.tile(([0, 0], [0, 1]), [int(h / 2), int(w / 2)])
     elif str.lower(bayerformat) is "grbg":
-        green_mask = numpy.tile(([1, 0], [0, 0]), [int(h / 2), int(w / 2)])
-        red_mask = numpy.tile(([0, 1], [1, 0]), [int(h / 2), int(w / 2)])
-        blue_mask = numpy.tile(([0, 0], [0, 1]), [int(h / 2), int(w / 2)])
+        green_mask = np.tile(([1, 0], [0, 0]), [int(h / 2), int(w / 2)])
+        red_mask = np.tile(([0, 1], [1, 0]), [int(h / 2), int(w / 2)])
+        blue_mask = np.tile(([0, 0], [0, 1]), [int(h / 2), int(w / 2)])
 
     # 分离RG（Gr + Gb）B
     R = raw * red_mask
@@ -133,7 +133,7 @@ def bilinear_interpolation(raw, bayerformat):
     G = G / Gpix
     B = B / Bpix
 
-    rgb = numpy.zeros((h, w, 3))
+    rgb = np.zeros((h, w, 3))
     rgb[:, :, 0] = R
     rgb[:, :, 1] = G
     rgb[:, :, 2] = B

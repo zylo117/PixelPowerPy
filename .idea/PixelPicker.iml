@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/read_bin_cpython" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/read_bin_cpython/read_bin_cpython" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/read_bin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/defect_detection" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/pic2arrray" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.6.2 (C:\Program Files\Python36\python.exe)" jdkType="Python SDK" />

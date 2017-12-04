@@ -216,7 +216,7 @@ def dp(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.1
     Feature功能尚未加入
     """
 
-    mapFail = np.max(np.array((map_temp_DP,
+    mapFail = np.max(np.dstack((map_temp_DP,
                                2 * map_temp_DPP,
                                3 * map_temp_border,
                                # 4 * map_temp_feature,
@@ -226,11 +226,9 @@ def dp(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.1
                                8 * map_temp_NLP,
                                9 * map_temp_ARPD,
                                10 * map_temp_cluster,
-                               11 * map_temp_clusterlow)), axis=0)
+                               11 * map_temp_clusterlow)), axis=2)
 
-    dp_fail_result = []
-
-    DP_data = [np.where(mapFail == 1), len((np.where(mapFail == 1))[0])]
+    DP_data = [np.where(mapFail == 1), len((np.where(mapFail == 1))[0]), ID_percDiff[np.where(mapFail == 1)]]
     DPP_data = [np.where(mapFail == 2), len((np.where(mapFail == 2))[0]) / 2]
     NDP_data = [np.where(mapFail == 5), len((np.where(mapFail == 5))[0])]
     NDPP_data = [np.where(mapFail == 6), len((np.where(mapFail == 6))[0]) / 2]
@@ -241,7 +239,7 @@ def dp(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.1
     cluster_data = [np.where(mapFail == 10), len((np.where(mapFail == 10))[0])]
     clusterlow_data = [np.where(mapFail == 11), len((np.where(mapFail == 11))[0])]
     border_data = [np.where(mapFail == 3), len((np.where(mapFail == 3))[0])]
-    all_dp_data = [np.where(mapFail > 0), len((np.where(mapFail > 0))[0])]
+    all_dp_data = [np.where(mapFail > 0), len((np.where(mapFail > 0))[0]), ID_percDiff[np.where(mapFail == 1)]]
 
     dp_fail_result = [DP_data, DPP_data, NDP_data, NDPP_data, DLP_data, NLP_data,feature_data, ARPD_data, cluster_data, clusterlow_data, border_data, all_dp_data]
 
@@ -258,18 +256,23 @@ import imutils
 
 def draw_defective_pixel(dp_fail_result, draw_on=None):
     if draw_on is None:
-        background = (np.ones((2340, 3856)) * 255).astype(np.uint8)
-        background = cv2.cvtColor(background, cv2.COLOR_GRAY2BGR)
+        _background = (np.ones((2340, 3856)) * 255).astype(np.uint8)
+        _background = cv2.cvtColor(_background, cv2.COLOR_GRAY2BGR)
     else:
-        background = (draw_on / 4).astype(np.uint8)
-        background = cv2.cvtColor(background, cv2.COLOR_GRAY2BGR)
-
-    # cv2.circle(background, (300, 300), 10, (222, 0, 222))
+        _background = (draw_on / 4).astype(np.uint8)
+        _background = cv2.cvtColor(_background, cv2.COLOR_GRAY2BGR)
 
     pointset = dp_fail_result[-1][0]
     for i in range(len(pointset[0])):
-        cv2.circle(background, (pointset[1][i], pointset[0][i]), 100, (222, 0, 222), 10)
+        cv2.circle(_background, (pointset[1][i], pointset[0][i]), 100, (255, 0, 255), 10)
+        zoom = (draw_on[pointset[0][i] - 2:pointset[0][i] + 3, pointset[1][i] - 2:pointset[1][i] + 3] / 4).astype(
+            np.uint8)
+        zoom = imutils.resize(zoom, width=200)
+        cv2.putText(zoom, "Value: " + str(round(dp_fail_result[-1][2][i] * 100, 2)) + "%", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+        cv2.imshow("DP - Zoom: NO" + str(i + 1), zoom)
 
-    background = imutils.resize(background, width=512)
-    cv2.imshow("DP", background)
+    cv2.putText(_background, "DPC: " + str(len(pointset[0])), (10, 200), cv2.FONT_HERSHEY_SIMPLEX, 5, (0, 255, 0), 2)
+
+    _background = imutils.resize(_background, width=800)
+    cv2.imshow("DP", _background)
     cv2.waitKey()

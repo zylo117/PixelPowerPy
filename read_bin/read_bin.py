@@ -1,6 +1,6 @@
 import datetime
 import argparse
-from preprocess import *
+from preprocess import preprocess
 
 ap = argparse.ArgumentParser()
 
