@@ -2,9 +2,6 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/k_means" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/read_bin_cpython" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/read_bin_cpython/read_bin_cpython" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/read_bin" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/defect_detection" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/pic2arrray" />

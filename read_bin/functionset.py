@@ -1,6 +1,6 @@
 import numpy as np
 import numba
-from conv2d_matlab import *
+from read_bin.conv2d_matlab import *
 
 
 def crop_by_mode(raw, mode):

@@ -1,6 +1,6 @@
 import array
 import numpy
-from functionset import *
+from read_bin.functionset import *
 
 
 def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitdepth=10, pedestal=64, FOV=0,
