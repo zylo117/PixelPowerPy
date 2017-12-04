@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PixelPicker.iml" filepath="$PROJECT_DIR$/.idea/PixelPicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PixelPower.iml" filepath="$PROJECT_DIR$/.idea/PixelPower.iml" />
     </modules>
   </component>
 </project>
