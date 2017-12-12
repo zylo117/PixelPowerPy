@@ -1,6 +1,6 @@
 import datetime
 import argparse
-from defect_detection.defective_pixel import *
+from lcb.low_contrast_blemish import *
 
 ap = argparse.ArgumentParser()
 
@@ -16,8 +16,6 @@ ap.add_argument("-s", "--signed", type=bool, default=True, help="Whether all pix
 
 args = vars(ap.parse_args())
 time1 = datetime.datetime.now()
-dpc, dp_pointset, ID = dp(args["imageinput"])
+ID = lcb(args["imageinput"])
 time2 = datetime.datetime.now()
 print(time2 - time1)
-print(dp_pointset)
-draw_defective_pixel(dpc, ID)
