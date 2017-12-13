@@ -6,7 +6,8 @@ from preprocess import preprocess
 from preprocess import bilinear_interpolation
 
 
-def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13, 13], filterWidth=9, threshold=12.6, interpolation=True, exceed2maxval=True):
+def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13, 13], filterWidth=9, threshold=12.6,
+        interpolation=True, exceed2maxval=True):
     IDbayer = preprocess(IDraw, outputformat="bayer", mode=mode, more_precise=True)
 
     height = IDbayer.shape[0] * 2
@@ -27,16 +28,17 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13
 
     # scale down input image
 
-    IDbin_all = binning(IDbayer);
+    IDbin_all, bin_padR, bin_padC = binning(IDbayer);
     [rows, cols, c] = IDbin_all.shape
 
     # define final result
-    I_filtered_bayer = np.zeros((rows * 2, cols * 2))
+    I_filtered_raw = np.zeros((rows * 2, cols * 2))
     I_filtered_r = np.zeros((rows, cols))
     I_filtered_gr = np.zeros((rows, cols))
     I_filtered_gb = np.zeros((rows, cols))
     I_filtered_b = np.zeros((rows, cols))
     I_filtered_accum = np.zeros((rows, cols))
+    I_filtered_bayer = np.zeros((rows, cols, c))
 
     for k in range(c):
         # select 1 channel
@@ -101,16 +103,30 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13
         # combine veritcal and horizontal results (edge, center, and corners are treated differently)
         I_filtered_c = (I_filtered_h + I_filtered_v) / 2  # average
         # 4 edges
-        I_filtered_c[(fw + 1) // 2 - 1: - (fw - 1) // 2 - 1, 0: (fw + 1) // 2] = I_filtered_v[(fw + 1) // 2 - 1: - (fw - 1) // 2 - 1, 0: (fw + 1) // 2]
-        I_filtered_c[(fw + 1) // 2 - 1: - (fw - 1) // 2 - 1, - (fw - 1) // 2 - 1:] = I_filtered_v[(fw + 1) // 2 - 1: - (fw - 1) // 2 - 1, - (fw - 1) // 2 - 1:]
-        I_filtered_c[0: (fw + 1) // 2, (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1] = I_filtered_h[0: (fw + 1) // 2, (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1]
-        I_filtered_c[- (fw - 1) // 2:, (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1] = I_filtered_h[- (fw - 1) // 2:, (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1]
+        I_filtered_c[(fw + 1) // 2 - 1: - (fw - 1) // 2 - 1, 0: (fw + 1) // 2] = I_filtered_v[
+                                                                                 (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1,
+                                                                                 0: (fw + 1) // 2]
+        I_filtered_c[(fw + 1) // 2 - 1: - (fw - 1) // 2 - 1, - (fw - 1) // 2 - 1:] = I_filtered_v[(fw + 1) // 2 - 1: - (
+                fw - 1) // 2 - 1, - (fw - 1) // 2 - 1:]
+        I_filtered_c[0: (fw + 1) // 2, (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1] = I_filtered_h[0: (fw + 1) // 2,
+                                                                                 (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1]
+        I_filtered_c[- (fw - 1) // 2:, (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1] = I_filtered_h[- (fw - 1) // 2:,
+                                                                                 (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1]
 
         # 4 corners
-        I_filtered_c[0:(fw + 1) // 2, 0:(fw + 1) // 2] = np.min(np.dstack((I_filtered_h[0:(fw + 1) // 2, 0:(fw + 1) // 2], I_filtered_v[0:(fw + 1) // 2, 0:(fw + 1) // 2])), axis=2)
-        I_filtered_c[0:(fw + 1) // 2, -(fw - 1) // 2 - 1:] = np.min(np.dstack((I_filtered_h[0:(fw + 1) // 2, -(fw - 1) // 2 - 1:], I_filtered_v[0:(fw + 1) // 2, -(fw - 1) // 2 - 1:])), axis=2)
-        I_filtered_c[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2] = np.min(np.dstack((I_filtered_h[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2], I_filtered_v[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2])), axis=2)
-        I_filtered_c[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:] = np.min(np.dstack((I_filtered_h[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:], I_filtered_v[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:])), axis=2)
+        I_filtered_c[0:(fw + 1) // 2, 0:(fw + 1) // 2] = np.min(
+            np.dstack((I_filtered_h[0:(fw + 1) // 2, 0:(fw + 1) // 2], I_filtered_v[0:(fw + 1) // 2, 0:(fw + 1) // 2])),
+            axis=2)
+        I_filtered_c[0:(fw + 1) // 2, -(fw - 1) // 2 - 1:] = np.min(np.dstack(
+            (I_filtered_h[0:(fw + 1) // 2, -(fw - 1) // 2 - 1:], I_filtered_v[0:(fw + 1) // 2, -(fw - 1) // 2 - 1:])),
+            axis=2)
+        I_filtered_c[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2] = np.min(np.dstack(
+            (I_filtered_h[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2], I_filtered_v[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2])),
+            axis=2)
+        I_filtered_c[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:] = np.min(np.dstack((I_filtered_h[-(fw - 1) // 2 - 1:,
+                                                                                   -(fw - 1) // 2 - 1:],
+                                                                                   I_filtered_v[-(fw - 1) // 2 - 1:,
+                                                                                   -(fw - 1) // 2 - 1:])), axis=2)
 
         # add single color plane into bayer_image
         if k == 0:
@@ -123,10 +139,13 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13
             I_filtered_b = I_filtered_c
 
     I_filtered_accum = I_filtered_r + I_filtered_gr + I_filtered_gb + I_filtered_b
-    I_filtered_bayer[::2, ::2] = I_filtered_r
-    I_filtered_bayer[::2, 1::2] = I_filtered_gr
-    I_filtered_bayer[1::2, ::2] = I_filtered_gb
-    I_filtered_bayer[1::2, 1::2] = I_filtered_b
+    I_filtered_raw[::2, ::2] = I_filtered_r
+    I_filtered_raw[::2, 1::2] = I_filtered_gr
+    I_filtered_raw[1::2, ::2] = I_filtered_gb
+    I_filtered_raw[1::2, 1::2] = I_filtered_b
+    I_filtered_bayer = np.dstack((I_filtered_r, I_filtered_gr, I_filtered_gb, I_filtered_b))
+
+    lcb_compensation(I_filtered_bayer, bin_padR, bin_padC)
 
     # for testing
     # cv2.imshow("r", cv2.applyColorMap(rescale_intensity(I_filtered_r), cv2.COLORMAP_JET))
@@ -134,16 +153,16 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13
     # cv2.imshow("gb", cv2.applyColorMap(rescale_intensity(I_filtered_gb), cv2.COLORMAP_JET))
     # cv2.imshow("b", cv2.applyColorMap(rescale_intensity(I_filtered_b), cv2.COLORMAP_JET))
     # cv2.imshow("accum", cv2.applyColorMap(rescale_intensity(I_filtered_accum), cv2.COLORMAP_JET))
-    # cv2.imshow("bayer", cv2.applyColorMap(rescale_intensity(I_filtered_bayer), cv2.COLORMAP_JET))
+    # cv2.imshow("bayer", cv2.applyColorMap(rescale_intensity(I_filtered_raw), cv2.COLORMAP_JET))
 
-    # rgb = bilinear_interpolation(I_filtered_bayer)
+    # rgb = bilinear_interpolation(I_filtered_raw)
     # cv2.imshow("bayer", cv2.applyColorMap(rescale_intensity(rgb), cv2.COLORMAP_JET))
     # cv2.waitKey()
 
-    output_image = I_filtered_bayer
+    output_image = I_filtered_raw
 
     if interpolation:
-        output_image = bilinear_interpolation(I_filtered_bayer)
+        output_image = bilinear_interpolation(I_filtered_raw)
 
     if exceed2maxval:
         output_image = rescale_intensity(output_image)
@@ -193,19 +212,18 @@ def binning(ID_fullRes, block_size=[13, 13], block_stat="mean"):
                 elif block_stat is "mode":
                     ID_binned[k, j, i] = np.searchsorted(np.unique(roiData), roiData.flat)
 
-    return ID_binned
+    return ID_binned, bin_padR, bin_padC
 
 
-def lcb_compensation(lcb_image_data_single_color, raw_bayer_single_color):
+def lcb_compensation(lcb_image_data, bin_padR=0, bin_padC=0, roiSize=[13, 13]):
     # 把每个颜色的暗区（故障区）对应的单色图进行增益，然后再4色合成bayer图
-    scaled_width = lcb_image_data_single_color.shape[1]
-    scaled_height = lcb_image_data_single_color.shape[0]
+    scaled_height, scaled_width, c = lcb_image_data.shape
 
-    raw_loc_map = np.zeros((scaled_height, scaled_width))
+    raw_loc_x = np.zeros((scaled_width, c))
+    raw_loc_y = np.zeros((scaled_height, c))
 
-    for x in range(scaled_width):
-        for y in range(scaled_height):
-            raw_loc_map[y,x] = raw_bayer_single_color
+    for z in range(c):
+        raw_loc_x = np.arange(roiSize[0] // 2, scaled_width * roiSize[0] - roiSize[0] // 2, roiSize[0]) + bin_padC
+        raw_loc_y = np.arange(roiSize[1] // 2, scaled_height * roiSize[1] - roiSize[1] // 2, roiSize[1]) + bin_padR
 
-    defectLoc = [col * roiX_size - roiX_size / 2, row * roiY_size - roiY_size / 2]
-    return
+    return raw_loc_x, raw_loc_y
