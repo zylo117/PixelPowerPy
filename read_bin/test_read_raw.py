@@ -1,9 +1,8 @@
 import datetime
 import argparse
-import timeit
-import imutils
 import cv2
-from lcb.low_contrast_blemish import lcb
+import imutils
+from read_bin.preprocess import preprocess
 
 ap = argparse.ArgumentParser()
 
@@ -20,10 +19,7 @@ ap.add_argument("-s", "--signed", type=bool, default=True, help="Whether all pix
 args = vars(ap.parse_args())
 
 time1 = datetime.datetime.now()
-ID = lcb(args["imageinput"])
+ID = preprocess(imageinput=args["imageinput"], outputformat="rgb", mode=2, FOV=75, whitebalance=True, more_precise=True)
+cv2.imshow("RAW", imutils.resize(ID, width=600))
 time2 = datetime.datetime.now()
 print(time2 - time1)
-cv2.imshow("LCB", cv2.applyColorMap(imutils.resize(ID, width=600), cv2.COLORMAP_JET))
-cv2.waitKey()
-# t1 = timeit.Timer(lambda: lcb(args["imageinput"]))
-# print(timeit.timeit())

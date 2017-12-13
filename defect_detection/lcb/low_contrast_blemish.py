@@ -1,15 +1,13 @@
 import numpy as np
 import scipy.signal as spsignal
-from skimage import exposure
-import cv2
-import numba
+
+from matlab_tool import imfilter_with_1d_kernel, rescale_intensity
 from preprocess import preprocess
 from preprocess import bilinear_interpolation
 
 
-# @numba.jit()
-def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, roiSize=[13, 13], filterWidth=9, threshold=12.6, interpolation=True, exceed2maxval=True):
-    IDbayer = preprocess(IDraw, outputformat="bayer", mode=2)
+def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13, 13], filterWidth=9, threshold=12.6, interpolation=True, exceed2maxval=True):
+    IDbayer = preprocess(IDraw, outputformat="bayer", mode=mode, more_precise=True)
 
     height = IDbayer.shape[0] * 2
     width = IDbayer.shape[1] * 2
@@ -24,6 +22,7 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, roiSize=[13, 13], f
     cornerY_size = CornerROISize[0]
 
     # define the filter
+    # 可以看出，滤波后大于0的就是暗区（也就是说中心点比两边的像素值低）
     h = np.hstack((1 / 2, np.zeros((fw - 3) // 2), -1, np.zeros((fw - 3) // 2), 1 / 2))
 
     # scale down input image
@@ -152,8 +151,6 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, roiSize=[13, 13], f
     return output_image
 
 
-
-@numba.jit()
 def binning(ID_fullRes, block_size=[13, 13], block_stat="mean"):
     h = ID_fullRes.shape[0]
     w = ID_fullRes.shape[1]
@@ -199,43 +196,16 @@ def binning(ID_fullRes, block_size=[13, 13], block_stat="mean"):
     return ID_binned
 
 
-@numba.jit()
-def imfilter_with_1d_kernel(in_array, kernel, axis=0):
-    length_kernel = len(kernel)
-    length_side = length_kernel // 2
+def lcb_compensation(lcb_image_data_single_color, raw_bayer_single_color):
+    # 把每个颜色的暗区（故障区）对应的单色图进行增益，然后再4色合成bayer图
+    scaled_width = lcb_image_data_single_color.shape[1]
+    scaled_height = lcb_image_data_single_color.shape[0]
 
-    # 水平滤波
-    if axis == 0:
-        row = in_array.shape[0]
-        col = in_array.shape[1] - 2 * length_side
-        output = np.zeros((row, col))
+    raw_loc_map = np.zeros((scaled_height, scaled_width))
 
-        for i in range(row):
-            for j in range(length_side, col + length_side):
-                sum = 0
-                for k in range(length_kernel):
-                    sum = sum + kernel[k] * in_array[i][j - length_side + k]
+    for x in range(scaled_width):
+        for y in range(scaled_height):
+            raw_loc_map[y,x] = raw_bayer_single_color
 
-                output[i][j - length_side] = sum
-
-    # 竖直滤波
-    if axis == 1:
-        row = in_array.shape[0] - 2 * length_side
-        col = in_array.shape[1]
-        output = np.zeros((row, col))
-
-        for i in range(length_side, row + length_side):
-            for j in range(col):
-                sum = 0
-                for k in range(length_kernel):
-                    sum = sum + kernel[k] * in_array[i - length_side + k][j]
-
-                output[i - length_side][j] = sum
-
-    return output
-
-
-def rescale_intensity(in_array, targetval_max=255, dtype=np.uint8):
-    max = np.max(in_array)
-    factor = targetval_max / max
-    return (in_array * factor).astype(dtype)
+    defectLoc = [col * roiX_size - roiX_size / 2, row * roiY_size - roiY_size / 2]
+    return

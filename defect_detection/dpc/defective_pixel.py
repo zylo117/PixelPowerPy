@@ -1,5 +1,5 @@
 from read_bin.preprocess import preprocess
-from read_bin.conv2d_matlab import conv2
+from matlab_tool import conv2
 import numpy as np
 from scipy.ndimage.filters import correlate
 

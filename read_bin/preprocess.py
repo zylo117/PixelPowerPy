@@ -1,16 +1,20 @@
 import array
 import numpy as np
 import numba
-from read_bin.conv2d_matlab import conv2
+from matlab_tool import conv2
 
 
 def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitdepth=10, pedestal=64, FOV=0,
-               whitebalance=True, signed=True, more_precise=False):
+               whitebalance=True, signed=True, more_precise=False, custom_size=[0, 0]):
     # unsigned integer, 16位
     ID = array.array('H', open(imageinput, "rb").read())
 
     width = ID[0]
     height = ID[1]
+
+    if custom_size != [0, 0]:
+        width = custom_size[0]
+        height = custom_size[1]
 
     ID = np.array(ID).astype(np.double)
     ID = ID[2:]
