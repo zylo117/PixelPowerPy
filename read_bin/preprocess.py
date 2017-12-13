@@ -199,9 +199,9 @@ def lens_shading_correction(raw, FOV):
 
 
 # 线性插值
-def bilinear_interpolation(raw, bayerformat):
-    w = raw.shape[1]
-    h = raw.shape[0]
+def bilinear_interpolation(raw_bayer, bayerformat="rggb"):
+    w = raw_bayer.shape[1]
+    h = raw_bayer.shape[0]
     if bayerformat is "rggb":
         red_mask = np.tile(([1, 0], [0, 0]), [int(h / 2), int(w / 2)])
         green_mask = np.tile(([0, 1], [1, 0]), [int(h / 2), int(w / 2)])
@@ -220,9 +220,9 @@ def bilinear_interpolation(raw, bayerformat):
         blue_mask = np.tile(([0, 0], [0, 1]), [int(h / 2), int(w / 2)])
 
     # 分离RG（Gr + Gb）B
-    R = raw * red_mask
-    G = raw * green_mask
-    B = raw * blue_mask
+    R = raw_bayer * red_mask
+    G = raw_bayer * green_mask
+    B = raw_bayer * blue_mask
 
     # 给缺失区插值
     R = R + conv2(R, np.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]]), mode="same")

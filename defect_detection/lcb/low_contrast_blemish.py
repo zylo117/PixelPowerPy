@@ -1,13 +1,14 @@
 import numpy as np
 import scipy.signal as spsignal
-import scipy.ndimage.filters as spimage
+from skimage import exposure
 import cv2
 import numba
 from preprocess import preprocess
+from preprocess import bilinear_interpolation
 
 
 # @numba.jit()
-def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, roiSize=[13, 13], filterWidth=9, threshold=12.6):
+def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, roiSize=[13, 13], filterWidth=9, threshold=12.6, interpolation=True, exceed2maxval=True):
     IDbayer = preprocess(IDraw, outputformat="bayer", mode=2)
 
     height = IDbayer.shape[0] * 2
@@ -29,6 +30,14 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, roiSize=[13, 13], f
 
     IDbin_all = binning(IDbayer);
     [rows, cols, c] = IDbin_all.shape
+
+    # define final result
+    I_filtered_bayer = np.zeros((rows * 2, cols * 2))
+    I_filtered_r = np.zeros((rows, cols))
+    I_filtered_gr = np.zeros((rows, cols))
+    I_filtered_gb = np.zeros((rows, cols))
+    I_filtered_b = np.zeros((rows, cols))
+    I_filtered_accum = np.zeros((rows, cols))
 
     for k in range(c):
         # select 1 channel
@@ -104,8 +113,44 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, roiSize=[13, 13], f
         I_filtered_c[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2] = np.min(np.dstack((I_filtered_h[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2], I_filtered_v[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2])), axis=2)
         I_filtered_c[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:] = np.min(np.dstack((I_filtered_h[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:], I_filtered_v[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:])), axis=2)
 
-        print(0)
-    print(0)
+        # add single color plane into bayer_image
+        if k == 0:
+            I_filtered_r = I_filtered_c
+        elif k == 1:
+            I_filtered_gr = I_filtered_c
+        elif k == 2:
+            I_filtered_gb = I_filtered_c
+        elif k == 3:
+            I_filtered_b = I_filtered_c
+
+    I_filtered_accum = I_filtered_r + I_filtered_gr + I_filtered_gb + I_filtered_b
+    I_filtered_bayer[::2, ::2] = I_filtered_r
+    I_filtered_bayer[::2, 1::2] = I_filtered_gr
+    I_filtered_bayer[1::2, ::2] = I_filtered_gb
+    I_filtered_bayer[1::2, 1::2] = I_filtered_b
+
+    # for testing
+    # cv2.imshow("r", cv2.applyColorMap(rescale_intensity(I_filtered_r), cv2.COLORMAP_JET))
+    # cv2.imshow("gr", cv2.applyColorMap(rescale_intensity(I_filtered_gr), cv2.COLORMAP_JET))
+    # cv2.imshow("gb", cv2.applyColorMap(rescale_intensity(I_filtered_gb), cv2.COLORMAP_JET))
+    # cv2.imshow("b", cv2.applyColorMap(rescale_intensity(I_filtered_b), cv2.COLORMAP_JET))
+    # cv2.imshow("accum", cv2.applyColorMap(rescale_intensity(I_filtered_accum), cv2.COLORMAP_JET))
+    # cv2.imshow("bayer", cv2.applyColorMap(rescale_intensity(I_filtered_bayer), cv2.COLORMAP_JET))
+
+    # rgb = bilinear_interpolation(I_filtered_bayer)
+    # cv2.imshow("bayer", cv2.applyColorMap(rescale_intensity(rgb), cv2.COLORMAP_JET))
+    # cv2.waitKey()
+
+    output_image = I_filtered_bayer
+
+    if interpolation:
+        output_image = bilinear_interpolation(I_filtered_bayer)
+
+    if exceed2maxval:
+        output_image = rescale_intensity(output_image)
+
+    return output_image
+
 
 
 @numba.jit()
@@ -155,36 +200,42 @@ def binning(ID_fullRes, block_size=[13, 13], block_stat="mean"):
 
 
 @numba.jit()
-def imfilter_with_1d_kernel(inArray, kernel, axis=0):
+def imfilter_with_1d_kernel(in_array, kernel, axis=0):
     length_kernel = len(kernel)
     length_side = length_kernel // 2
 
     # 水平滤波
     if axis == 0:
-        row = inArray.shape[0]
-        col = inArray.shape[1] - 2 * length_side
+        row = in_array.shape[0]
+        col = in_array.shape[1] - 2 * length_side
         output = np.zeros((row, col))
 
         for i in range(row):
             for j in range(length_side, col + length_side):
                 sum = 0
                 for k in range(length_kernel):
-                    sum = sum + kernel[k] * inArray[i][j - length_side + k]
+                    sum = sum + kernel[k] * in_array[i][j - length_side + k]
 
                 output[i][j - length_side] = sum
 
     # 竖直滤波
     if axis == 1:
-        row = inArray.shape[0] - 2 * length_side
-        col = inArray.shape[1]
+        row = in_array.shape[0] - 2 * length_side
+        col = in_array.shape[1]
         output = np.zeros((row, col))
 
         for i in range(length_side, row + length_side):
             for j in range(col):
                 sum = 0
                 for k in range(length_kernel):
-                    sum = sum + kernel[k] * inArray[i - length_side + k][j]
+                    sum = sum + kernel[k] * in_array[i - length_side + k][j]
 
                 output[i - length_side][j] = sum
 
     return output
+
+
+def rescale_intensity(in_array, targetval_max=255, dtype=np.uint8):
+    max = np.max(in_array)
+    factor = targetval_max / max
+    return (in_array * factor).astype(dtype)

@@ -18,5 +18,7 @@ ap.add_argument("-s", "--signed", type=bool, default=True, help="Whether all pix
 args = vars(ap.parse_args())
 
 ID = lcb(args["imageinput"])
+cv2.imshow("LCB", cv2.applyColorMap(ID, cv2.COLORMAP_JET))
+cv2.waitKey()
 # t1 = timeit.Timer(lambda: lcb(args["imageinput"]))
 # print(timeit.timeit())
