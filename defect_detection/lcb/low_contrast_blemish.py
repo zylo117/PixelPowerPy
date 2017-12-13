@@ -1,4 +1,7 @@
 import numpy as np
+import scipy.signal as spsignal
+import scipy.ndimage.filters as spimage
+import cv2
 import numba
 from preprocess import preprocess
 
@@ -30,6 +33,7 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, roiSize=[13, 13], f
     for k in range(c):
         # select 1 channel
         IDbin = IDbin_all[:, :, k]
+
         # horizontal direction
         # padding borders via extra linear interpolation before filtering
         IDbin_pad_h = np.zeros((IDbin.shape[0], IDbin.shape[1] + fw - 1))
@@ -39,14 +43,72 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, roiSize=[13, 13], f
             x_left = np.arange(-(fw - 1) / 2, 1)
             IDbin_pad_h[j, 0: (fw + 1) // 2] = x_left * m_left + b_left;
             # Pad right side
-            a = IDbin[j, -(fw - 1) // 2:]
             [m_right, b_right] = np.polyfit(np.arange(-(fw - 1) / 2, 1), IDbin[j, -(fw - 1) // 2 - 1:], 1)
+            x_right = np.arange(0, (fw + 1) / 2)
+            IDbin_pad_h[j, - (fw - 1) // 2 - 1:] = x_right * m_right + b_right
 
-            print(0)
+        IDbin_pad_h[:, (fw + 1) // 2 - 1: - (fw - 1) // 2] = IDbin
 
+        # 3x1 median filter (vertical)
+        I_medfilt_h = spsignal.medfilt(IDbin_pad_h, [3, 1])
+
+        # horizontal filtering
+        I_filtered_h = imfilter_with_1d_kernel(I_medfilt_h, h, axis=0)
+        I_filtered_h[I_filtered_h < 0] = 0
+
+        # save a backup before median filtering
+        I_filtered_h_bk = I_filtered_h
+
+        # 3x3 median fiter on the filtered image
+        I_filtered_h = spsignal.medfilt2d(I_filtered_h)
+
+        # vertical direction
+        # padding borders via extra interpolation before filtering
+        IDbin_pad_v = np.zeros((IDbin.shape[0] + fw - 1, IDbin.shape[1]))
+        for j in range(IDbin.shape[1]):
+            # Pad top side
+            [m_top, b_top] = np.polyfit(np.arange(0, (fw + 1) / 2), IDbin[0:(fw + 1) // 2, j], 1)
+            x_top = np.arange(-(fw - 1) / 2, 1)
+            IDbin_pad_v[0: (fw + 1) // 2, j] = x_top * m_top + b_top;
+            # Pad bottom side
+            [m_bottom, b_bottom] = np.polyfit(np.arange(-(fw - 1) / 2, 1), IDbin[-(fw - 1) // 2 - 1:, j], 1)
+            x_bottom = np.arange(0, (fw + 1) / 2)
+            IDbin_pad_v[- (fw - 1) // 2 - 1:, j] = x_bottom * m_bottom + b_bottom
+
+        IDbin_pad_v[(fw + 1) // 2 - 1: - (fw - 1) // 2, :] = IDbin
+
+        # 1x3 median filter (vertical)
+        I_medfilt_v = spsignal.medfilt(IDbin_pad_v, [1, 3])
+
+        # horizontal filtering
+        I_filtered_v = imfilter_with_1d_kernel(I_medfilt_v, h, axis=1)
+        I_filtered_v[I_filtered_v < 0] = 0
+
+        # save a backup before median filtering
+        I_filtered_v_bk = I_filtered_v
+
+        # 3x3 median fiter on the filtered image
+        I_filtered_v = spsignal.medfilt2d(I_filtered_v)
+
+        # combine veritcal and horizontal results (edge, center, and corners are treated differently)
+        I_filtered_c = (I_filtered_h + I_filtered_v) / 2  # average
+        # 4 edges
+        I_filtered_c[(fw + 1) // 2 - 1: - (fw - 1) // 2 - 1, 0: (fw + 1) // 2] = I_filtered_v[(fw + 1) // 2 - 1: - (fw - 1) // 2 - 1, 0: (fw + 1) // 2]
+        I_filtered_c[(fw + 1) // 2 - 1: - (fw - 1) // 2 - 1, - (fw - 1) // 2 - 1:] = I_filtered_v[(fw + 1) // 2 - 1: - (fw - 1) // 2 - 1, - (fw - 1) // 2 - 1:]
+        I_filtered_c[0: (fw + 1) // 2, (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1] = I_filtered_h[0: (fw + 1) // 2, (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1]
+        I_filtered_c[- (fw - 1) // 2:, (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1] = I_filtered_h[- (fw - 1) // 2:, (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1]
+
+        # 4 corners
+        I_filtered_c[0:(fw + 1) // 2, 0:(fw + 1) // 2] = np.min(I_filtered_h[0:(fw + 1) // 2, 0:(fw + 1) // 2], I_filtered_v[0:(fw + 1) // 2, 0:(fw + 1) // 2])
+        I_filtered_c[0:(fw + 1) // 2, -(fw - 1) // 2 - 1:] = np.min(I_filtered_h[0:(fw + 1) // 2, -(fw - 1) // 2 - 1:], I_filtered_v[0:(fw + 1) // 2, -(fw - 1) // 2 - 1:])
+        I_filtered_c[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2] = np.min(I_filtered_h[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2], I_filtered_v[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2])
+        I_filtered_c[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:] = np.min( I_filtered_h[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:], I_filtered_v[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:])
+
+        print(0)
     print(0)
 
 
+@numba.jit()
 def binning(ID_fullRes, block_size=[13, 13], block_stat="mean"):
     h = ID_fullRes.shape[0]
     w = ID_fullRes.shape[1]
@@ -90,3 +152,39 @@ def binning(ID_fullRes, block_size=[13, 13], block_stat="mean"):
                     ID_binned[k, j, i] = np.searchsorted(np.unique(roiData), roiData.flat)
 
     return ID_binned
+
+
+@numba.jit()
+def imfilter_with_1d_kernel(inArray, kernel, axis=0):
+    length_kernel = len(kernel)
+    length_side = length_kernel // 2
+
+    # 水平滤波
+    if axis == 0:
+        row = inArray.shape[0]
+        col = inArray.shape[1] - 2 * length_side
+        output = np.zeros((row, col))
+
+        for i in range(row):
+            for j in range(length_side, col + length_side):
+                sum = 0
+                for k in range(length_kernel):
+                    sum = sum + kernel[k] * inArray[i][j - length_side + k]
+
+                output[i][j - length_side] = sum
+
+    # 竖直滤波
+    if axis == 1:
+        row = inArray.shape[0] - 2 * length_side
+        col = inArray.shape[1]
+        output = np.zeros((row, col))
+
+        for i in range(length_side, row + length_side):
+            for j in range(col):
+                sum = 0
+                for k in range(length_kernel):
+                    sum = sum + kernel[k] * inArray[i - length_side + k][j]
+
+                output[i - length_side][j] = sum
+
+    return output
