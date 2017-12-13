@@ -3,6 +3,7 @@ import numba
 from preprocess import preprocess
 
 
+# @numba.jit()
 def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, roiSize=[13, 13], filterWidth=9, threshold=12.6):
     IDbayer = preprocess(IDraw, outputformat="bayer", mode=2)
 
@@ -26,7 +27,22 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, roiSize=[13, 13], f
     IDbin_all = binning(IDbayer);
     [rows, cols, c] = IDbin_all.shape
 
-    # for
+    for k in range(c):
+        # select 1 channel
+        IDbin = IDbin_all[:, :, k]
+        # horizontal direction
+        # padding borders via extra linear interpolation before filtering
+        IDbin_pad_h = np.zeros((IDbin.shape[0], IDbin.shape[1] + fw - 1))
+        for j in range(IDbin.shape[0]):
+            # Pad left side
+            [m_left, b_left] = np.polyfit(np.arange(0, (fw + 1) / 2), IDbin[j, 0:(fw + 1) // 2], 1)
+            x_left = np.arange(-(fw - 1) / 2, 1)
+            IDbin_pad_h[j, 0: (fw + 1) // 2] = x_left * m_left + b_left;
+            # Pad right side
+            a = IDbin[j, -(fw - 1) // 2:]
+            [m_right, b_right] = np.polyfit(np.arange(-(fw - 1) / 2, 1), IDbin[j, -(fw - 1) // 2 - 1:], 1)
+
+            print(0)
 
     print(0)
 

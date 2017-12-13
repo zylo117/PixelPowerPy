@@ -1,5 +1,6 @@
 import datetime
 import argparse
+import timeit
 from lcb.low_contrast_blemish import *
 
 ap = argparse.ArgumentParser()
@@ -15,7 +16,7 @@ ap.add_argument("-b", "--bitdepth", type=int, default=10, help="depth of the col
 ap.add_argument("-s", "--signed", type=bool, default=True, help="Whether all pixels value will be signed")
 
 args = vars(ap.parse_args())
-time1 = datetime.datetime.now()
+
 ID = lcb(args["imageinput"])
-time2 = datetime.datetime.now()
-print(time2 - time1)
+# t1 = timeit.Timer(lambda: lcb(args["imageinput"]))
+# print(timeit.timeit())
