@@ -99,10 +99,10 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, roiSize=[13, 13], f
         I_filtered_c[- (fw - 1) // 2:, (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1] = I_filtered_h[- (fw - 1) // 2:, (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1]
 
         # 4 corners
-        I_filtered_c[0:(fw + 1) // 2, 0:(fw + 1) // 2] = np.min(I_filtered_h[0:(fw + 1) // 2, 0:(fw + 1) // 2], I_filtered_v[0:(fw + 1) // 2, 0:(fw + 1) // 2])
-        I_filtered_c[0:(fw + 1) // 2, -(fw - 1) // 2 - 1:] = np.min(I_filtered_h[0:(fw + 1) // 2, -(fw - 1) // 2 - 1:], I_filtered_v[0:(fw + 1) // 2, -(fw - 1) // 2 - 1:])
-        I_filtered_c[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2] = np.min(I_filtered_h[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2], I_filtered_v[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2])
-        I_filtered_c[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:] = np.min( I_filtered_h[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:], I_filtered_v[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:])
+        I_filtered_c[0:(fw + 1) // 2, 0:(fw + 1) // 2] = np.min(np.dstack((I_filtered_h[0:(fw + 1) // 2, 0:(fw + 1) // 2], I_filtered_v[0:(fw + 1) // 2, 0:(fw + 1) // 2])), axis=2)
+        I_filtered_c[0:(fw + 1) // 2, -(fw - 1) // 2 - 1:] = np.min(np.dstack((I_filtered_h[0:(fw + 1) // 2, -(fw - 1) // 2 - 1:], I_filtered_v[0:(fw + 1) // 2, -(fw - 1) // 2 - 1:])), axis=2)
+        I_filtered_c[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2] = np.min(np.dstack((I_filtered_h[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2], I_filtered_v[-(fw - 1) // 2 - 1:, 0:(fw + 1) // 2])), axis=2)
+        I_filtered_c[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:] = np.min(np.dstack((I_filtered_h[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:], I_filtered_v[-(fw - 1) // 2 - 1:, -(fw - 1) // 2 - 1:])), axis=2)
 
         print(0)
     print(0)
