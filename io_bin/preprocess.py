@@ -5,19 +5,41 @@ from matlab_tool import conv2
 
 
 def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitdepth=10, pedestal=64, FOV=0,
-               whitebalance=True, signed=True, more_precise=False, custom_size=[0, 0]):
-    # unsigned integer, 16位
-    ID = array.array('H', open(imageinput, "rb").read())
+               whitebalance=True, signed=True, more_precise=False, custom_size=[0, 0], custom_decoding="H"):
 
-    width = ID[0]
-    height = ID[1]
+    if custom_decoding is "H":
+        # 默认unsigned integer, 16位
+        ID = array.array("H", open(imageinput, "rb").read())
+    else:
+        """
+        Type code   C Type             Minimum size in bytes 
+        'b'         signed integer     1 
+        'B'         unsigned integer   1 
+        'u'         Unicode character  2 (see note) 
+        'h'         signed integer     2 
+        'H'         unsigned integer   2 
+        'i'         signed integer     2 
+        'I'         unsigned integer   2 
+        'l'         signed integer     4 
+        'L'         unsigned integer   4 
+        'q'         signed integer     8 (see note) 
+        'Q'         unsigned integer   8 (see note) 
+        'f'         floating point     4 
+        'd'         floating point     8     
+    """
+        ID = array.array(custom_decoding, open(imageinput, "rb").read())
 
-    if custom_size != [0, 0]:
+    if custom_size == [0, 0]:
+        width = ID[0]
+        height = ID[1]
+    else:
         width = custom_size[0]
         height = custom_size[1]
 
     ID = np.array(ID).astype(np.double)
-    ID = ID[2:]
+
+    if custom_size == [0, 0]:
+        ID = ID[2:]
 
     ID = ID.reshape((height, width))
     # print(ID[0][0], ID[0][1], ID[1][0], ID[1][1])

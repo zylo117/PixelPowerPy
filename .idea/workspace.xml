@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="562761e6-2b31-41f0-8aa3-674acc33cc8c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/defect_detection/lcb/lcb_compensation.py" afterPath="$PROJECT_DIR$/defect_detection/lcb/lcb_compensation.py" />
+      <change beforePath="$PROJECT_DIR$/defect_detection/lcb/1123_104912[9].raw" afterPath="$PROJECT_DIR$/defect_detection/a.raw" />
       <change beforePath="$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py" afterPath="$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py" />
+      <change beforePath="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" afterPath="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" />
+      <change beforePath="$PROJECT_DIR$/io_bin/preprocess.py" afterPath="$PROJECT_DIR$/io_bin/preprocess.py" />
+      <change beforePath="$PROJECT_DIR$/io_bin/test_read_raw.py" afterPath="$PROJECT_DIR$/io_bin/test_read_raw.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,66 +24,20 @@
       <file leaf-file-name="low_contrast_blemish.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="155" column="43" lean-forward="false" selection-start-line="155" selection-start-column="43" selection-end-line="155" selection-end-column="43" />
+            <state relative-caret-position="247">
+              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <element signature="e#8497#10290#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_methods.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/core/_methods.py">
+      <file leaf-file-name="matlab_tool.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/external_tool/matlab_tool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lcb_compensation.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/defect_detection/lcb/lcb_compensation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-364">
-              <caret line="28" column="49" lean-forward="true" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="50" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-                <element signature="e#2801#4537#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_lcb.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/defect_detection/lcb/test_lcb.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="25" column="41" lean-forward="false" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="write_bin.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/io_bin/write_bin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fromnumeric.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/core/fromnumeric.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="2817" column="41" lean-forward="false" selection-start-line="2817" selection-start-column="41" selection-end-line="2817" selection-end-column="41" />
+            <state relative-caret-position="190">
+              <caret line="86" column="26" lean-forward="false" selection-start-line="86" selection-start-column="26" selection-end-line="86" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -89,8 +46,8 @@
       <file leaf-file-name="preprocess.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/io_bin/preprocess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="56" />
+            <state relative-caret-position="126">
+              <caret line="7" column="65" lean-forward="false" selection-start-line="7" selection-start-column="60" selection-end-line="7" selection-end-column="65" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -98,22 +55,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="function_base.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/lib/function_base.py">
+      <file leaf-file-name="test_lcb.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/defect_detection/lcb/test_lcb.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83808">
-              <caret line="4688" column="4" lean-forward="false" selection-start-line="4688" selection-start-column="4" selection-end-line="4688" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="multiarray.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/-1120166012/numpy/core/multiarray.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38808">
-              <caret line="2156" column="4" lean-forward="false" selection-start-line="2156" selection-start-column="4" selection-end-line="2156" selection-end-column="4" />
-              <folding />
+            <state relative-caret-position="132">
+              <caret line="24" column="109" lean-forward="false" selection-start-line="24" selection-start-column="109" selection-end-line="24" selection-end-column="109" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -129,8 +78,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>combinations</find>
-      <find>filter</find>
       <find />
       <find>0</find>
       <find>%</find>
@@ -159,6 +106,8 @@
       <find>- roiSize[0] - 1</find>
       <find>c]</find>
       <find>, z]</find>
+      <find>H</find>
+      <find>int</find>
     </findStrings>
     <replaceStrings>
       <replace>mode</replace>
@@ -190,8 +139,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/load_matlAB.py" />
-        <option value="$PROJECT_DIR$/load_matlab.py" />
         <option value="$PROJECT_DIR$/test_cpython.py" />
         <option value="$PROJECT_DIR$/read_bin_cpython.py" />
         <option value="$PROJECT_DIR$/read_bin_cpython/bin2array.py" />
@@ -239,6 +186,8 @@
         <option value="$PROJECT_DIR$/external_tool/matlab_tool.py" />
         <option value="$PROJECT_DIR$/io_bin/write_bin.py" />
         <option value="$PROJECT_DIR$/defect_detection/lcb/lcb_compensation.py" />
+        <option value="$PROJECT_DIR$/io_bin/test_read_raw.py" />
+        <option value="$PROJECT_DIR$/io_bin/preprocess.py" />
         <option value="$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py" />
         <option value="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" />
       </list>
@@ -268,8 +217,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -302,6 +249,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -310,19 +259,19 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\workspace\PixelPower\defect_detection" />
-      <recent name="D:\workspace\PixelPower\defect_detection\lcb" />
-      <recent name="D:\workspace\PixelPower\defect_detection\dpc" />
-      <recent name="D:\workspace\PixelPicker\read_bin" />
-      <recent name="D:\workspace\PixelPicker\pic2arrray" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\workspace\PixelPower\defect_detection" />
       <recent name="D:\workspace\PixelPicker\optical" />
       <recent name="D:\workspace\PixelPicker\defect_detection" />
       <recent name="D:\workspace\PixelPicker\read_bin" />
       <recent name="D:\workspace\PixelPicker\read_bin_cpython" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\workspace\PixelPower\defect_detection" />
+      <recent name="D:\workspace\PixelPower\defect_detection\lcb" />
+      <recent name="D:\workspace\PixelPower\io_bin" />
+      <recent name="D:\workspace\PixelPower\defect_detection\dpc" />
+      <recent name="D:\workspace\PixelPicker\read_bin" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -338,24 +287,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.test_lcb">
-    <configuration name="optical_center" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/optical" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="PixelPicker" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/optical/optical_center.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="test_dp (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -405,7 +336,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="PixelPower" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" />
-      <option name="PARAMETERS" value="-i ./b.bin" />
+      <option name="PARAMETERS" value="-i ./a.raw" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -424,6 +355,24 @@
       <module name="PixelPower" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/optical/test_oc.py" />
       <option name="PARAMETERS" value="-i ..\h.bin" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="test_read_raw" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/io_bin" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PixelPower" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/io_bin/test_read_raw.py" />
+      <option name="PARAMETERS" value="-i .\a.raw" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -596,17 +545,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.test_dp" />
       <item index="1" class="java.lang.String" itemvalue="Python.test_oc" />
-      <item index="2" class="java.lang.String" itemvalue="Python.optical_center" />
-      <item index="3" class="java.lang.String" itemvalue="Python.test_lcb" />
-      <item index="4" class="java.lang.String" itemvalue="Python.test_dp (1)" />
+      <item index="2" class="java.lang.String" itemvalue="Python.test_lcb" />
+      <item index="3" class="java.lang.String" itemvalue="Python.test_dp (1)" />
+      <item index="4" class="java.lang.String" itemvalue="Python.test_read_raw" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.test_lcb" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test_dp (1)" />
-        <item index="2" class="java.lang.String" itemvalue="Python.test_dp" />
-        <item index="3" class="java.lang.String" itemvalue="Python.test_oc" />
-        <item index="4" class="java.lang.String" itemvalue="Python.optical_center" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test_read_raw" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test_dp (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Python.test_dp" />
+        <item index="4" class="java.lang.String" itemvalue="Python.test_oc" />
       </list>
     </recent_temporary>
   </component>
@@ -639,12 +588,12 @@
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18304576" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23855963" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30971992" sideWeight="0.5033365" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2886248" sideWeight="0.49666348" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2886248" sideWeight="0.49666348" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981245" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -761,8 +710,13 @@
           <line>122</line>
           <option name="timeStamp" value="181" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/io_bin/test_read_raw.py</url>
+          <line>24</line>
+          <option name="timeStamp" value="187" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="182" />
+      <option name="time" value="189" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -776,14 +730,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/read_bin/functionset_cython.py" />
-    <entry file="file://C:/Program Files/Python36/Lib/distutils/_msvccompiler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="427" column="0" lean-forward="true" selection-start-line="427" selection-start-column="0" selection-end-line="427" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/read_bin/preprocess.pyx" />
     <entry file="file://C:/Program Files/Python36/Lib/argparse.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1015,16 +961,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/external_tool/matlab_tool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="84" column="0" lean-forward="true" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#12#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/-1120166012/numpy/core/multiarray.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38808">
@@ -1048,28 +984,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/io_bin/preprocess.py">
+    <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/ma/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="56" />
+        <state relative-caret-position="-697">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/core/_methods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/defect_detection/lcb/lcb_compensation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="28" column="49" lean-forward="false" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="50" />
           <folding>
-            <element signature="e#0#12#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="false" />
+            <element signature="e#2801#4537#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/core/fromnumeric.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
+        <state relative-caret-position="18">
           <caret line="2817" column="41" lean-forward="false" selection-start-line="2817" selection-start-column="41" selection-end-line="2817" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/ma/__init__.py">
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/-1120166012/array.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-697">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="144">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="50" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -1082,40 +1034,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/core/_methods.py">
+    <entry file="file://$PROJECT_DIR$/io_bin/test_read_raw.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="204">
+          <caret line="23" column="92" lean-forward="false" selection-start-line="23" selection-start-column="92" selection-end-line="23" selection-end-column="92" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external_tool/matlab_tool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="86" column="26" lean-forward="false" selection-start-line="86" selection-start-column="26" selection-end-line="86" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="155" column="43" lean-forward="false" selection-start-line="155" selection-start-column="43" selection-end-line="155" selection-end-column="43" />
+        <state relative-caret-position="247">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#8497#10290#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/defect_detection/lcb/lcb_compensation.py">
+    <entry file="file://$PROJECT_DIR$/io_bin/preprocess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-364">
-          <caret line="28" column="49" lean-forward="true" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="50" />
+        <state relative-caret-position="126">
+          <caret line="7" column="65" lean-forward="false" selection-start-line="7" selection-start-column="60" selection-end-line="7" selection-end-column="65" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#2801#4537#0" expanded="false" />
+            <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/defect_detection/lcb/test_lcb.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="25" column="41" lean-forward="false" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+        <state relative-caret-position="132">
+          <caret line="24" column="109" lean-forward="false" selection-start-line="24" selection-start-column="109" selection-end-line="24" selection-end-column="109" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

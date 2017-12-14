@@ -1,6 +1,7 @@
 import datetime
 import argparse
 import cv2
+import numpy as np
 import imutils
 from io_bin.preprocess import preprocess
 
@@ -19,7 +20,9 @@ ap.add_argument("-s", "--signed", type=bool, default=True, help="Whether all pix
 args = vars(ap.parse_args())
 
 time1 = datetime.datetime.now()
-ID = preprocess(imageinput=args["imageinput"], outputformat="rgb", mode=2, FOV=75, whitebalance=True, more_precise=True)
-cv2.imshow("RAW", imutils.resize(ID, width=600))
+# ID = preprocess(imageinput=args["imageinput"], outputformat="rgb", mode=2, FOV=75, whitebalance=True, more_precise=True)
+ID = preprocess(imageinput=args["imageinput"], custom_size=[3856, 2340], custom_decoding="B")
+cv2.imshow("RAW", imutils.resize(ID.astype(np.uint8), width=600))
+cv2.waitKey()
 time2 = datetime.datetime.now()
 print(time2 - time1)

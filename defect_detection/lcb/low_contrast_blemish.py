@@ -1,4 +1,5 @@
 import numpy as np
+import cv2
 import scipy.signal as spsignal
 
 from matlab_tool import imfilter_with_1d_kernel, rescale_intensity
@@ -7,9 +8,11 @@ from preprocess import bilinear_interpolation
 from lcb import lcb_compensation
 
 
-def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13, 13], filterWidth=9, threshold=12.6,
-        interpolation=True, exceed2maxval=True, compensation=False):
-    IDbayer = preprocess(IDraw, outputformat="bayer", mode=mode, more_precise=True)
+def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13, 13], filterWidth=9, threshold=3.5,
+        interpolation=True, exceed2maxval=True, compensation=False, custom_source=None):
+    if custom_source is None:
+        IDbayer = preprocess(IDraw, outputformat="bayer", mode=mode, more_precise=True)
+    else: IDbayer = custom_source
 
     height = IDbayer.shape[0] * 2
     width = IDbayer.shape[1] * 2
@@ -172,7 +175,7 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13
         output_image = bilinear_interpolation(I_filtered_raw)
 
     if exceed2maxval:
-        output_image = rescale_intensity(output_image, threshold=3.5)
+        output_image = rescale_intensity(output_image, threshold=threshold)
 
     return output_image
 
