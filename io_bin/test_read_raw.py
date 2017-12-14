@@ -1,6 +1,8 @@
 import datetime
 import argparse
-from read_bin.preprocess import preprocess
+import cv2
+import imutils
+from io_bin.preprocess import preprocess
 
 ap = argparse.ArgumentParser()
 
@@ -18,5 +20,6 @@ args = vars(ap.parse_args())
 
 time1 = datetime.datetime.now()
 ID = preprocess(imageinput=args["imageinput"], outputformat="rgb", mode=2, FOV=75, whitebalance=True, more_precise=True)
+cv2.imshow("RAW", imutils.resize(ID, width=600))
 time2 = datetime.datetime.now()
 print(time2 - time1)

@@ -8,7 +8,7 @@ from lcb import lcb_compensation
 
 
 def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13, 13], filterWidth=9, threshold=12.6,
-        interpolation=True, exceed2maxval=True):
+        interpolation=True, exceed2maxval=True, compensation=False):
     IDbayer = preprocess(IDraw, outputformat="bayer", mode=mode, more_precise=True)
 
     height = IDbayer.shape[0] * 2
@@ -147,8 +147,13 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13
     I_filtered_raw[1::2, 1::2] = I_filtered_b
     I_filtered_bayer = np.dstack((I_filtered_r, I_filtered_gr, I_filtered_gb, I_filtered_b))
 
-    lcb_compensation.lcb_brightness_compensation(I_filtered_bayer)
-
+    I_filtered_bayer_after_compensated = np.zeros(I_filtered_bayer.shape)
+    if compensation:
+        I_filtered_bayer_after_compensated = lcb_compensation.lcb_brightness_compensation(IDbayer, I_filtered_bayer)
+        I_filtered_raw[::2, ::2] = I_filtered_bayer_after_compensated[:, :, 0]
+        I_filtered_raw[::2, 1::2] = I_filtered_bayer_after_compensated[:, :, 1]
+        I_filtered_raw[1::2, ::2] = I_filtered_bayer_after_compensated[:, :, 2]
+        I_filtered_raw[1::2, 1::2] = I_filtered_bayer_after_compensated[:, :, 3]
     # for testing
     # cv2.imshow("r", cv2.applyColorMap(rescale_intensity(I_filtered_r), cv2.COLORMAP_JET))
     # cv2.imshow("gr", cv2.applyColorMap(rescale_intensity(I_filtered_gr), cv2.COLORMAP_JET))

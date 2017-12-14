@@ -1,4 +1,4 @@
-from read_bin.preprocess import preprocess
+from io_bin.preprocess import preprocess
 from matlab_tool import conv2
 import numpy as np
 from scipy.ndimage.filters import correlate

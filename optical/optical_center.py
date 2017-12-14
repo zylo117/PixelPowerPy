@@ -1,4 +1,4 @@
-from read_bin.preprocess import preprocess
+from io_bin.preprocess import preprocess
 import numpy as np
 
 

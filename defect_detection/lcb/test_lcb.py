@@ -20,7 +20,7 @@ ap.add_argument("-s", "--signed", type=bool, default=True, help="Whether all pix
 args = vars(ap.parse_args())
 
 time1 = datetime.datetime.now()
-ID = lcb(args["imageinput"])
+ID = lcb(args["imageinput"], compensation=False)
 time2 = datetime.datetime.now()
 print(time2 - time1)
 cv2.imshow("LCB", cv2.applyColorMap(imutils.resize(ID, width=600), cv2.COLORMAP_JET))
