@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="562761e6-2b31-41f0-8aa3-674acc33cc8c" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/io_bin/write_bin.py" />
-      <change beforePath="$PROJECT_DIR$/.idea/PixelPower.iml" afterPath="$PROJECT_DIR$/.idea/PixelPower.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/defect_detection/dpc/defective_pixel.py" afterPath="$PROJECT_DIR$/defect_detection/dpc/defective_pixel.py" />
       <change beforePath="$PROJECT_DIR$/defect_detection/lcb/lcb_compensation.py" afterPath="$PROJECT_DIR$/defect_detection/lcb/lcb_compensation.py" />
-      <change beforePath="$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py" afterPath="$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py" />
-      <change beforePath="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" afterPath="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" />
-      <change beforePath="$PROJECT_DIR$/optical/optical_center.py" afterPath="$PROJECT_DIR$/optical/optical_center.py" />
-      <change beforePath="$PROJECT_DIR$/read_bin/__init__.py" afterPath="$PROJECT_DIR$/io_bin/__init__.py" />
-      <change beforePath="$PROJECT_DIR$/read_bin/preprocess.py" afterPath="$PROJECT_DIR$/io_bin/preprocess.py" />
-      <change beforePath="$PROJECT_DIR$/read_bin/py2c.bat" afterPath="$PROJECT_DIR$/io_bin/py2c.bat" />
-      <change beforePath="$PROJECT_DIR$/read_bin/test_read_bin.py" afterPath="$PROJECT_DIR$/io_bin/test_read_bin.py" />
-      <change beforePath="$PROJECT_DIR$/read_bin/test_read_raw.py" afterPath="$PROJECT_DIR$/io_bin/test_read_raw.py" />
+      <change beforePath="$PROJECT_DIR$/io_bin/write_bin.py" afterPath="$PROJECT_DIR$/io_bin/write_bin.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,7 +20,7 @@
       <file leaf-file-name="low_contrast_blemish.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-24">
+            <state relative-caret-position="40">
               <caret line="155" column="80" lean-forward="true" selection-start-line="155" selection-start-column="80" selection-end-line="155" selection-end-column="80" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -41,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lcb_compensation.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="lcb_compensation.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/defect_detection/lcb/lcb_compensation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="72" column="17" lean-forward="false" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
+            <state relative-caret-position="360">
+              <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -53,10 +42,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_lcb.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_lcb.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/defect_detection/lcb/test_lcb.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
+            <state relative-caret-position="130">
               <caret line="22" column="47" lean-forward="false" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
@@ -68,8 +57,8 @@
       <file leaf-file-name="write_bin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/io_bin/write_bin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="14" column="52" lean-forward="true" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="52" />
+            <state relative-caret-position="209">
+              <caret line="22" column="22" lean-forward="false" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -228,8 +217,8 @@
         <option value="$PROJECT_DIR$/defect_detection/lcb/setup.py" />
         <option value="$PROJECT_DIR$/defect_detection/lcb/lcb_function_cython.pyx" />
         <option value="$PROJECT_DIR$/external_tool/matlab_tool.py" />
-        <option value="$PROJECT_DIR$/io_bin/write_bin.py" />
         <option value="$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py" />
+        <option value="$PROJECT_DIR$/io_bin/write_bin.py" />
         <option value="$PROJECT_DIR$/defect_detection/lcb/lcb_compensation.py" />
         <option value="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" />
       </list>
@@ -633,7 +622,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26106527" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30971992" sideWeight="0.5033365" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2886248" sideWeight="0.49666348" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2886248" sideWeight="0.49666348" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981245" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -734,21 +723,21 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/io_bin/write_bin.py</url>
-          <line>21</line>
+          <line>25</line>
           <option name="timeStamp" value="170" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/io_bin/write_bin.py</url>
-          <line>19</line>
-          <option name="timeStamp" value="171" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/defect_detection/lcb/lcb_compensation.py</url>
           <line>65</line>
           <option name="timeStamp" value="172" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/io_bin/write_bin.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="173" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="173" />
+      <option name="time" value="174" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -965,6 +954,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="54" lean-forward="false" selection-start-line="0" selection-start-column="54" selection-end-line="0" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1061,25 +1051,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/io_bin/write_bin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="14" column="52" lean-forward="true" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="52" />
+        <state relative-caret-position="209">
+          <caret line="22" column="22" lean-forward="false" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/defect_detection/lcb/test_lcb.py">
+    <entry file="file://$PROJECT_DIR$/defect_detection/lcb/lcb_compensation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="22" column="47" lean-forward="false" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+        <state relative-caret-position="360">
+          <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-24">
+        <state relative-caret-position="40">
           <caret line="155" column="80" lean-forward="true" selection-start-line="155" selection-start-column="80" selection-end-line="155" selection-end-column="80" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -1088,12 +1078,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/defect_detection/lcb/lcb_compensation.py">
+    <entry file="file://$PROJECT_DIR$/defect_detection/lcb/test_lcb.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="72" column="17" lean-forward="false" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
+        <state relative-caret-position="130">
+          <caret line="22" column="47" lean-forward="false" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>

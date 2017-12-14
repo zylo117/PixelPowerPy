@@ -19,6 +19,10 @@ def array2bin(imagedata, inputformat="raw"):
 
         output1d = np.reshape(raw_imagedata, (height * width))
         output1d = np.hstack((width, height, output1d))
+
+        # not finished
+
+
         print(0)
 
     return 0

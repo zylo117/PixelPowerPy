@@ -89,6 +89,15 @@ def lcb_brightness_compensation(raw_image_data, lcb_image_data_bayer, threshold_
 
 
 # 对应的单色RAW图的坐标簇进行增益
-def lcb_gain(raw_image_data_single_color, y, x, lcb_val, roiSize=[13, 13]):
-    raw_image_data_single_color[y - roiSize[1] // 2:y + roiSize[1] // 2,
-                                x - roiSize[0] // 2:x + roiSize[0] // 2] + lcb_val
+def lcb_gain(raw_image_data_single_color, y, x, lcb_val, roiSize=[13, 13], calculation="centrosymmetric"):
+    if calculation is "simple":
+        raw_image_data_single_color[y - roiSize[1] // 2:y + roiSize[1] // 2,
+                                    x - roiSize[0] // 2:x + roiSize[0] // 2] + lcb_val
+
+    elif calculation is "centrosymmetric":
+        height, width = raw_image_data_single_color.shape[:2]
+
+        raw_image_data_single_color[y - roiSize[1] // 2:y + roiSize[1] // 2,
+                                    x - roiSize[0] // 2:x + roiSize[0] // 2] = \
+        raw_image_data_single_color[height - 1 - (y + roiSize[1] // 2):height - 1 - (y - roiSize[1] // 2),
+                                    width - 1 - (x + roiSize[0] // 2):width - 1 - (x - roiSize[0] // 2)]
