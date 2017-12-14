@@ -25,7 +25,7 @@ custom_source = preprocess(imageinput=args["imageinput"], outputformat="bayer", 
 ID = lcb(args["imageinput"], compensation=False, custom_source=custom_source, roiSize=[23, 23], filterWidth=3, threshold=0)
 time2 = datetime.datetime.now()
 print(time2 - time1)
-cv2.imshow("LCB", cv2.applyColorMap(imutils.resize(ID, width=600), cv2.COLORMAP_JET))
+cv2.imshow("LCB", cv2.applyColorMap(imutils.resize(ID, width=1024), cv2.COLORMAP_JET))
 cv2.waitKey()
 # t1 = timeit.Timer(lambda: lcb(args["imageinput"]))
 # print(timeit.timeit())

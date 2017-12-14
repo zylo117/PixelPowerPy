@@ -2,8 +2,11 @@ from io_bin.preprocess import preprocess
 import numpy as np
 
 
-def oc(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10):
-    IDyuv = preprocess(IDraw, outputformat="yuv")
+def oc(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, custom_source=None):
+    if custom_source is None:
+        IDyuv = preprocess(IDraw, bayerformat=bayerformat, pedestal=pedestal, bitdepth=bitdepth, outputformat="yuv")
+    else:
+        IDyuv = custom_source
     IDy = IDyuv[:, :, 0]
     (h, w) = IDy.shape
     h_center = h / 2 + 0.5 - 1
@@ -76,6 +79,6 @@ def draw_optical_center(oc_result, draw_on=None, magnification=10):
     _background = _background[int((h-h/magnification)/2):int((h-(h-h/magnification)/2)), int((w-w/magnification)/2):int((w-(w-w/magnification)/2))]
 
     _background = imutils.resize(_background, width=800)
-    cv2.putText(_background, "OC: x: " + str(round(oc_result[3], 2)) + " y: " + str(round(oc_result[4], 2)) + "  magShift: " + str(round(oc_result[5], 2)), (0, _background.shape[0] - 30), cv2.FONT_HERSHEY_SIMPLEX, 4 / magnification, (128, 0, 128), 1)
+    cv2.putText(_background, "OC: x: " + str(round(oc_result[3], 2)) + " y: " + str(round(oc_result[4], 2)) + "  magShift: " + str(round(oc_result[5], 2)), (0, _background.shape[0] - 30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (128, 0, 128), 1)
     cv2.imshow("OC", _background)
     cv2.waitKey()
