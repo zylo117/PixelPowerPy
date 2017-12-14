@@ -6,6 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/defect_detection" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/defect_detection/lcb" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/defect_detection/dpc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/external_tool" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/optical" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/defect_detection/build" />
       <excludeFolder url="file://$MODULE_DIR$/defect_detection/dist" />
       <excludeFolder url="file://$MODULE_DIR$/pic2arrray" />

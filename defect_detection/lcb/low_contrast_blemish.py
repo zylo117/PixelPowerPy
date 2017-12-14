@@ -4,6 +4,7 @@ import scipy.signal as spsignal
 from matlab_tool import imfilter_with_1d_kernel, rescale_intensity
 from preprocess import preprocess
 from preprocess import bilinear_interpolation
+from lcb import lcb_compensation
 
 
 def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13, 13], filterWidth=9, threshold=12.6,
@@ -102,6 +103,7 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13
 
         # combine veritcal and horizontal results (edge, center, and corners are treated differently)
         I_filtered_c = (I_filtered_h + I_filtered_v) / 2  # average
+
         # 4 edges
         I_filtered_c[(fw + 1) // 2 - 1: - (fw - 1) // 2 - 1, 0: (fw + 1) // 2] = I_filtered_v[
                                                                                  (fw + 1) // 2 - 1: - (fw - 1) // 2 - 1,
@@ -145,7 +147,7 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13
     I_filtered_raw[1::2, 1::2] = I_filtered_b
     I_filtered_bayer = np.dstack((I_filtered_r, I_filtered_gr, I_filtered_gb, I_filtered_b))
 
-    lcb_compensation(I_filtered_bayer, bin_padR, bin_padC)
+    lcb_compensation.lcb_brightness_compensation(I_filtered_bayer)
 
     # for testing
     # cv2.imshow("r", cv2.applyColorMap(rescale_intensity(I_filtered_r), cv2.COLORMAP_JET))
@@ -165,7 +167,7 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13
         output_image = bilinear_interpolation(I_filtered_raw)
 
     if exceed2maxval:
-        output_image = rescale_intensity(output_image)
+        output_image = rescale_intensity(output_image, threshold=3.5)
 
     return output_image
 
@@ -213,17 +215,3 @@ def binning(ID_fullRes, block_size=[13, 13], block_stat="mean"):
                     ID_binned[k, j, i] = np.searchsorted(np.unique(roiData), roiData.flat)
 
     return ID_binned, bin_padR, bin_padC
-
-
-def lcb_compensation(lcb_image_data, bin_padR=0, bin_padC=0, roiSize=[13, 13]):
-    # 把每个颜色的暗区（故障区）对应的单色图进行增益，然后再4色合成bayer图
-    scaled_height, scaled_width, c = lcb_image_data.shape
-
-    raw_loc_x = np.zeros((scaled_width, c))
-    raw_loc_y = np.zeros((scaled_height, c))
-
-    for z in range(c):
-        raw_loc_x = np.arange(roiSize[0] // 2, scaled_width * roiSize[0] - roiSize[0] // 2, roiSize[0]) + bin_padC
-        raw_loc_y = np.arange(roiSize[1] // 2, scaled_height * roiSize[1] - roiSize[1] // 2, roiSize[1]) + bin_padR
-
-    return raw_loc_x, raw_loc_y

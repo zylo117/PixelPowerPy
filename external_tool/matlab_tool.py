@@ -83,7 +83,10 @@ def imfilter_with_1d_kernel(in_array, kernel, axis=0):
     return output
 
 
-def rescale_intensity(in_array, targetval_max=255, dtype=np.uint8):
+def rescale_intensity(in_array, targetval_max=255, threshold = 0, dtype=np.uint8):
     max = np.max(in_array)
-    factor = targetval_max / max
+    if threshold == 0:
+        factor = targetval_max / max
+    else:
+        factor = targetval_max / threshold
     return (in_array * factor).astype(dtype)
