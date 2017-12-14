@@ -149,7 +149,7 @@ def lcb(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, mode=2, roiSize=[13
 
     I_filtered_bayer_after_compensated = np.zeros(I_filtered_bayer.shape)
     if compensation:
-        I_filtered_bayer_after_compensated = lcb_compensation.lcb_brightness_compensation(IDbayer, I_filtered_bayer)
+        I_filtered_bayer_after_compensated = lcb_compensation.lcb_brightness_compensation(IDbayer, I_filtered_bayer, fix_dust=True, dust_offset=3)
         I_filtered_raw[::2, ::2] = I_filtered_bayer_after_compensated[:, :, 0]
         I_filtered_raw[::2, 1::2] = I_filtered_bayer_after_compensated[:, :, 1]
         I_filtered_raw[1::2, ::2] = I_filtered_bayer_after_compensated[:, :, 2]
