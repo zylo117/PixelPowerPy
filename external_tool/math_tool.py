@@ -36,8 +36,8 @@ def conv2(x, y, mode='same'):
     # the results of scipy.signal.convolve and Matlab
     for i in range(len(x.shape)):
         if ((x.shape[i] - y.shape[i]) % 2 == 0 and
-                    x.shape[i] > 1 and
-                    y.shape[i] > 1):
+                x.shape[i] > 1 and
+                y.shape[i] > 1):
             origin = origin + (-1,)
         else:
             origin = origin + (0,)
@@ -83,10 +83,14 @@ def imfilter_with_1d_kernel(in_array, kernel, axis=0):
     return output
 
 
-def rescale_intensity(in_array, targetval_max=255, threshold = 0, dtype=np.uint8):
+def rescale_intensity(in_array, targetval_max=255, threshold=0, dtype=np.uint8):
     max = np.max(in_array)
     if threshold == 0:
         factor = targetval_max / max
     else:
         factor = targetval_max / threshold
     return (in_array * factor).astype(dtype)
+
+
+def point_distance(point1, point2):
+    return np.sqrt((point1[1] - point2[1]) ** 2 + (point1[0] - point2[0]) ** 2)

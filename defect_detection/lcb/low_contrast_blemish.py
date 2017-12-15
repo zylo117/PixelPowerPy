@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import scipy.signal as spsignal
 
-from matlab_tool import imfilter_with_1d_kernel, rescale_intensity
+from math_tool import imfilter_with_1d_kernel, rescale_intensity
 from preprocess import preprocess
 from preprocess import bilinear_interpolation
 from lcb import lcb_compensation

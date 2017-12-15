@@ -1,7 +1,7 @@
 import array
 import numpy as np
 import numba
-from matlab_tool import conv2
+from math_tool import conv2
 
 
 def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitdepth=10, pedestal=64, FOV=0,

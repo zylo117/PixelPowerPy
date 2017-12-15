@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import imutils
 from auto_canny import auto_canny
-from skimage import exposure
+from external_tool import math_tool
 from io_bin.preprocess import preprocess
 
 
@@ -13,6 +13,9 @@ class ActiveAlignment:
         self.black_dot = np.zeros((5, 2), dtype=np.double)
         self.height = 0
         self.width = 0
+
+        # effective focal length, cm
+        self.efl = 37
 
     def black_dot_location(self, detect_thresh_val=5, center_area_percentage=0.3, bayerformat="rggb", pedestal=64,
                            bitdepth=10, custom_size=[3856, 2340], debug=False):
@@ -74,8 +77,49 @@ class ActiveAlignment:
         return [self.black_dot[0][0] - (self.width / 2 - 1), self.black_dot[0][1] - (self.height / 2 - 1)]
 
     def rotation_angle(self):
+        # counterclockwise direction is position angle
+
         upper_slope = (self.black_dot[2][1] - self.black_dot[1][1]) / (self.black_dot[2][0] - self.black_dot[1][0])
         lower_slope = (self.black_dot[3][1] - self.black_dot[4][1]) / (self.black_dot[3][0] - self.black_dot[4][0])
 
-        # counterclockwise direction is position angle
         return np.arctan((upper_slope+lower_slope) / 2)
+
+
+    def tilt_angle(self):
+        """
+        example:
+        -->horizonal_tilt
+
+            horizonal_length
+            <------------>
+            ○ left_line  ○ right_line
+         ↑   --------------
+         |   |            |
+         |   |            |h2
+         |   |            --
+      efl|   | h1=efl    *|
+         |   |        *   |
+         |   |     *      |h3
+         |   |  *         |
+         ↓   *_)θ_________
+
+
+        -> h2 = h1 / (left_line_length / right_line_length)
+        -> h3 = h1 - h2
+        ->tilt_h = h3 / horizonal_length
+        """
+
+        # counterclockwise direction is position angle
+
+        up_line_length = math_tool.point_distance(self.black_dot[2], self.black_dot[1])
+        down_line_length = math_tool.point_distance(self.black_dot[3], self.black_dot[4])
+        left_line_length = math_tool.point_distance(self.black_dot[4], self.black_dot[1])
+        right_line_length = math_tool.point_distance(self.black_dot[3], self.black_dot[2])
+
+        horizonal_length = (up_line_length + down_line_length) / 2
+        vertical_length = (left_line_length + right_line_length) / 2
+
+        tilt_h = (self.efl - (self.efl / (left_line_length / right_line_length))) / horizonal_length
+        tilt_v = (self.efl - (self.efl / (up_line_length / down_line_length))) / vertical_length
+
+        return [tilt_h, tilt_v]
