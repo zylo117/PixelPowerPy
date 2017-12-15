@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="562761e6-2b31-41f0-8aa3-674acc33cc8c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/defect_detection/lcb/1123_104912[9].raw" afterPath="$PROJECT_DIR$/defect_detection/a.raw" />
-      <change beforePath="$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py" afterPath="$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py" />
-      <change beforePath="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" afterPath="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" />
-      <change beforePath="$PROJECT_DIR$/io_bin/preprocess.py" afterPath="$PROJECT_DIR$/io_bin/preprocess.py" />
-      <change beforePath="$PROJECT_DIR$/io_bin/test_read_raw.py" afterPath="$PROJECT_DIR$/io_bin/test_read_raw.py" />
+      <change beforePath="$PROJECT_DIR$/defect_detection/lcb/1123_104912[9].raw" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/optical/optical_center_active_alignment.py" afterPath="$PROJECT_DIR$/optical/optical_center_active_alignment.py" />
+      <change beforePath="$PROJECT_DIR$/optical/test_oc_aa.py" afterPath="$PROJECT_DIR$/optical/test_oc_aa.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="low_contrast_blemish.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py">
+      <file leaf-file-name="optical_center_active_alignment.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/optical/optical_center_active_alignment.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state relative-caret-position="136">
+              <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -33,36 +31,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="matlab_tool.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external_tool/matlab_tool.py">
+      <file leaf-file-name="test_oc_aa.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/optical/test_oc_aa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="86" column="26" lean-forward="false" selection-start-line="86" selection-start-column="26" selection-end-line="86" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="preprocess.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/io_bin/preprocess.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="65" lean-forward="false" selection-start-line="7" selection-start-column="60" selection-end-line="7" selection-end-column="65" />
-              <folding>
-                <element signature="e#0#12#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_lcb.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/defect_detection/lcb/test_lcb.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="24" column="109" lean-forward="false" selection-start-line="24" selection-start-column="109" selection-end-line="24" selection-end-column="109" />
+            <state relative-caret-position="244">
+              <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fromnumeric.py" pinned="false" current-in-tab="false">
+        <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/core/fromnumeric.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="113">
+              <caret line="965" column="4" lean-forward="false" selection-start-line="965" selection-start-column="4" selection-end-line="965" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -139,8 +125,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test_cpython.py" />
-        <option value="$PROJECT_DIR$/read_bin_cpython.py" />
         <option value="$PROJECT_DIR$/read_bin_cpython/bin2array.py" />
         <option value="$PROJECT_DIR$/read_bin_cpython/setup.py" />
         <option value="$PROJECT_DIR$/pic2arrray/bin2array_pure_python.py" />
@@ -190,12 +174,14 @@
         <option value="$PROJECT_DIR$/io_bin/preprocess.py" />
         <option value="$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py" />
         <option value="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" />
+        <option value="$PROJECT_DIR$/optical/optical_center_active_alignment.py" />
+        <option value="$PROJECT_DIR$/optical/test_oc_aa.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="239" />
-    <option name="y" value="-8" />
+    <option name="x" value="278" />
+    <option name="y" value="6" />
     <option name="width" value="694" />
     <option name="height" value="735" />
   </component>
@@ -245,6 +231,11 @@
               <item name="PixelPower" type="462c0819:PsiDirectoryNode" />
               <item name="io_bin" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="PixelPower" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PixelPower" type="462c0819:PsiDirectoryNode" />
+              <item name="optical" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -267,11 +258,11 @@
       <recent name="D:\workspace\PixelPicker\read_bin_cpython" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\workspace\PixelPower" />
       <recent name="D:\workspace\PixelPower\defect_detection" />
       <recent name="D:\workspace\PixelPower\defect_detection\lcb" />
       <recent name="D:\workspace\PixelPower\io_bin" />
       <recent name="D:\workspace\PixelPower\defect_detection\dpc" />
-      <recent name="D:\workspace\PixelPicker\read_bin" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -286,7 +277,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test_lcb">
+  <component name="RunManager" selected="Python.test_oc_aa">
     <configuration name="test_dp (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -341,7 +332,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="test_oc" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="test_oc_aa" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -353,8 +344,8 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="PixelPower" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/optical/test_oc.py" />
-      <option name="PARAMETERS" value="-i ..\h.bin" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/optical/test_oc_aa.py" />
+      <option name="PARAMETERS" value="-i ..\a.raw" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -544,18 +535,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.test_dp" />
-      <item index="1" class="java.lang.String" itemvalue="Python.test_oc" />
-      <item index="2" class="java.lang.String" itemvalue="Python.test_lcb" />
-      <item index="3" class="java.lang.String" itemvalue="Python.test_dp (1)" />
-      <item index="4" class="java.lang.String" itemvalue="Python.test_read_raw" />
+      <item index="1" class="java.lang.String" itemvalue="Python.test_lcb" />
+      <item index="2" class="java.lang.String" itemvalue="Python.test_dp (1)" />
+      <item index="3" class="java.lang.String" itemvalue="Python.test_read_raw" />
+      <item index="4" class="java.lang.String" itemvalue="Python.test_oc_aa" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.test_lcb" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test_read_raw" />
-        <item index="2" class="java.lang.String" itemvalue="Python.test_dp (1)" />
-        <item index="3" class="java.lang.String" itemvalue="Python.test_dp" />
-        <item index="4" class="java.lang.String" itemvalue="Python.test_oc" />
+        <item index="0" class="java.lang.String" itemvalue="Python.test_oc_aa" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test_lcb" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test_read_raw" />
+        <item index="3" class="java.lang.String" itemvalue="Python.test_dp (1)" />
+        <item index="4" class="java.lang.String" itemvalue="Python.test_dp" />
       </list>
     </recent_temporary>
   </component>
@@ -591,20 +582,20 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23855963" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30971992" sideWeight="0.5033365" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2886248" sideWeight="0.49666348" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2886248" sideWeight="0.49666348" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981245" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37011886" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37011886" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33637747" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="0" y="23" width="1360" height="705" />
     </layout>
@@ -715,8 +706,23 @@
           <line>24</line>
           <option name="timeStamp" value="187" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/optical/optical_center_active_alignment.py</url>
+          <line>53</line>
+          <option name="timeStamp" value="193" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/optical/test_oc_aa.py</url>
+          <line>23</line>
+          <option name="timeStamp" value="194" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/optical/optical_center_active_alignment.py</url>
+          <line>80</line>
+          <option name="timeStamp" value="195" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="189" />
+      <option name="time" value="196" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -730,14 +736,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/read_bin/preprocess.pyx" />
-    <entry file="file://C:/Program Files/Python36/Lib/argparse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-874">
-          <caret line="1302" column="8" lean-forward="false" selection-start-line="1302" selection-start-column="8" selection-end-line="1302" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2017.2/system/python_stubs/-1120166012/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="134">
@@ -892,13 +890,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/optical/optical_center.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files/Python36/Lib/site-packages/scipy/misc/pilutil.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10476">
@@ -1010,14 +1001,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/core/fromnumeric.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="2817" column="41" lean-forward="false" selection-start-line="2817" selection-start-column="41" selection-end-line="2817" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/-1120166012/array.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -1039,7 +1022,7 @@
         <state relative-caret-position="204">
           <caret line="23" column="92" lean-forward="false" selection-start-line="23" selection-start-column="92" selection-end-line="23" selection-end-column="92" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1057,7 +1040,7 @@
         <state relative-caret-position="247">
           <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1067,7 +1050,7 @@
         <state relative-caret-position="126">
           <caret line="7" column="65" lean-forward="false" selection-start-line="7" selection-start-column="60" selection-end-line="7" selection-end-column="65" />
           <folding>
-            <element signature="e#0#12#0" expanded="true" />
+            <element signature="e#0#12#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1076,6 +1059,42 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="24" column="109" lean-forward="false" selection-start-line="24" selection-start-column="109" selection-end-line="24" selection-end-column="109" />
+          <folding>
+            <element signature="e#0#15#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/core/fromnumeric.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="965" column="4" lean-forward="false" selection-start-line="965" selection-start-column="4" selection-end-line="965" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optical/optical_center.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="81" column="236" lean-forward="true" selection-start-line="81" selection-start-column="4" selection-end-line="81" selection-end-column="236" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optical/optical_center_active_alignment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optical/test_oc_aa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
