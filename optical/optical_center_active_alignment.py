@@ -14,8 +14,9 @@ class ActiveAlignment:
         self.height = 0
         self.width = 0
 
-        # effective focal length, cm
-        self.efl = 37
+        # effective focal length, μm
+        self.efl = 370000
+        self.pixel_length = 1 / np.sqrt(2)
 
     def black_dot_location(self, detect_thresh_val=5, center_area_percentage=0.3, bayerformat="rggb", pedestal=64,
                            bitdepth=10, custom_size=[3856, 2340], debug=False):
@@ -119,7 +120,7 @@ class ActiveAlignment:
         horizonal_length = (up_line_length + down_line_length) / 2
         vertical_length = (left_line_length + right_line_length) / 2
 
-        tilt_h = (self.efl - (self.efl / (left_line_length / right_line_length))) / horizonal_length
-        tilt_v = (self.efl - (self.efl / (up_line_length / down_line_length))) / vertical_length
+        tilt_h = - (self.efl * (1 - (right_line_length / left_line_length))) / (horizonal_length * self.pixel_length)
+        tilt_v = - (self.efl * (1 - (down_line_length / up_line_length))) / (vertical_length * self.pixel_length)
 
         return [tilt_h, tilt_v]
