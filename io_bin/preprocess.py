@@ -5,7 +5,7 @@ from math_tool import conv2
 
 
 def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitdepth=10, pedestal=64, FOV=0,
-               whitebalance=True, signed=True, more_precise=False, custom_size=[0, 0], custom_decoding="H"):
+               whitebalance=True, signed=True, more_precise=False, custom_size=[0, 0], custom_decoding="H", for_SFR_test=False):
 
     if custom_decoding is "H":
         # 默认unsigned integer, 16位
@@ -55,12 +55,12 @@ def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitde
 
     # 白平衡
     if whitebalance:
-        ID = white_balance(ID)
+        ID = white_balance(ID, for_SFR_test)
         ID[ID > 2 ** bitdepth - 1] = 2 ** bitdepth - 1  # 防过饱和
 
     # 去镜头阴影
     if FOV is not 0:
-        ID = lens_shading_correction(ID, 75)
+        ID = lens_shading_correction(ID, 75, more_precise=more_precise)
         ID[ID > 2 ** bitdepth - 1] = 2 ** bitdepth - 1  # 防过饱和
     # print(ID[0][0], ID[0][1], ID[1][0], ID[1][1])
 
@@ -155,7 +155,7 @@ def crop_by_mode(raw, mode):
     return raw
 
 
-def white_balance(raw):
+def white_balance(raw, for_SFR_test=False):
     width = raw.shape[1]
     height = raw.shape[0]
 
@@ -173,7 +173,11 @@ def white_balance(raw):
 
     block_size_R = 100
     block_size_C = 100
-    center = [plane.shape[0] / 2 - 1, plane.shape[1] / 2 - 1]
+
+    if not for_SFR_test:
+        center = [plane.shape[0] / 2 - 1, plane.shape[1] / 2 - 1]
+    else:
+        center = [plane.shape[0] / 2 - 1, plane.shape[1] / 2 - 1 - 0.08 * plane.shape[1]]
 
     center_block = plane[int(center[0] - block_size_R / 2 + 1):int(center[0] + int(block_size_R / 2 + 1)),
                    int(center[1] - int(block_size_C / 2) + 1): int(center[1] + int(block_size_C / 2) + 1), :]
@@ -201,9 +205,9 @@ def white_balance(raw):
 
 
 # 镜头阴影纠正
-# 涉及遍历全像素，使用Numba辅助加速
+# 涉及遍历全像素，使用Numba加速
 @numba.jit()
-def lens_shading_correction(raw, FOV):
+def lens_shading_correction(raw, FOV, more_precise=False):
     width = raw.shape[1]
     height = raw.shape[0]
 
@@ -215,7 +219,10 @@ def lens_shading_correction(raw, FOV):
     # 求出所有点所在的视野（半）角对应程度
     for j in range(height):
         for i in range(width):
-            FOV_scale = (FOV / 2) * ((centerX - i) ** 2 + (centerY - j) ** 2) ** 0.5 / circumradius
+            if not more_precise:
+                FOV_scale = (FOV / 2) * ((centerX - i) ** 2 + (centerY - j) ** 2) ** 0.5 / circumradius
+            else:
+                FOV_scale = 180 / np.pi * np.arctan(np.tan(np.pi / 180 * (FOV / 2)) * ((centerX - i) ** 2 + (centerY - j) ** 2) ** 0.5 / circumradius)
 
             # 采用4次余弦因子增益，次方越大，纠正效果越强(具体函数，是根据图像对角线分布函数拟合的)
             lsc_factor = 1 / (np.cos(np.pi / 180 * FOV_scale)) ** 4
