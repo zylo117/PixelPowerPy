@@ -75,7 +75,7 @@ class ActiveAlignment:
         return self.black_dot, raw_rgb
 
     def oc(self):
-        return [self.black_dot[0][0] - (self.width / 2 - 1), self.black_dot[0][1] - (self.height / 2 - 1)]
+        return [self.black_dot[0][0] - (self.width / 2 - 1 + 0.5), self.black_dot[0][1] - (self.height / 2 - 1 + 0.5)]
 
     def rotation_angle(self):
         # counterclockwise direction is position angle
@@ -83,8 +83,7 @@ class ActiveAlignment:
         upper_slope = (self.black_dot[2][1] - self.black_dot[1][1]) / (self.black_dot[2][0] - self.black_dot[1][0])
         lower_slope = (self.black_dot[3][1] - self.black_dot[4][1]) / (self.black_dot[3][0] - self.black_dot[4][0])
 
-        return np.arctan((upper_slope+lower_slope) / 2)
-
+        return np.arctan((upper_slope + lower_slope) / 2)
 
     def tilt_angle(self):
         """

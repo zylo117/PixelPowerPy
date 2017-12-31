@@ -1,6 +1,6 @@
 import datetime
 import argparse
-from optical.optical_center import *
+from optical.optical_center.optical_center import *
 
 ap = argparse.ArgumentParser()
 

@@ -1,3 +1,40 @@
+"""
+ defectivePixel detects and categorizes defective pixels
+
+ mainly to find out if there is/are defective pixels of the CMOS sensor or dust/damage on the CMOS sensor
+
+ INPUT:
+   IDraw: raw image data
+   bayerFormat:
+       'bggr'
+       'rggb'
+       'grbg'
+       'gbrg'
+   threshold_defect: required amount for defect detection
+       for light field = , given as fraction (e.g. 0.19)
+       for dark field = LSB, given as LSB (e.g. 120)
+   threshold_defectLow: tighter defective threshold used for finding low contrast clusters
+   threshhold_detectable: minimum threshhold difference required for
+       detection (LSB)
+   cluster_type: type of cluster definitions
+       'bayer' - 3x3 kernel in the same Bayer channel
+       'raw'   - 5x5 kernel in the raw channel
+   cluster_size - number of pixels required for a cluster to occur
+   nvm: programmed defective pixels from the nvm
+       [locX1 locY1;
+        locX2 locY2;
+           ...
+        locXn locYn]
+       pass an empty array to ignore the nvm
+   neighbour_type: type of neighbour kernel
+       'avg'   - difference using average of neighbours
+       'delta' - difference using subtraction of neighbours
+ OUTPUT:
+   undetermined
+
+ rev.1    featureScore for dp tagging
+"""
+
 from io_bin.preprocess import preprocess
 from math_tool import conv2
 import numpy as np
@@ -31,11 +68,17 @@ def dp(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.1
     w_mirror = ID_mirror.shape[1]
 
     # 对奇偶行进行交换
-    ID_mirror[[1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12], :] = ID_mirror[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], :]
-    ID_mirror[[-13, -14, -11, -12, -9, -10, -7, -8, -5, -6, -3, -4, -1, -2], :] = ID_mirror[[-14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1], :]
+    ID_mirror[[1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12], :] = ID_mirror[
+                                                                   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], :]
+    ID_mirror[[-13, -14, -11, -12, -9, -10, -7, -8, -5, -6, -3, -4, -1, -2], :] = ID_mirror[
+                                                                                  [-14, -13, -12, -11, -10, -9, -8, -7,
+                                                                                   -6, -5, -4, -3, -2, -1], :]
     # 对奇偶列进行交换
-    ID_mirror[:, [1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12]] = ID_mirror[:, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]
-    ID_mirror[:, [-13, -14, -11, -12, -9, -10, -7, -8, -5, -6, -3, -4, -1, -2]] = ID_mirror[:, [-14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1]]
+    ID_mirror[:, [1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12]] = ID_mirror[:,
+                                                                   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]
+    ID_mirror[:, [-13, -14, -11, -12, -9, -10, -7, -8, -5, -6, -3, -4, -1, -2]] = ID_mirror[:,
+                                                                                  [-14, -13, -12, -11, -10, -9, -8, -7,
+                                                                                   -6, -5, -4, -3, -2, -1]]
 
     # 把图像进行均值归一化
     ID_avg = np.zeros(ID_mirror.shape)
@@ -63,38 +106,38 @@ def dp(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.1
     # 当内核对应点的值，大于100 + cluster_size - 1的时候，该点就被标记为cluster的中心。后期增长（grow）cluster的时候，内核会被再次应用
     if cluster_type is "bayer":
         cluster_pattern = np.array([[1, 0, 1, 0, 1],
-                                   [0, 0, 0, 0, 0],
-                                   [1, 0, 100, 0, 1],
-                                   [0, 0, 0, 0, 0],
-                                   [1, 0, 1, 0, 1]])
-        
+                                    [0, 0, 0, 0, 0],
+                                    [1, 0, 100, 0, 1],
+                                    [0, 0, 0, 0, 0],
+                                    [1, 0, 1, 0, 1]])
+
     elif cluster_type is "raw":
         cluster_pattern = np.array([[1, 1, 1, 1, 1],
-                                   [1, 1, 1, 1, 1],
-                                   [1, 1, 100, 1, 1],
-                                   [1, 1, 1, 1, 1],
-                                   [1, 1, 1, 1, 1]])
+                                    [1, 1, 1, 1, 1],
+                                    [1, 1, 100, 1, 1],
+                                    [1, 1, 1, 1, 1],
+                                    [1, 1, 1, 1, 1]])
 
     # 2.梯对（ladder pair）内核
     ladder_pattern = np.array([[0, 1, 0, 1, 0],
-                              [0, 0, 0, 0, 0],
-                              [0, 1, 33, 1, 0],
-                              [0, 0, 0, 0, 0],
-                              [0, 1, 0, 1, 0]])
+                               [0, 0, 0, 0, 0],
+                               [0, 1, 33, 1, 0],
+                               [0, 0, 0, 0, 0],
+                               [0, 1, 0, 1, 0]])
 
     # 3.对（pair）内核
     pair_pattern = np.array([[1, 0, 1, 0, 1],
-                            [0, 0, 0, 0, 0],
-                            [1, 0, 33, 0, 1],
-                            [0, 0, 0, 0, 0],
-                            [1, 0, 1, 0, 1]])
+                             [0, 0, 0, 0, 0],
+                             [1, 0, 33, 0, 1],
+                             [0, 0, 0, 0, 0],
+                             [1, 0, 1, 0, 1]])
 
     # 4.行（row）内核
     row_pattern = np.array([[0, 0, 0, 0, 0],
-                           [1, 1, 1, 1, 1],
-                           [0, 0, 33, 0, 0],
-                           [1, 1, 1, 1, 1],
-                           [0, 0, 0, 0, 0]])
+                            [1, 1, 1, 1, 1],
+                            [0, 0, 33, 0, 0],
+                            [1, 1, 1, 1, 1],
+                            [0, 0, 0, 0, 0]])
 
     # 1.簇（cluster）检测
     # 检测cluster defects，并标记cluster里面的所有像素
@@ -157,7 +200,7 @@ def dp(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.1
         temp_ROI = np.sort(ID[bayer_neighbour[:, 0], bayer_neighbour[:, 1]])
 
         if neighbour_type is "avg":
-            temp_ROI = temp_ROI[1:-1] # 去除极大极小值
+            temp_ROI = temp_ROI[1:-1]  # 去除极大极小值
             temp_avg = np.mean(temp_ROI)
             temp_neighbour = np.abs(ID[temp_y[i], temp_x[i]] - temp_avg)
         elif neighbour_type is "delta":
@@ -216,16 +259,16 @@ def dp(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.1
     """
 
     mapFail = np.max(np.dstack((map_temp_DP,
-                               2 * map_temp_DPP,
-                               3 * map_temp_border,
-                               # 4 * map_temp_feature,
-                               5 * map_temp_NDP,
-                               6 * map_temp_NDPP,
-                               7 * map_temp_DLP,
-                               8 * map_temp_NLP,
-                               9 * map_temp_ARPD,
-                               10 * map_temp_cluster,
-                               11 * map_temp_clusterlow)), axis=2)
+                                2 * map_temp_DPP,
+                                3 * map_temp_border,
+                                # 4 * map_temp_feature,
+                                5 * map_temp_NDP,
+                                6 * map_temp_NDPP,
+                                7 * map_temp_DLP,
+                                8 * map_temp_NLP,
+                                9 * map_temp_ARPD,
+                                10 * map_temp_cluster,
+                                11 * map_temp_clusterlow)), axis=2)
 
     DP_data = [np.where(mapFail == 1), len((np.where(mapFail == 1))[0]), ID_percDiff[np.where(mapFail == 1)]]
     DPP_data = [np.where(mapFail == 2), len((np.where(mapFail == 2))[0]) / 2]
@@ -240,7 +283,8 @@ def dp(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.1
     border_data = [np.where(mapFail == 3), len((np.where(mapFail == 3))[0])]
     all_dp_data = [np.where(mapFail > 0), len((np.where(mapFail > 0))[0]), ID_percDiff[np.where(mapFail == 1)]]
 
-    dp_fail_result = [DP_data, DPP_data, NDP_data, NDPP_data, DLP_data, NLP_data,feature_data, ARPD_data, cluster_data, clusterlow_data, border_data, all_dp_data]
+    dp_fail_result = [DP_data, DPP_data, NDP_data, NDPP_data, DLP_data, NLP_data, feature_data, ARPD_data, cluster_data,
+                      clusterlow_data, border_data, all_dp_data]
 
     dp_pointset = []
     for i in range(len(dp_fail_result[-1][0][0])):
@@ -267,7 +311,8 @@ def draw_defective_pixel(dp_fail_result, draw_on=None):
         zoom = (draw_on[pointset[0][i] - 2:pointset[0][i] + 3, pointset[1][i] - 2:pointset[1][i] + 3] / 4).astype(
             np.uint8)
         zoom = imutils.resize(zoom, width=200)
-        cv2.putText(zoom, "Value: " + str(round(dp_fail_result[-1][2][i] * 100, 2)) + "%", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+        cv2.putText(zoom, "Value: " + str(round(dp_fail_result[-1][2][i] * 100, 2)) + "%", (10, 30),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
         cv2.imshow("DP - Zoom: NO" + str(i + 1), zoom)
 
     cv2.putText(_background, "DPC: " + str(len(pointset[0])), (10, 200), cv2.FONT_HERSHEY_SIMPLEX, 5, (0, 255, 0), 2)

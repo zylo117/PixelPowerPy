@@ -2,6 +2,7 @@ import datetime
 import argparse
 import timeit
 import imutils
+import numpy as np
 import cv2
 from lcb.low_contrast_blemish import lcb
 from io_bin.preprocess import preprocess
@@ -21,11 +22,18 @@ ap.add_argument("-s", "--signed", type=bool, default=True, help="Whether all pix
 args = vars(ap.parse_args())
 
 time1 = datetime.datetime.now()
-custom_source = preprocess(imageinput=args["imageinput"], outputformat="bayer", more_precise=True, custom_size=[3856, 2340], custom_decoding="B")
-ID = lcb(args["imageinput"], compensation=False, custom_source=custom_source, roiSize=[23, 23], filterWidth=3, threshold=0)
+# custom_source = preprocess(imageinput=args["imageinput"], outputformat="bayer", more_precise=True, custom_size=[3856, 2340], custom_decoding="B")
+ID = lcb(args["imageinput"], compensation=False, mode=0, roiSize=[9, 9], threshold=3.1)
 time2 = datetime.datetime.now()
 print(time2 - time1)
-cv2.imshow("LCB", cv2.applyColorMap(imutils.resize(ID, width=1024), cv2.COLORMAP_JET))
+
+resized = imutils.resize(ID, width=1024)
+heat_map = cv2.applyColorMap(resized, cv2.COLORMAP_JET)
+max = np.where(resized == np.max(resized))
+
+for i in range(len(max)):
+    cv2.circle(heat_map, (max[1][i], max[0][i]), 20, (128, 128, 128), 3)
+cv2.imshow("LCB", heat_map)
 cv2.waitKey()
 # t1 = timeit.Timer(lambda: lcb(args["imageinput"]))
 # print(timeit.timeit())

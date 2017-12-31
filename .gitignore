@@ -139,3 +139,5 @@ $RECYCLE.BIN/
 *.lnk
 b.bin
 *.bin
+*.raw
+*.7z

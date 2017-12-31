@@ -8,6 +8,10 @@
       <sourceFolder url="file://$MODULE_DIR$/defect_detection/dpc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external_tool" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/optical" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/optical/SFR" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/optical/optical_center" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/optical/fourier_tranform" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/optical/illumination" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/defect_detection/build" />
       <excludeFolder url="file://$MODULE_DIR$/defect_detection/dist" />
       <excludeFolder url="file://$MODULE_DIR$/pic2arrray" />
