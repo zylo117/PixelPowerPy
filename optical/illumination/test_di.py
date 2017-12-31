@@ -13,4 +13,4 @@ di, back_di = di(args["imageinput"])
 time2 = datetime.datetime.now()
 print(time2 - time1)
 
-draw_diag_illumination(di, back_di)
+# draw_diag_illumination(di, back_di)

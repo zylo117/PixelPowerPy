@@ -18,6 +18,7 @@ OUTPUT:
 from io_bin.preprocess import preprocess
 import numpy as np
 import matplotlib.pyplot as plt
+import csv
 
 
 def di(ID, bayerformat="rggb", pedestal=64, bitdepth=10, custom_source=None):
@@ -69,13 +70,53 @@ def draw_diag_illumination(diag_data, back_diag_data):
     plt.figure()
     plt.title("Diagonal Illumination Distribution")
     plt.xlabel("Pixel")
-    plt.ylabel("Illumination")
+    plt.ylabel("Relative Illumination")
     # plt.subplot(211), plt.plot(diag_data), plt.title('Diagonal'), plt.xlim([0, len(diag_data)])
     # plt.subplot(212), plt.plot(back_diag_data), plt.title('Back - Diagonal'), plt.xlim([0, len(diag_data)])
 
-    plt.plot(diag_data, color = "b")
+    plt.plot(diag_data, color="b")
     plt.plot(back_diag_data, color="g")
     plt.xlim([0, len(diag_data)])
-    plt.ylim([0, 1])
+    plt.ylim([0.2, 1.2])
 
     plt.show()
+
+def draw_diag_illumination_list(diag_data_list):
+    plt.figure()
+    plt.title("Diagonal Illumination Distribution")
+    plt.xlabel("Pixel")
+    plt.ylabel("Relative Illumination")
+    # plt.subplot(211), plt.plot(diag_data), plt.title('Diagonal'), plt.xlim([0, len(diag_data)])
+    # plt.subplot(212), plt.plot(back_diag_data), plt.title('Back - Diagonal'), plt.xlim([0, len(diag_data)])
+
+    for i in diag_data_list:
+        plt.plot(i, color="b")
+    plt.xlim([0, len(diag_data_list[0])])
+    plt.ylim([0.2, 1.2])
+
+    plt.show()
+
+def draw_diag_illumination_list_compare(diag_data_list_a, diag_data_list_b):
+    plt.figure()
+    plt.title("Diagonal Illumination Distribution")
+    plt.xlabel("Pixel")
+    plt.ylabel("Relative Illumination")
+    # plt.subplot(211), plt.plot(diag_data), plt.title('Diagonal'), plt.xlim([0, len(diag_data)])
+    # plt.subplot(212), plt.plot(back_diag_data), plt.title('Back - Diagonal'), plt.xlim([0, len(diag_data)])
+
+    for i in diag_data_list_a:
+        plt.plot(i, color="b")
+
+    for i in diag_data_list_b:
+        plt.plot(i, color="r")
+
+    plt.xlim([0, len(diag_data_list_a[0])])
+    plt.ylim([0.2, 1.2])
+
+    plt.show()
+
+def addarray2csv(data, output_path):
+    f = open(output_path, 'a', newline="\n")
+    writer = csv.writer(f)
+    writer.writerow(data)
+    f.close()

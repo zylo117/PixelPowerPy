@@ -5,25 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="562761e6-2b31-41f0-8aa3-674acc33cc8c" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/optical/SFR/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/optical/fourier_tranform/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/optical/fourier_tranform/test.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/optical/fourier_tranform/test2.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/optical/illumination/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/optical/illumination/diagonal_illumination_distribution.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/optical/illumination/relative_illumination.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/optical/illumination/test_di.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/optical/illumination/test_ri.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/optical/illumination/test_di_multi.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/optical/illumination/test_di_multi_compare.py" />
       <change beforePath="$PROJECT_DIR$/.idea/PixelPower.iml" afterPath="$PROJECT_DIR$/.idea/PixelPower.iml" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/defect_detection/dpc/defective_pixel.py" afterPath="$PROJECT_DIR$/defect_detection/dpc/defective_pixel.py" />
       <change beforePath="$PROJECT_DIR$/defect_detection/lcb/1123_104912[9].raw" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py" afterPath="$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py" />
-      <change beforePath="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" afterPath="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" />
-      <change beforePath="$PROJECT_DIR$/optical/SFR.py" afterPath="$PROJECT_DIR$/optical/SFR/SFR.py" />
-      <change beforePath="$PROJECT_DIR$/optical/optical_center/optical_center_active_alignment.py" afterPath="$PROJECT_DIR$/optical/optical_center/optical_center_active_alignment.py" />
-      <change beforePath="$PROJECT_DIR$/optical/optical_center/test_oc.py" afterPath="$PROJECT_DIR$/optical/optical_center/test_oc.py" />
-      <change beforePath="$PROJECT_DIR$/optical/optical_center/test_oc_active_alignment.py" afterPath="$PROJECT_DIR$/optical/optical_center/test_oc_active_alignment.py" />
+      <change beforePath="$PROJECT_DIR$/optical/illumination/diagonal_illumination_distribution.py" afterPath="$PROJECT_DIR$/optical/illumination/diagonal_illumination_distribution.py" />
+      <change beforePath="$PROJECT_DIR$/optical/illumination/test_di.py" afterPath="$PROJECT_DIR$/optical/illumination/test_di.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="diagonal_illumination_distribution.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="diagonal_illumination_distribution.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/optical/illumination/diagonal_illumination_distribution.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="71" column="30" lean-forward="true" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
+            <state relative-caret-position="272">
+              <caret line="110" column="30" lean-forward="true" selection-start-line="110" selection-start-column="30" selection-end-line="110" selection-end-column="30" />
               <folding>
                 <element signature="e#345#385#0" expanded="true" />
               </folding>
@@ -46,22 +35,56 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="preprocess.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/io_bin/preprocess.py">
+      <file leaf-file-name="builtins.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/-1120166012/builtins.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1914">
-              <caret line="116" column="0" lean-forward="true" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+            <state relative-caret-position="1283">
+              <caret line="432" column="44" lean-forward="false" selection-start-line="432" selection-start-column="44" selection-end-line="432" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_di.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/optical/illumination/test_di.py">
+      <file leaf-file-name="util.py" pinned="false" current-in-tab="false">
+        <entry file="file://C:/Program Files/Python36/Lib/site-packages/pip/_vendor/distlib/util.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="105">
+              <caret line="1492" column="8" lean-forward="false" selection-start-line="1492" selection-start-column="8" selection-end-line="1492" selection-end-column="8" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="csv.py" pinned="false" current-in-tab="false">
+        <entry file="file://C:/Program Files/Python36/Lib/csv.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-518">
+              <caret line="154" column="33" lean-forward="false" selection-start-line="154" selection-start-column="33" selection-end-line="154" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_di_multi.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/optical/illumination/test_di_multi.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="50">
+              <caret line="12" column="31" lean-forward="true" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_di_multi_compare.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/optical/illumination/test_di_multi_compare.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-66">
+              <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -77,10 +100,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>print</find>
       <find>max</find>
       <find>,</find>
-      <find>color</find>
       <find>float32</find>
       <find>float</find>
       <find>uint</find>
@@ -104,9 +125,11 @@
       <find>int</find>
       <find>%</find>
       <find>sfr</find>
-      <find>%</find>
       <find>0</find>
       <find>np.round</find>
+      <find>app</find>
+      <find>color</find>
+      <find>'b'</find>
     </findStrings>
     <replaceStrings>
       <replace>mode</replace>
@@ -140,9 +163,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/read_bin_cpython/pedestal.py" />
-        <option value="$PROJECT_DIR$/read_bin_cpython/pedestal.pyx" />
-        <option value="$PROJECT_DIR$/read_bin_cpython/preprocess.pyx" />
         <option value="$PROJECT_DIR$/read_bin_cpython/bin2array_pure_python.py" />
         <option value="$PROJECT_DIR$/read_bin_cpython/funtset.py" />
         <option value="$PROJECT_DIR$/Fast For Loops.ipynb" />
@@ -189,14 +209,17 @@
         <option value="$PROJECT_DIR$/optical/relative_illumination/relative_illumination.py" />
         <option value="$PROJECT_DIR$/optical/relative_illumination/diagonal_illumination_distribution.py" />
         <option value="$PROJECT_DIR$/optical/relative_illumination/test_di.py" />
+        <option value="$PROJECT_DIR$/io_bin/test_read_bin.py" />
         <option value="$PROJECT_DIR$/optical/illumination/test_di.py" />
+        <option value="$PROJECT_DIR$/optical/illumination/test_di_multi.py" />
         <option value="$PROJECT_DIR$/optical/illumination/diagonal_illumination_distribution.py" />
+        <option value="$PROJECT_DIR$/optical/illumination/test_di_multi_compare.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="53" />
-    <option name="y" value="161" />
+    <option name="x" value="-215" />
+    <option name="y" value="-8" />
     <option name="width" value="1314" />
     <option name="height" value="574" />
   </component>
@@ -218,7 +241,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -226,6 +248,16 @@
             <path>
               <item name="PixelPower" type="b2602c69:ProjectViewProjectNode" />
               <item name="PixelPower" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PixelPower" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PixelPower" type="462c0819:PsiDirectoryNode" />
+              <item name="defect_detection" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PixelPower" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PixelPower" type="462c0819:PsiDirectoryNode" />
+              <item name="external_tool" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PixelPower" type="b2602c69:ProjectViewProjectNode" />
@@ -241,32 +273,27 @@
               <item name="PixelPower" type="b2602c69:ProjectViewProjectNode" />
               <item name="PixelPower" type="462c0819:PsiDirectoryNode" />
               <item name="optical" type="462c0819:PsiDirectoryNode" />
-              <item name="fourier_tranform" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PixelPower" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PixelPower" type="462c0819:PsiDirectoryNode" />
-              <item name="optical" type="462c0819:PsiDirectoryNode" />
               <item name="illumination" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.project" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\workspace\PixelPower\optical\relative_illumination" />
+      <recent name="D:\workspace\PixelPower\optical\illumination" />
+      <recent name="D:\workspace\PixelPower\io_bin" />
       <recent name="D:\workspace\PixelPower\optical" />
+      <recent name="D:\workspace\PixelPower\optical\relative_illumination" />
       <recent name="D:\workspace\PixelPower\defect_detection\lcb" />
-      <recent name="D:\workspace\PixelPower\defect_detection" />
-      <recent name="D:\workspace\PixelPicker\optical" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\workspace\PixelPower\optical\optical_center" />
@@ -288,7 +315,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test_di (1)">
+  <component name="RunManager" selected="Python.test_di_multi">
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -320,7 +347,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="PixelPower" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/optical/illumination/test_di.py" />
-      <option name="PARAMETERS" value="-i ..\h.bin" />
+      <option name="PARAMETERS" value="-i ..\b.bin" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -343,38 +370,38 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="test_lcb" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="test_di_multi" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/defect_detection/lcb" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/optical/illumination" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="PixelPower" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" />
-      <option name="PARAMETERS" value="-i n1.bin" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/optical/illumination/test_di_multi.py" />
+      <option name="PARAMETERS" value="-i ..\shading\ok -o .\ok.csv" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="test_ri" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="test_read_bin" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/optical/relative_illumination" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/io_bin" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="PixelPower" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/optical/relative_illumination/test_ri.py" />
-      <option name="PARAMETERS" value="-i ..\h.bin" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/io_bin/test_read_bin.py" />
+      <option name="PARAMETERS" value="-i b.bin" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -545,19 +572,19 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.test_lcb" />
-      <item index="1" class="java.lang.String" itemvalue="Python.test_ri" />
-      <item index="2" class="java.lang.String" itemvalue="Python.test_di" />
-      <item index="3" class="java.lang.String" itemvalue="Python.test_di (1)" />
-      <item index="4" class="java.lang.String" itemvalue="Python.test" />
+      <item index="0" class="java.lang.String" itemvalue="Python.test_di" />
+      <item index="1" class="java.lang.String" itemvalue="Python.test_di (1)" />
+      <item index="2" class="java.lang.String" itemvalue="Python.test" />
+      <item index="3" class="java.lang.String" itemvalue="Python.test_read_bin" />
+      <item index="4" class="java.lang.String" itemvalue="Python.test_di_multi" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.test_di (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test" />
-        <item index="2" class="java.lang.String" itemvalue="Python.test_di" />
-        <item index="3" class="java.lang.String" itemvalue="Python.test_ri" />
-        <item index="4" class="java.lang.String" itemvalue="Python.test_lcb" />
+        <item index="0" class="java.lang.String" itemvalue="Python.test_di_multi" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test_read_bin" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test_di (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Python.test" />
+        <item index="4" class="java.lang.String" itemvalue="Python.test_di" />
       </list>
     </recent_temporary>
   </component>
@@ -590,10 +617,10 @@
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30607653" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29632407" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30971992" sideWeight="0.5033365" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35314092" sideWeight="0.49666348" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21052632" sideWeight="0.49666348" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871014" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981245" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -606,7 +633,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32767403" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33637747" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="0" y="23" width="1360" height="705" />
     </layout>
@@ -743,11 +770,11 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/optical/illumination/diagonal_illumination_distribution.py</url>
-          <line>64</line>
-          <option name="timeStamp" value="217" />
+          <line>119</line>
+          <option name="timeStamp" value="231" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="224" />
+      <option name="time" value="233" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -761,49 +788,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/defect_detection/lcb/lcb_function_cython.pyx" />
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/numba/targets/registry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/numba/decorators.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="127" column="31" lean-forward="false" selection-start-line="127" selection-start-column="31" selection-end-line="127" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/lib/polynomial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="944">
-          <caret line="558" column="0" lean-forward="false" selection-start-line="558" selection-start-column="0" selection-end-line="558" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/scipy/misc/pilutil.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10476">
-          <caret line="590" column="56" lean-forward="false" selection-start-line="590" selection-start-column="56" selection-end-line="590" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/-1120166012/cv2/cv2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97812">
-          <caret line="5445" column="91" lean-forward="false" selection-start-line="5445" selection-start-column="91" selection-end-line="5445" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/core/numeric.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="909" column="4" lean-forward="false" selection-start-line="909" selection-start-column="4" selection-end-line="909" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -837,14 +821,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="83808">
           <caret line="4688" column="4" lean-forward="false" selection-start-line="4688" selection-start-column="4" selection-end-line="4688" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/io_bin/py2c.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -892,14 +868,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/io_bin/write_bin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="22" lean-forward="false" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/optical/optical_center/optical_center_active_alignment.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -918,7 +886,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51822">
           <caret line="2879" column="4" lean-forward="false" selection-start-line="2879" selection-start-column="4" selection-end-line="2879" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -933,7 +900,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -941,9 +907,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -951,9 +914,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="864">
           <caret line="50" column="10" lean-forward="false" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -961,7 +921,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5958">
           <caret line="331" column="0" lean-forward="false" selection-start-line="331" selection-start-column="0" selection-end-line="331" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -969,7 +928,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1188">
           <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -977,7 +935,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
           <caret line="2805" column="4" lean-forward="false" selection-start-line="2805" selection-start-column="4" selection-end-line="2805" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -995,9 +952,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-288">
           <caret line="12" column="30" lean-forward="false" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1005,9 +959,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="376">
           <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#15#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1025,9 +976,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="40" lean-forward="false" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
-          <folding>
-            <element signature="e#509#527#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1036,7 +984,7 @@
         <state relative-caret-position="168">
           <caret line="21" column="20" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
-            <element signature="e#343#383#0" expanded="true" />
+            <element signature="e#343#383#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1045,23 +993,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="15" column="9" lean-forward="true" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/-1120166012/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="1092" column="8" lean-forward="false" selection-start-line="1092" selection-start-column="8" selection-end-line="1092" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/external_tool/math_tool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10">
-          <caret line="85" column="4" lean-forward="false" selection-start-line="85" selection-start-column="4" selection-end-line="85" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1074,7 +1005,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1082,7 +1012,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-152">
           <caret line="10" column="31" lean-forward="false" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1090,7 +1019,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
           <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1099,41 +1027,138 @@
         <state relative-caret-position="36">
           <caret line="2" column="31" lean-forward="false" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="31" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/matplotlib/pyplot.py">
+    <entry file="file://$PROJECT_DIR$/io_bin/py2c.bat">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="3156" column="0" lean-forward="false" selection-start-line="3156" selection-start-column="0" selection-end-line="3156" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/optical/illumination/test_di.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/io_bin/preprocess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1914">
-          <caret line="116" column="0" lean-forward="true" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+        <state relative-caret-position="270">
+          <caret line="18" column="34" lean-forward="false" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#12#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external_tool/math_tool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1494">
+          <caret line="85" column="4" lean-forward="false" selection-start-line="85" selection-start-column="4" selection-end-line="85" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/io_bin/write_bin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/-1120166012/sys.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-33">
+          <caret line="613" column="0" lean-forward="false" selection-start-line="613" selection-start-column="0" selection-end-line="613" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/io_bin/test_read_bin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#15#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optical/illumination/test_di.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/lib/npyio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="834">
+          <caret line="1098" column="59" lean-forward="false" selection-start-line="1098" selection-start-column="8" selection-end-line="1098" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Python36/Lib/csv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-518">
+          <caret line="154" column="33" lean-forward="false" selection-start-line="154" selection-start-column="33" selection-end-line="154" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Python36/Lib/site-packages/pip/_vendor/distlib/util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="1492" column="8" lean-forward="false" selection-start-line="1492" selection-start-column="8" selection-end-line="1492" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/-1120166012/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1283">
+          <caret line="432" column="44" lean-forward="false" selection-start-line="432" selection-start-column="44" selection-end-line="432" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Python36/Lib/site-packages/matplotlib/pyplot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="1921" column="9" lean-forward="false" selection-start-line="1921" selection-start-column="6" selection-end-line="1921" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/optical/illumination/diagonal_illumination_distribution.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="71" column="30" lean-forward="true" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
+        <state relative-caret-position="272">
+          <caret line="110" column="30" lean-forward="true" selection-start-line="110" selection-start-column="30" selection-end-line="110" selection-end-column="30" />
           <folding>
             <element signature="e#345#385#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optical/illumination/test_di_multi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="12" column="31" lean-forward="true" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optical/illumination/test_di_multi_compare.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-66">
+          <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
