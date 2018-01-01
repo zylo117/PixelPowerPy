@@ -38,7 +38,7 @@ for i in range(0, len(list)):
         diag_list_b.append(diag)
         back_diag_list_b.append(back_diag)
 
-draw_diag_illumination_list_compare(diag_list_a, back_diag_list_a, diag_list_b, back_diag_list_b)
+draw_diag_illumination_list_compare(diag_list_a, back_diag_list_a, diag_list_b, back_diag_list_b, legend_a="ok", legend_b="ng")
 time2 = datetime.datetime.now()
 print(time2 - time1)
 # draw_diag_illumination(di, back_di)
