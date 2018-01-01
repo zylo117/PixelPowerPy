@@ -81,6 +81,7 @@ def draw_diag_illumination(diag_data, back_diag_data):
 
     plt.show()
 
+
 def draw_diag_illumination_list(diag_data_list):
     plt.figure()
     plt.title("Diagonal Illumination Distribution")
@@ -96,64 +97,73 @@ def draw_diag_illumination_list(diag_data_list):
 
     plt.show()
 
-def draw_diag_illumination_list_compare(diag_data_list_a, back_diag_data_list_a, diag_data_list_b, back_diag_data_list_b):
+
+def draw_diag_illumination_list_compare(diag_data_list_a, back_diag_data_list_a, diag_data_list_b,
+                                        back_diag_data_list_b, x_size=512, y_range=[0.3, 0.6]):
     plt.figure()
-    plt.title("Diagonal Illumination Distribution")
-    plt.xlabel("Pixel")
-    plt.ylabel("Relative Illumination")
+    plt.suptitle("Diagonal Illumination Distribution")
+    plt.subplots_adjust(wspace=0.35, hspace=0.45)
     # plt.subplot(211), plt.plot(diag_data), plt.title('Diagonal'), plt.xlim([0, len(diag_data)])
     # plt.subplot(212), plt.plot(back_diag_data), plt.title('Back - Diagonal'), plt.xlim([0, len(diag_data)])
 
     for i in diag_data_list_a:
         plt.subplot(221)
         plt.plot(i, color="b")
-        plt.xlim([0, len(diag_data_list_a[0]) // 8])
-        plt.ylim([0.2, 0.6])
+        plt.xlim([0, x_size])
+        plt.ylim(y_range)
         plt.title('Top-Left')
+        plt.xlabel("Pixel")
+        plt.ylabel("Relative Illumination")
 
         plt.subplot(224)
         plt.plot(i, color="b")
-        plt.xlim([len(diag_data_list_a[0]) - len(diag_data_list_a[0]) // 8, len(diag_data_list_a[0])])
-        plt.ylim([0.2, 0.6])
+        plt.xlim([len(diag_data_list_a[0]) - x_size, len(diag_data_list_a[0])])
+        plt.ylim(y_range)
         plt.title('Bottom-Right')
-
+        plt.xlabel("Pixel")
+        plt.ylabel("Relative Illumination")
 
     for i in back_diag_data_list_a:
         plt.subplot(222)
         plt.plot(i, color="b")
-        plt.xlim([len(back_diag_data_list_a[0]) - len(back_diag_data_list_a[0]) // 8, len(back_diag_data_list_a[0])])
-        plt.ylim([0.2, 0.6])
+        plt.xlim([len(back_diag_data_list_a[0]) - x_size, len(back_diag_data_list_a[0])])
+        plt.ylim(y_range)
         plt.title('Top-Right')
+        plt.xlabel("Pixel")
+        plt.ylabel("Relative Illumination")
 
         plt.subplot(223)
         plt.plot(i, color="b")
-        plt.xlim([0, len(back_diag_data_list_a[0]) // 8])
-        plt.ylim([0.2, 0.6])
+        plt.xlim([0, x_size])
+        plt.ylim(y_range)
         plt.title('Bottom-Left')
+        plt.xlabel("Pixel")
+        plt.ylabel("Relative Illumination")
 
     for i in diag_data_list_b:
         plt.subplot(221)
         plt.plot(i, color="r")
-        plt.xlim([0, len(diag_data_list_a[0]) // 8])
-        plt.ylim([0.2, 0.6])
+        plt.xlim([0, x_size])
+        plt.ylim(y_range)
 
         plt.subplot(224)
         plt.plot(i, color="r")
-        plt.xlim([len(diag_data_list_a[0]) - len(diag_data_list_a[0]) // 8, len(diag_data_list_a[0])])
-        plt.ylim([0.2, 0.6])
-        
+        plt.xlim([len(diag_data_list_a[0]) - x_size, len(diag_data_list_a[0])])
+        plt.ylim(y_range)
+
     for i in back_diag_data_list_b:
         plt.subplot(222)
         plt.plot(i, color="r")
         plt.xlim([len(back_diag_data_list_b[0]) - len(back_diag_data_list_b[0]) // 8, len(back_diag_data_list_b[0])])
-        plt.ylim([0.2, 0.6])
+        plt.ylim(y_range)
 
         plt.subplot(223)
         plt.plot(i, color="r")
         plt.xlim([0, len(back_diag_data_list_b[0]) // 8])
-        plt.ylim([0.2, 0.6])
+        plt.ylim(y_range)
 
     plt.show()
+
 
 def addarray2csv(data, output_path):
     f = open(output_path, 'a', newline="\n")
