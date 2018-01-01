@@ -96,7 +96,7 @@ def draw_diag_illumination_list(diag_data_list):
 
     plt.show()
 
-def draw_diag_illumination_list_compare(diag_data_list_a, diag_data_list_b):
+def draw_diag_illumination_list_compare(diag_data_list_a, back_diag_data_list_a, diag_data_list_b, back_diag_data_list_b):
     plt.figure()
     plt.title("Diagonal Illumination Distribution")
     plt.xlabel("Pixel")
@@ -105,13 +105,53 @@ def draw_diag_illumination_list_compare(diag_data_list_a, diag_data_list_b):
     # plt.subplot(212), plt.plot(back_diag_data), plt.title('Back - Diagonal'), plt.xlim([0, len(diag_data)])
 
     for i in diag_data_list_a:
+        plt.subplot(221)
         plt.plot(i, color="b")
+        plt.xlim([0, len(diag_data_list_a[0]) // 8])
+        plt.ylim([0.2, 0.6])
+        plt.title('Top-Left')
+
+        plt.subplot(224)
+        plt.plot(i, color="b")
+        plt.xlim([len(diag_data_list_a[0]) - len(diag_data_list_a[0]) // 8, len(diag_data_list_a[0])])
+        plt.ylim([0.2, 0.6])
+        plt.title('Bottom-Right')
+
+
+    for i in back_diag_data_list_a:
+        plt.subplot(222)
+        plt.plot(i, color="b")
+        plt.xlim([len(back_diag_data_list_a[0]) - len(back_diag_data_list_a[0]) // 8, len(back_diag_data_list_a[0])])
+        plt.ylim([0.2, 0.6])
+        plt.title('Top-Right')
+
+        plt.subplot(223)
+        plt.plot(i, color="b")
+        plt.xlim([0, len(back_diag_data_list_a[0]) // 8])
+        plt.ylim([0.2, 0.6])
+        plt.title('Bottom-Left')
 
     for i in diag_data_list_b:
+        plt.subplot(221)
         plt.plot(i, color="r")
+        plt.xlim([0, len(diag_data_list_a[0]) // 8])
+        plt.ylim([0.2, 0.6])
 
-    plt.xlim([0, len(diag_data_list_a[0])])
-    plt.ylim([0.2, 1.2])
+        plt.subplot(224)
+        plt.plot(i, color="r")
+        plt.xlim([len(diag_data_list_a[0]) - len(diag_data_list_a[0]) // 8, len(diag_data_list_a[0])])
+        plt.ylim([0.2, 0.6])
+        
+    for i in back_diag_data_list_b:
+        plt.subplot(222)
+        plt.plot(i, color="r")
+        plt.xlim([len(back_diag_data_list_b[0]) - len(back_diag_data_list_b[0]) // 8, len(back_diag_data_list_b[0])])
+        plt.ylim([0.2, 0.6])
+
+        plt.subplot(223)
+        plt.plot(i, color="r")
+        plt.xlim([0, len(back_diag_data_list_b[0]) // 8])
+        plt.ylim([0.2, 0.6])
 
     plt.show()
 
