@@ -19,6 +19,7 @@ diag_list_b = []
 back_diag_list_b = []
 
 rootdir = args["imageinputa"]
+folder_name_A = rootdir.split("/")[-1].split("\\")[-1]
 list = os.listdir(rootdir)  # list out all file under this dir
 for i in range(0, len(list)):
     path = rootdir + "\\" + list[i]
@@ -29,6 +30,7 @@ for i in range(0, len(list)):
         back_diag_list_a.append(back_diag)
 
 rootdir = args["imageinputb"]
+folder_name_B = rootdir.split("/")[-1].split("\\")[-1]
 list = os.listdir(rootdir)  # list out all file under this dir
 for i in range(0, len(list)):
     path = rootdir + "\\" + list[i]
@@ -38,7 +40,7 @@ for i in range(0, len(list)):
         diag_list_b.append(diag)
         back_diag_list_b.append(back_diag)
 
-draw_diag_illumination_list_compare(diag_list_a, back_diag_list_a, diag_list_b, back_diag_list_b, legend_a="ok", legend_b="ng")
+draw_diag_illumination_list_compare(diag_list_a, back_diag_list_a, diag_list_b, back_diag_list_b, legend_a=folder_name_A, legend_b=folder_name_B)
 time2 = datetime.datetime.now()
 print(time2 - time1)
 # draw_diag_illumination(di, back_di)

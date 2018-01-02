@@ -111,69 +111,96 @@ def draw_diag_illumination_list_compare(diag_data_list_a, back_diag_data_list_a,
     # 6   10  7,5
     # 3   8   4
 
-    for i in diag_data_list_a:
+    for i in range(len(diag_data_list_a)):
         plt.subplot(221)
-        plt.plot(i, color="b", label=legend_a)
+        if i == 0:
+            plt.plot(diag_data_list_a[i], color="b", label=legend_a)
+        else:
+            plt.plot(diag_data_list_a[i], color="b")
         plt.xlim([0, x_size])
         plt.ylim(y_range)
         plt.title('Top-Left')
         plt.xlabel("Pixel")
         plt.ylabel("Relative Illumination")
-        plt.legend(loc=4)
 
         plt.subplot(224)
-        plt.plot(i, color="b", label=legend_a)
+        if i == 0:
+            plt.plot(diag_data_list_a[i], color="b", label=legend_a)
+        else:
+            plt.plot(diag_data_list_a[i], color="b")
         plt.xlim([len(diag_data_list_a[0]) - x_size, len(diag_data_list_a[0])])
         plt.ylim(y_range)
         plt.title('Bottom-Right')
         plt.xlabel("Pixel")
         plt.ylabel("Relative Illumination")
-        plt.legend(loc=3)
 
-    for i in back_diag_data_list_a:
+    for i in range(len(back_diag_data_list_a)):
         plt.subplot(222)
-        plt.plot(i, color="b", label=legend_a)
+        if i == 0:
+            plt.plot(back_diag_data_list_a[i], color="b", label=legend_a)
+        else:
+            plt.plot(back_diag_data_list_a[i], color="b")
         plt.xlim([len(back_diag_data_list_a[0]) - x_size, len(back_diag_data_list_a[0])])
         plt.ylim(y_range)
         plt.title('Top-Right')
         plt.xlabel("Pixel")
         plt.ylabel("Relative Illumination")
-        plt.legend(loc=3)
 
         plt.subplot(223)
-        plt.plot(i, color="b", label=legend_a)
+        if i == 0:
+            plt.plot(back_diag_data_list_a[i], color="b", label=legend_a)
+        else:
+            plt.plot(back_diag_data_list_a[i], color="b")
         plt.xlim([0, x_size])
         plt.ylim(y_range)
         plt.title('Bottom-Left')
         plt.xlabel("Pixel")
         plt.ylabel("Relative Illumination")
-        plt.legend(loc=4)
 
-    for i in diag_data_list_b:
+    for i in range(len(diag_data_list_b)):
         plt.subplot(221)
-        plt.plot(i, color="r", label=legend_b)
+        if i == 0:
+            plt.plot(diag_data_list_b[i], color="r", label=legend_b)
+        else:
+            plt.plot(diag_data_list_b[i], color="r")
         plt.xlim([0, x_size])
         plt.ylim(y_range)
-        plt.legend(loc=4)
 
         plt.subplot(224)
-        plt.plot(i, color="r", label=legend_b)
+        if i == 0:
+            plt.plot(diag_data_list_b[i], color="r", label=legend_b)
+        else:
+            plt.plot(diag_data_list_b[i], color="r")
         plt.xlim([len(diag_data_list_a[0]) - x_size, len(diag_data_list_a[0])])
         plt.ylim(y_range)
-        plt.legend(loc=3)
 
-    for i in back_diag_data_list_b:
+    for i in range(len(back_diag_data_list_b)):
         plt.subplot(222)
-        plt.plot(i, color="r", label=legend_b)
+        if i == 0:
+            plt.plot(back_diag_data_list_b[i], color="r", label=legend_b)
+        else:
+            plt.plot(back_diag_data_list_b[i], color="r")
         plt.xlim([len(back_diag_data_list_b[0]) - len(back_diag_data_list_b[0]) // 8, len(back_diag_data_list_b[0])])
         plt.ylim(y_range)
-        plt.legend(loc=3)
 
         plt.subplot(223)
-        plt.plot(i, color="r", label=legend_b)
+        if i == 0:
+            plt.plot(back_diag_data_list_b[i], color="r", label=legend_b)
+        else:
+            plt.plot(back_diag_data_list_b[i], color="r")
         plt.xlim([0, len(back_diag_data_list_b[0]) // 8])
         plt.ylim(y_range)
-        plt.legend(loc=4)
+
+    # set legend
+    plt.subplot(221)
+    plt.legend(loc=4)
+    plt.subplot(222)
+    plt.legend(loc=3)
+    plt.subplot(223)
+    plt.legend(loc=4)
+    plt.subplot(224)
+    plt.legend(loc=3)
+
 
     plt.show()
 
