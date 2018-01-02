@@ -10,7 +10,10 @@ args = vars(ap.parse_args())
 
 time1 = datetime.datetime.now()
 di, back_di = di(args["imageinput"])
+# fi = fit_curve(di)
 time2 = datetime.datetime.now()
 print(time2 - time1)
 
 draw_diag_illumination(di, back_di)
+
+
