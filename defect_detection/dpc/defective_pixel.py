@@ -45,10 +45,10 @@ def dp(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.1
        threshold_detectable=32,
        cluster_type="bayer", cluster_size=3, neighbour_type="avg", more_precise=False):
     if threshold_defect > 1:
-        ID = preprocess(IDraw, bayerformat, outputformat="raw", mode=0, bitdepth=10, pedestal=64, FOV=0,
+        ID = preprocess(IDraw, bayerformat, outputformat="raw", mode=0, bitdepth=bitdepth, pedestal=pedestal, FOV=0,
                         whitebalance=False, signed=True, more_precise=more_precise)
     else:
-        ID = preprocess(IDraw, bayerformat, outputformat="raw", mode=0, bitdepth=10, pedestal=64, FOV=0,
+        ID = preprocess(IDraw, bayerformat, outputformat="raw", mode=0, bitdepth=bitdepth, pedestal=pedestal, FOV=0,
                         whitebalance=True, signed=True, more_precise=more_precise)
 
     h = ID.shape[0]
@@ -67,6 +67,36 @@ def dp(IDraw, bayerformat="rggb", pedestal=64, bitdepth=10, threshold_defect=0.1
     h_mirror = ID_mirror.shape[0]
     w_mirror = ID_mirror.shape[1]
 
+    """
+    由于padding是对称的
+    所以
+      |--|
+      |RG|
+      |GB|
+      |--|
+       
+    padding后就是
+    
+       GB
+       RG
+      |--|
+    GR|RG|GR
+    BG|GB|BG
+      |--|
+       GB
+       RG
+       
+    所以奇偶互换才能变回
+       RG
+       GB
+      |--|
+    RG|RG|RG
+    GB|GB|GB
+      |--|
+       RG
+       GB
+    
+    """
     # 对奇偶行进行交换
     ID_mirror[[1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12], :] = ID_mirror[
                                                                    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], :]
