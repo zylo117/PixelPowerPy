@@ -26,7 +26,7 @@ def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitde
         'Q'         unsigned integer   8 (see note) 
         'f'         floating point     4 
         'd'         floating point     8     
-    """
+        """
         ID = array.array(custom_decoding, open(imageinput, "rb").read())
 
     if custom_size == [0, 0]:
@@ -206,7 +206,7 @@ def white_balance(raw, for_SFR_test=False):
 
 # 镜头阴影纠正
 # 涉及遍历全像素，使用Numba加速
-@numba.jit()
+# @numba.jit()
 def lens_shading_correction(raw, FOV, more_precise=False):
     width = raw.shape[1]
     height = raw.shape[0]
@@ -217,16 +217,30 @@ def lens_shading_correction(raw, FOV, more_precise=False):
     circumradius = (centerX ** 2 + centerY ** 2) ** 0.5
 
     # 求出所有点所在的视野（半）角对应程度
-    for j in range(height):
-        for i in range(width):
-            if not more_precise:
-                FOV_scale = (FOV / 2) * ((centerX - i) ** 2 + (centerY - j) ** 2) ** 0.5 / circumradius
-            else:
-                FOV_scale = 180 / np.pi * np.arctan(np.tan(np.pi / 180 * (FOV / 2)) * ((centerX - i) ** 2 + (centerY - j) ** 2) ** 0.5 / circumradius)
+    # Old Method, relied on Numba to accelerate
+    # for j in range(height):
+    #     for i in range(width):
+    #         if not more_precise:
+    #             FOV_scale = (FOV / 2) * ((centerX - i) ** 2 + (centerY - j) ** 2) ** 0.5 / circumradius
+    #         else:
+    #             FOV_scale = 180 / np.pi * np.arctan(np.tan(np.pi / 180 * (FOV / 2)) * ((centerX - i) ** 2 + (centerY - j) ** 2) ** 0.5 / circumradius)
+    #
+    #         # 采用4次余弦因子增益，次方越大，纠正效果越强(具体函数，是根据图像对角线分布函数拟合的)
+    #         lsc_factor = 1 / (np.cos(np.pi / 180 * FOV_scale)) ** 4
+    #         raw[j, i] = raw[j, i] * lsc_factor
 
-            # 采用4次余弦因子增益，次方越大，纠正效果越强(具体函数，是根据图像对角线分布函数拟合的)
-            lsc_factor = 1 / (np.cos(np.pi / 180 * FOV_scale)) ** 4
-            raw[j, i] = raw[j, i] * lsc_factor
+    # New Method, no "for loop", don't relied on Numba
+    x_points = (centerX - np.arange(0, width)) ** 2
+    y_points = (centerY - np.arange(0, height)) ** 2
+
+    x_grid = np.tile(x_points, [len(y_points), 1])
+    y_grid = np.transpose(np.tile(y_points, [len(x_points), 1]))
+
+    FOV_grid = 180 / np.pi * np.arctan(np.tan(np.pi / 180 * (FOV / 2)) * np.sqrt(x_grid + y_grid) / circumradius)
+    lsc_grid = 1 / np.cos(np.pi / 180 * FOV_grid) ** 4
+
+    # Apply correction coefficient
+    raw = lsc_grid * raw
 
     return raw
 
