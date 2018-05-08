@@ -27,12 +27,12 @@ ID = lcb(args["imageinput"], compensation=False, mode=0, roiSize=[9, 9], thresho
 time2 = datetime.datetime.now()
 print(time2 - time1)
 
-resized = imutils.resize(ID, width=1024)
+resized = imutils.resize(ID, width=800)
 heat_map = cv2.applyColorMap(resized, cv2.COLORMAP_JET)
 max = np.where(resized == np.max(resized))
 
-for i in range(len(max)):
-    cv2.circle(heat_map, (max[1][i], max[0][i]), 20, (128, 128, 128), 3)
+# for i in range(len(max)):
+#     cv2.circle(heat_map, (max[1][i], max[0][i]), 20, (128, 128, 128), 3)
 cv2.imshow("LCB", heat_map)
 cv2.waitKey()
 # t1 = timeit.Timer(lambda: lcb(args["imageinput"]))

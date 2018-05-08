@@ -36,7 +36,7 @@ def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitde
         width = custom_size[0]
         height = custom_size[1]
 
-    ID = np.array(ID).astype(np.double)
+    ID = np.asarray(ID).astype(np.double)
 
     if custom_size == [0, 0]:
         ID = ID[2:]
