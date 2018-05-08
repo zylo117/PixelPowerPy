@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="562761e6-2b31-41f0-8aa3-674acc33cc8c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish_compact_version.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/external_tool/ringlike_matrix.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/io_bin/read_bin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/defect_detection/lcb/1123_104912[9].raw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" beforeDir="false" afterPath="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/io_bin/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/io_bin/preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/io_bin/test_read_raw.py" beforeDir="false" afterPath="$PROJECT_DIR$/io_bin/test_read_raw.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optical/optical_center/optical_center_active_alignment.py" beforeDir="false" afterPath="$PROJECT_DIR$/optical/optical_center/optical_center_active_alignment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optical/optical_center/test_oc_aa_with_apple_solution.py" beforeDir="false" afterPath="$PROJECT_DIR$/optical/optical_center/test_oc_aa_with_apple_solution.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -55,8 +51,11 @@
       <file leaf-file-name="preprocess.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/io_bin/preprocess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="119" column="28" lean-forward="true" selection-start-line="119" selection-start-column="28" selection-end-line="119" selection-end-column="28" />
+            <state relative-caret-position="60">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -141,7 +140,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/read_bin/preprocess.pyx" />
         <option value="$PROJECT_DIR$/read_bin/bin2array_pure_python.py" />
         <option value="$PROJECT_DIR$/read_bin/main.py" />
         <option value="$PROJECT_DIR$/read_bin/conv_matlab.py" />
@@ -188,10 +186,11 @@
         <option value="$PROJECT_DIR$/optical/optical_center/optical_center.py" />
         <option value="$PROJECT_DIR$/defect_detection/dpc/defective_pixel.py" />
         <option value="$PROJECT_DIR$/io_bin/test_read_bin.py" />
-        <option value="$PROJECT_DIR$/io_bin/preprocess.py" />
         <option value="$PROJECT_DIR$/defect_detection/lcb/test_lcb.py" />
         <option value="$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish.py" />
         <option value="$PROJECT_DIR$/defect_detection/lcb/low_contrast_blemish_compact_version.py" />
+        <option value="$PROJECT_DIR$/io_bin/read_bin.py" />
+        <option value="$PROJECT_DIR$/io_bin/preprocess.py" />
       </list>
     </option>
   </component>
@@ -771,7 +770,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/io_bin/preprocess.py</url>
-          <line>244</line>
+          <line>222</line>
           <option name="timeStamp" value="254" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -993,16 +992,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/io_bin/read_bin.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/external_tool/ringlike_matrix.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/io_bin/read_bin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/io_bin/preprocess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="119" column="28" lean-forward="true" selection-start-line="119" selection-start-column="28" selection-end-line="119" selection-end-column="28" />
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

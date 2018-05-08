@@ -1,37 +1,23 @@
-import array
+import cv2
 import numpy as np
-import numba
 from math_tool import conv2
+from read_bin import BinFile
 
 
 def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitdepth=10, pedestal=64, FOV=0,
-               whitebalance=True, signed=True, more_precise=False, custom_size=[0, 0], custom_decoding="H", for_SFR_test=False):
+               whitebalance=True, signed=True, more_precise=False, custom_size=[0, 0], custom_encoding="H", for_SFR_test=False):
 
-    if custom_decoding is "H":
+    if custom_encoding is "H":
         # 默认unsigned integer, 16位
-        ID = array.array("H", open(imageinput, "rb").read())
+        bin = BinFile(imageinput, datatype=np.uint16)
+        header, ID = bin.get_realdata(2)
     else:
-        """
-        Type code   C Type             Minimum size in bytes 
-        'b'         signed integer     1 
-        'B'         unsigned integer   1 
-        'u'         Unicode character  2 (see note) 
-        'h'         signed integer     2 
-        'H'         unsigned integer   2 
-        'i'         signed integer     2 
-        'I'         unsigned integer   2 
-        'l'         signed integer     4 
-        'L'         unsigned integer   4 
-        'q'         signed integer     8 (see note) 
-        'Q'         unsigned integer   8 (see note) 
-        'f'         floating point     4 
-        'd'         floating point     8     
-        """
-        ID = array.array(custom_decoding, open(imageinput, "rb").read())
+        bin = BinFile(imageinput, datatype=custom_encoding)
+        header, ID = bin.get_realdata(2)
 
     if custom_size == [0, 0]:
-        width = ID[0]
-        height = ID[1]
+        width = header[0]
+        height = header[1]
     else:
         width = custom_size[0]
         height = custom_size[1]
@@ -42,7 +28,6 @@ def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitde
         ID = ID[2:]
 
     ID = ID.reshape((height, width))
-    # print(ID[0][0], ID[0][1], ID[1][0], ID[1][1])
 
     # 按mode切片
     ID = crop_by_mode(ID, mode)
@@ -51,7 +36,6 @@ def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitde
     ID = ID + pedestal
     if not signed:
         ID[ID < 0] = 0
-    # print(ID[0][0], ID[0][1], ID[1][0], ID[1][1])
 
     # 白平衡
     if whitebalance:
@@ -62,7 +46,6 @@ def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitde
     if FOV is not 0:
         ID = lens_shading_correction(ID, 75, more_precise=more_precise)
         ID[ID > 2 ** bitdepth - 1] = 2 ** bitdepth - 1  # 防过饱和
-    # print(ID[0][0], ID[0][1], ID[1][0], ID[1][1])
 
     # 图像格式转换
     if outputformat is "raw":
@@ -116,17 +99,22 @@ def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitde
         return bayer
 
     elif outputformat is "rgb":
-        rgb = bilinear_interpolation(ID, bayerformat)
+        bgr = bilinear_interpolation_opencv(ID, bayerformat)
         if not more_precise:
-            rgb = np.round(rgb)
-        return rgb
+            bgr = np.round(bgr)
+        return bgr
 
     elif outputformat is "yuv":
-        rgb = bilinear_interpolation(ID, bayerformat)
-        yuv = np.zeros(rgb.shape)
-        yuv[:, :, 0] = 0.299 * rgb[:, :, 0] + 0.587 * rgb[:, :, 1] + 0.114 * rgb[:, :, 2]
-        yuv[:, :, 1] = 2 ** (bitdepth - 1) - 0.1687 * rgb[:, :, 0] - 0.3313 * rgb[:, :, 1] + 0.5 * rgb[:, :, 2]
-        yuv[:, :, 2] = 2 ** (bitdepth - 1) + 0.5 * rgb[:, :, 0] - 0.4187 * rgb[:, :, 1] - 0.0813 * rgb[:, :, 2]
+        bgr = bilinear_interpolation(ID, bayerformat)
+
+        # opencv solution
+        yuv = cv2.cvtColor(bgr, cv2.COLOR_BGR2YUV)
+
+        # numpy solution
+        # yuv = np.zeros(rgb.shape)
+        # yuv[:, :, 0] = 0.299 * rgb[:, :, 0] + 0.587 * rgb[:, :, 1] + 0.114 * rgb[:, :, 2]
+        # yuv[:, :, 1] = 2 ** (bitdepth - 1) - 0.1687 * rgb[:, :, 0] - 0.3313 * rgb[:, :, 1] + 0.5 * rgb[:, :, 2]
+        # yuv[:, :, 2] = 2 ** (bitdepth - 1) + 0.5 * rgb[:, :, 0] - 0.4187 * rgb[:, :, 1] - 0.0813 * rgb[:, :, 2]
 
         if not more_precise:
             yuv = np.round(yuv)
@@ -166,18 +154,13 @@ def white_balance(raw, for_SFR_test=False):
     plane[:, :, 2] = raw[1::2, ::2]
     plane[:, :, 3] = raw[1::2, 1::2]
 
-    # print(plane[0][0][0], plane[0][1][0], plane[1][0][0], plane[1][1][0])
-    # print(plane[0][0][1], plane[0][1][1], plane[1][0][1], plane[1][1][1])
-    # print(plane[0][0][2], plane[0][1][2], plane[1][0][2], plane[1][1][2])
-    # print(plane[0][0][3], plane[0][1][3], plane[1][0][3], plane[1][1][3])
-
     block_size_R = 100
     block_size_C = 100
 
     if not for_SFR_test:
         center = [plane.shape[0] / 2 - 1, plane.shape[1] / 2 - 1]
     else:
-        center = [plane.shape[0] / 2 - 1, plane.shape[1] / 2 - 1 - 0.08 * plane.shape[1]]
+        center = [plane.shape[0] / 2 - 1, plane.shape[1] / 2 - 1 - 0.08 * plane.shape[1]]  # slightly dodge the dot on the very center of the SFR chart
 
     center_block = plane[int(center[0] - block_size_R / 2 + 1):int(center[0] + int(block_size_R / 2 + 1)),
                    int(center[1] - int(block_size_C / 2) + 1): int(center[1] + int(block_size_C / 2) + 1), :]
@@ -188,18 +171,12 @@ def white_balance(raw, for_SFR_test=False):
     for i in range(4):
         plane[:, :, i] = plane[:, :, i] * balance[i]
 
-    # print(plane[0][0][0], plane[0][1][0], plane[1][0][0], plane[1][1][0])
-    # print(plane[0][0][1], plane[0][1][1], plane[1][0][1], plane[1][1][1])
-    # print(plane[0][0][2], plane[0][1][2], plane[1][0][2], plane[1][1][2])
-    # print(plane[0][0][3], plane[0][1][3], plane[1][0][3], plane[1][1][3])
-
     # 4合1
     post_wb = np.zeros(raw.shape)
     post_wb[::2, ::2] = plane[:, :, 0]
     post_wb[::2, 1::2] = plane[:, :, 1]
     post_wb[1::2, ::2] = plane[:, :, 2]
     post_wb[1::2, 1::2] = plane[:, :, 3]
-    # print(post_wb[0][0], post_wb[0][1], post_wb[1][0], post_wb[1][1])
 
     return post_wb
 
@@ -207,7 +184,7 @@ def white_balance(raw, for_SFR_test=False):
 # 镜头阴影纠正
 # 涉及遍历全像素，使用Numba加速
 # @numba.jit()
-def lens_shading_correction(raw, FOV, more_precise=False):
+def lens_shading_correction(raw, FOV):
     width = raw.shape[1]
     height = raw.shape[0]
 
@@ -217,6 +194,7 @@ def lens_shading_correction(raw, FOV, more_precise=False):
     circumradius = (centerX ** 2 + centerY ** 2) ** 0.5
 
     # 求出所有点所在的视野（半）角对应程度
+    # pure python, slow "for loop"
     # Old Method, relied on Numba to accelerate
     # for j in range(height):
     #     for i in range(width):
@@ -229,7 +207,7 @@ def lens_shading_correction(raw, FOV, more_precise=False):
     #         lsc_factor = 1 / (np.cos(np.pi / 180 * FOV_scale)) ** 4
     #         raw[j, i] = raw[j, i] * lsc_factor
 
-    # New Method, no "for loop", don't relied on Numba
+    # New Method, no more "for loop", don't relied on Numba
     x_points = (centerX - np.arange(0, width)) ** 2
     y_points = (centerY - np.arange(0, height)) ** 2
 
@@ -246,10 +224,21 @@ def lens_shading_correction(raw, FOV, more_precise=False):
 
 
 # 线性插值
+def bilinear_interpolation_opencv(raw_bayer, bayerformat="rggb"):
+    if str.lower(bayerformat) is "rggb":
+        raw_bayer = cv2.cvtColor(raw_bayer, cv2.COLOR_BAYER_BG2BGR)
+    elif str.lower(bayerformat) is "bggr":
+        raw_bayer = cv2.cvtColor(raw_bayer, cv2.COLOR_BAYER_RG2BGR)
+    elif str.lower(bayerformat) is "gbrg":
+        raw_bayer = cv2.cvtColor(raw_bayer, cv2.COLOR_BAYER_GR2BGR)
+    elif str.lower(bayerformat) is "grbg":
+        raw_bayer = cv2.cvtColor(raw_bayer, cv2.COLOR_BAYER_GB2BGR)
+
+
 def bilinear_interpolation(raw_bayer, bayerformat="rggb"):
     w = raw_bayer.shape[1]
     h = raw_bayer.shape[0]
-    if bayerformat is "rggb":
+    if str.lower(bayerformat) is "rggb":
         red_mask = np.tile(([1, 0], [0, 0]), [int(h / 2), int(w / 2)])
         green_mask = np.tile(([0, 1], [1, 0]), [int(h / 2), int(w / 2)])
         blue_mask = np.tile(([0, 0], [0, 1]), [int(h / 2), int(w / 2)])

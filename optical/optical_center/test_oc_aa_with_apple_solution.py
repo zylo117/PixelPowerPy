@@ -10,7 +10,7 @@ ap.add_argument("-i", "--imageinput", required=True, help="path to the raw image
 args = vars(ap.parse_args())
 
 time1 = datetime.datetime.now()
-custom_source = preprocess(imageinput=args["imageinput"], outputformat="yuv", more_precise=True, custom_size=[3856, 2340], custom_decoding="B", FOV=75)
+custom_source = preprocess(imageinput=args["imageinput"], outputformat="yuv", more_precise=True, custom_size=[3856, 2340], custom_encoding="B", FOV=75)
 oc, ID = oc(args["imageinput"], custom_source=custom_source)
 # draw_optical_center(oc, ID)
 print(oc)

@@ -21,7 +21,7 @@ class ActiveAlignment:
     def black_dot_location(self, detect_thresh_val=5, center_area_percentage=0.3, bayerformat="rggb", pedestal=64,
                            bitdepth=10, custom_size=[3856, 2340], debug=False):
         raw_rgb = preprocess(self.raw_file, outputformat="rgb", more_precise=True, custom_size=[3856, 2340],
-                             custom_decoding="B")
+                             custom_encoding="B")
         raw_rgb = (raw_rgb / 4).astype(np.uint8)
         raw_gray = cv2.cvtColor(raw_rgb, cv2.COLOR_BGR2GRAY)
 

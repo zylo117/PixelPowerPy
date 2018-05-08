@@ -21,7 +21,7 @@ args = vars(ap.parse_args())
 
 time1 = datetime.datetime.now()
 # ID = preprocess(imageinput=args["imageinput"], outputformat="rgb", mode=2, FOV=75, whitebalance=True, more_precise=True)
-ID = preprocess(imageinput=args["imageinput"], custom_size=[3856, 2340], custom_decoding="B")
+ID = preprocess(imageinput=args["imageinput"], custom_size=[3856, 2340], custom_encoding="B")
 cv2.imshow("RAW", imutils.resize(ID.astype(np.uint8), width=600))
 cv2.waitKey()
 time2 = datetime.datetime.now()
