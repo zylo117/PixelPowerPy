@@ -44,7 +44,7 @@ def preprocess(imageinput, bayerformat="rggb", outputformat="raw", mode=0, bitde
 
     # 去镜头阴影
     if FOV is not 0:
-        ID = lens_shading_correction(ID, 75, more_precise=more_precise)
+        ID = lens_shading_correction(ID, 75)
         ID[ID > 2 ** bitdepth - 1] = 2 ** bitdepth - 1  # 防过饱和
 
     # 图像格式转换

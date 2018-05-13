@@ -6,7 +6,7 @@ import numpy as np
 import scipy as sp
 import scipy.signal as spsignal
 
-from tools.data_process.bin_proc.read_bin import BinFile
+from read_bin import BinFile
 
 
 class LCB:
